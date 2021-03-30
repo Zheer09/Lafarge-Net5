@@ -1,0 +1,128 @@
+﻿<Window x:Class="Lafarge_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Lafarge_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="500" Width="850"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Effect>
+        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="4"/>
+    </Window.Effect>
+
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="0" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+
+    <Border CornerRadius="7" BorderThickness="15" BorderBrush="#00955E">
+
+        <Grid Background="#EEEEEE">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Background="#EEEEEE" Grid.ColumnSpan="2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+
+                </Grid.ColumnDefinitions>
+
+
+            </Grid>
+
+            
+
+            <Ellipse x:Name="CloseBtn" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Right" 
+                    Width="18" Height="18" Margin="382,8,10,9" MouseLeftButtonDown="Close_btn" Cursor="" >
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/image/close.png"/>
+                </Ellipse.Fill>
+                
+            </Ellipse>
+
+
+            <Ellipse x:Name="mini_Btn" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Right" 
+                    Width="18" Height="18" Margin="0,8,33,9" MouseLeftButtonDown="MiniBtn"  >
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/image/Mini.png"/>
+                </Ellipse.Fill>
+
+            </Ellipse>
+
+
+            <StackPanel  Grid.Row="1">
+                <StackPanel Orientation="Horizontal" >
+                    <Image  Margin="140 0 0 0 " Height="71" Width="102" Source="image/lafarge_icone.png">
+                        <Image.Effect>
+                            <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+                        </Image.Effect>
+                    </Image>
+                </StackPanel>
+
+                <TextBlock Text="Lafarge Maintenance System" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"
+                           Margin="0 30 0 0 ">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <StackPanel Margin="65 60 0 0 " Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="User" Width="25" Height="25"/>
+                    <TextBox x:Name="Username" Margin="10 0" materialDesign:HintAssist.Hint="Enter Username" Foreground="Black" Width="200"
+                             BorderBrush="Black" CaretBrush="Black" TextChanged="Username_TextChanged" />
+                </StackPanel>
+
+                <StackPanel Margin="65 20 0 0 " Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Lock" Width="25" Height="25"/>
+                    <PasswordBox x:Name="inputPassword" Margin="10 0" materialDesign:HintAssist.Hint="************" Foreground="Black" Width="200"
+                             BorderBrush="Black" CaretBrush="Black" KeyDown="OnKeyDownHandler" />
+                </StackPanel>
+
+                <TextBlock x:Name="Wrong_usrpwd" Foreground="Red" Text="" Margin="95 20 0 0"/>
+
+                <StackPanel Margin="145 25 0 0 " HorizontalAlignment="Left" >
+                    <Button x:Name="LoginBut" Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
+                            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="20" BorderBrush="#00955E"
+                            Click="Button_Click" Content="Login" >
+                        <Button.Effect>
+                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
+                        </Button.Effect>
+
+                    </Button>
+                </StackPanel>
+
+            </StackPanel>
+
+
+            <StackPanel Margin="0 0 10 0" Grid.Column="2" Grid.Row="2">
+                <Image Height="400" Width="400" Source="image/Background.png">
+                    <Image.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+                    </Image.Effect>
+                </Image>
+            </StackPanel>
+
+
+        </Grid>
+    </Border>
+
+</Window>
