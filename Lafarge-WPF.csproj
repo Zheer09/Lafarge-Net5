@@ -6,6 +6,7 @@
     <RootNamespace>Lafarge_WPF</RootNamespace>
     <UseWPF>true</UseWPF>
     <UserSecretsId>154c1524-f479-4e70-9a37-87c633a50902</UserSecretsId>
+    <ApplicationIcon>lafarge icone.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
