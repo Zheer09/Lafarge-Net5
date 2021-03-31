@@ -115,7 +115,7 @@ namespace Lafarge_WPF
 
 
 
-            // test
+ /*           // test
             try
             {
                 SelectAccount sa = new SelectAccount();
@@ -126,7 +126,7 @@ namespace Lafarge_WPF
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
 
 
 
