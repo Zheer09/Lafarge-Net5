@@ -10,6 +10,14 @@
       ShowsNavigationUI="False">
 
     <Grid>
+        <DataGrid
+          ItemsSource="{Binding Items2}"
+          CanUserAddRows="False"
+          SelectionUnit="Cell"
+          SelectionMode="Extended">
+            
+        </DataGrid>
 
+        
     </Grid>
 </Page>
