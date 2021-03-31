@@ -35,5 +35,9 @@ namespace Lafarge_WPF
 
         }
 
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+        }
     }
 }

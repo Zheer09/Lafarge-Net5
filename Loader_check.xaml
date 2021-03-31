@@ -7,7 +7,9 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:Lafarge_WPF"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1500"
+      d:DesignHeight="{x:Static SystemParameters.PrimaryScreenHeight}"
+      d:DesignWidth="{x:Static SystemParameters.PrimaryScreenWidth}"
+      
       Title="Loader_check">
 
     <Page.Resources>
