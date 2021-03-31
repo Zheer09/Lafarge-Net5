@@ -28,6 +28,7 @@
     <None Remove="image\Transport__28189_29.png" />
     <None Remove="image\true.png" />
     <None Remove="image\wheel_loader.png" />
+    <None Remove="WriteFile\writefile.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,6 +58,7 @@
     <Resource Include="image\Transport__28189_29.png" />
     <Resource Include="image\true.png" />
     <Resource Include="image\wheel_loader.png" />
+    <Resource Include="WriteFile\writefile.txt" />
   </ItemGroup>
 
 </Project>

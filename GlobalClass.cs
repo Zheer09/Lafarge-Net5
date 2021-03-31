@@ -43,7 +43,7 @@ namespace Lafarge_WPF
 
             try
             {
-                StreamReader sr = new StreamReader("writefile.txt");
+                StreamReader sr = new StreamReader("/WriteFile/writefile.txt");
 
                 for (int i = 0; i < 5; i++)
                     line[i] = sr.ReadLine();
