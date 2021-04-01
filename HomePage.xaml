@@ -208,17 +208,11 @@
 
                 </Ellipse>
 
-                <Ellipse x:Name="MaxBtn" Grid.Column="1" VerticalAlignment="Top"  HorizontalAlignment="Right" 
-                    Width="22" Height="22" Margin="382,8,50,9" MouseLeftButtonDown="Max_Btn" Cursor="" >
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="/image/max.png"/>
-                    </Ellipse.Fill>
-
-                </Ellipse>
+               
 
 
                 <Ellipse x:Name="mini_Btn" Grid.Column="1" VerticalAlignment="Top"  HorizontalAlignment="Right" 
-                    Width="22" Height="22" Margin="0,8,92,9" MouseLeftButtonDown="Minibtn"  >
+                    Width="22" Height="22" Margin="0,8,45,9" MouseLeftButtonDown="Minibtn"  >
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/image/Mini.png"/>
                     </Ellipse.Fill>
