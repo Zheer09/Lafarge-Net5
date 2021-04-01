@@ -230,7 +230,7 @@ namespace Lafarge_WPF
             while (GlobalClass.sql_dr.Read())
             {
                 myVehicle.vehicle_code = GlobalClass.sql_dr.GetString(0);
-                myVehicle.maintenance_date = GlobalClass.sql_dr.GetString(1);
+                //myVehicle.maintenance_date = GlobalClass.sql_dr.GetString(1);
                 
 
             }
