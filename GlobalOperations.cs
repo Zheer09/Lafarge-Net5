@@ -159,7 +159,6 @@ namespace Lafarge_WPF
         {
             SelectAccount myAccount = new SelectAccount();
 
-
             GlobalClass.con.Open();
             string command_select = "SELECT username, full_name, user_email, phone_num, user_role FROM user_account where username = '" + u_n + "';";
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
@@ -184,7 +183,6 @@ namespace Lafarge_WPF
         {
             SelectVehicle myVehicle = new SelectVehicle();
 
-
             GlobalClass.con.Open();
             string command_select = "SELECT vehicle_code, vehicle_type, batch_plant FROM vehicle where vehicle_code = '" + v_c + "';";
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
@@ -203,7 +201,43 @@ namespace Lafarge_WPF
 
 
 
-        //public static Select
+        // this function is used to insert data into maintenance vehicle table in our database;
+        // it inserts data into all columns for that particular table.
+        public static void insert_maintenance_vehicle(string v_c, DateTime v_d)
+        {
+
+            GlobalClass.con.Open();
+            string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+            string command_insert =
+            "INSERT INTO maintenance_vehicle (vehicle_code, maintenance_date) VALUES ('" + v_c + "',   '" + v_d.ToString(format) + "');";
+            MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+            GlobalClass.con.Close();
+
+        }
+
+
+        public static SelectMaintenanceVehicle getMaintenanceVehicleData(string v_c)
+        {
+
+            SelectMaintenanceVehicle myVehicle = new SelectMaintenanceVehicle();
+
+            GlobalClass.con.Open();
+            string command_select = "SELECT vehicle_code, maintenance_date FROM vehicle where vehicle_code = '" + v_c + "';";
+            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+
+            while (GlobalClass.sql_dr.Read())
+            {
+                myVehicle.vehicle_code = GlobalClass.sql_dr.GetString(0);
+                myVehicle.maintenance_date = GlobalClass.sql_dr.GetString(1);
+                
+
+            }
+
+            return myVehicle;
+
+        }
 
 
 

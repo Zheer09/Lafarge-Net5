@@ -35,39 +35,30 @@ namespace Lafarge_WPF
     class SelectVehicleProperty
     {
 
-#pragma warning disable CS0649 // Field 'SelectVehicleProperty.vehicle_code' is never assigned to, and will always have its default value null
         public string vehicle_code;
-#pragma warning restore CS0649 // Field 'SelectVehicleProperty.vehicle_code' is never assigned to, and will always have its default value null
-#pragma warning disable CS0649 // Field 'SelectVehicleProperty.working_hour' is never assigned to, and will always have its default value 0
+
         public double working_hour;
-#pragma warning restore CS0649 // Field 'SelectVehicleProperty.working_hour' is never assigned to, and will always have its default value 0
-#pragma warning disable CS0649 // Field 'SelectVehicleProperty.property_date' is never assigned to, and will always have its default value null
+
         public string property_date;
-#pragma warning restore CS0649 // Field 'SelectVehicleProperty.property_date' is never assigned to, and will always have its default value null
 
     }
 
 
     class SelectVehicleCheck
     {
-#pragma warning disable CS0649 // Field 'SelectVehicleCheck.check_index' is never assigned to, and will always have its default value 0
+
         public int check_index;
-#pragma warning restore CS0649 // Field 'SelectVehicleCheck.check_index' is never assigned to, and will always have its default value 0
-#pragma warning disable CS0649 // Field 'SelectVehicleCheck.check_result' is never assigned to, and will always have its default value false
+
         public bool check_result;
-#pragma warning restore CS0649 // Field 'SelectVehicleCheck.check_result' is never assigned to, and will always have its default value false
-#pragma warning disable CS0649 // Field 'SelectVehicleCheck.check_name' is never assigned to, and will always have its default value null
+
         public string check_name;
-#pragma warning restore CS0649 // Field 'SelectVehicleCheck.check_name' is never assigned to, and will always have its default value null
-#pragma warning disable CS0649 // Field 'SelectVehicleCheck.check_note' is never assigned to, and will always have its default value null
+
         public string check_note;
-#pragma warning restore CS0649 // Field 'SelectVehicleCheck.check_note' is never assigned to, and will always have its default value null
-#pragma warning disable CS0649 // Field 'SelectVehicleCheck.vehicle_code' is never assigned to, and will always have its default value null
+
         public string vehicle_code;
-#pragma warning restore CS0649 // Field 'SelectVehicleCheck.vehicle_code' is never assigned to, and will always have its default value null
-#pragma warning disable CS0649 // Field 'SelectVehicleCheck.submit_date' is never assigned to, and will always have its default value null
+
         public string submit_date;
-#pragma warning restore CS0649 // Field 'SelectVehicleCheck.submit_date' is never assigned to, and will always have its default value null
+
     }
 
 
@@ -131,6 +122,12 @@ namespace Lafarge_WPF
         public string report_mm_yyyy;
 #pragma warning restore CS0649 // Field 'SelectMonthlyReports.report_mm_yyyy' is never assigned to, and will always have its default value null
 
+    }
+
+    class SelectMaintenanceVehicle
+    {
+        public string vehicle_code;
+        public DateTime maintenance_date;
     }
 
 

@@ -10,6 +10,7 @@
       ShowsNavigationUI="False">
 
     <Grid>
+        <DataGrid Margin="35" />
 
     </Grid>
 </Page>
