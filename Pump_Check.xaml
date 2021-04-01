@@ -7,7 +7,8 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:Lafarge_WPF"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1500"
+      d:DesignHeight="{x:Static SystemParameters.PrimaryScreenHeight}" 
+      d:DesignWidth="{x:Static SystemParameters.PrimaryScreenWidth}"
       Title="Pump_Check">
 
     <Page.Resources>
@@ -513,6 +514,14 @@
             <Button x:Name="Submit" Grid.Column="4" Grid.Row="17" Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
                             materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="20" BorderBrush="#00955E"
                             Click="Submit_Click" Content="Submit" >
+                <Button.Effect>
+                    <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
+                </Button.Effect>
+
+            </Button>
+            <Button x:Name="Goback" Grid.Column="0" Grid.Row="17" Width="80" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
+                            materialDesign:ButtonAssist.CornerRadius="2" BorderThickness="20" BorderBrush="#00955E"
+                            Click="Goback_click" Content="Goback" >
                 <Button.Effect>
                     <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
                 </Button.Effect>
