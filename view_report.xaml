@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Lafarge_WPF.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="{x:Static SystemParameters.PrimaryScreenHeight}" 
@@ -16,6 +17,42 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Weekly Report" FontSize="70" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Monthly Report" FontSize="70" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <Button x:Name="Download_Report_Weekly" FontSize="20" Grid.Row="1" Width="200" Height="100" Background="#00955E"  Style="{StaticResource MaterialDesignRaisedButton}" 
+                            materialDesign:ButtonAssist.CornerRadius="50" BorderThickness="0" BorderBrush="#00955E"
+                            Click="Weekly_report" Content="Download" >
+            <Button.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
+            </Button.Effect>
+
+        </Button>
+
+        <Button x:Name="Download_Report_Monthly" FontSize="20" Grid.Column="1" Grid.Row="1" Width="200" Height="100" Background="#00955E"  Style="{StaticResource MaterialDesignRaisedButton}" 
+                            materialDesign:ButtonAssist.CornerRadius="50" BorderThickness="0" BorderBrush="#00955E"
+                            Click="Monthly_report" Content="Download" >
+            <Button.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
+            </Button.Effect>
+
+        </Button>
 
     </Grid>
 </Page>

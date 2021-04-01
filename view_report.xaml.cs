@@ -24,5 +24,15 @@ namespace Lafarge_WPF.Pages
         {
             InitializeComponent();
         }
+
+        private void Weekly_report(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Monthly_report(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

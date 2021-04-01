@@ -24,5 +24,10 @@ namespace Lafarge_WPF.Pages
         {
             InitializeComponent();
         }
+
+        private void Check_maintanance_selection(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
