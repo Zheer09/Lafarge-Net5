@@ -11,6 +11,7 @@
 
     <Grid>
         <DataGrid
+           x:Name="Check_maintanance"
           ItemsSource="{Binding Items2}"
           CanUserAddRows="False"
           SelectionUnit="Cell"
