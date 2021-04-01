@@ -115,7 +115,7 @@
                     <TextBlock Grid.Column="2"  Grid.Row="2" Foreground="Black" FontSize="25" FontWeight="SemiBold" 
                       HorizontalAlignment="Center" Text="         Date: " Width="126" Margin="225,2,312,1" RenderTransformOrigin="0.5,0.5"/>
 
-                    <TextBlock x:Name="DateTime_lable" Grid.Column="2" Grid.Row="2" Text="DateTime_Text" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="351,9,184,1"/>
+                    <TextBlock x:Name="DateTime_lable" Grid.Column="2" Grid.Row="2" Text="DateTime_Text" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="351,9,184,1"/>
 
 
                     <Image Height="60" Grid.Column="3" Source="/image/lafarge_icone.png"/>

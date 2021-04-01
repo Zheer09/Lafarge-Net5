@@ -14,7 +14,8 @@
           ItemsSource="{Binding Items2}"
           CanUserAddRows="False"
           SelectionUnit="Cell"
-          SelectionMode="Extended">
+          SelectionMode="Extended"
+            Margin="22">
             
         </DataGrid>
 

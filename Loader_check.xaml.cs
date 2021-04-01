@@ -28,7 +28,7 @@ namespace Lafarge_WPF
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
             DateTime_lable.Text = GlobalClass.GetNistTime().ToString("dd MMMM yyyy");
-
+            //MessageBox.Show(GlobalClass.GetNistTime().ToString("dd MMMM yyyy"));
         }
 
         
