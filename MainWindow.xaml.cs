@@ -30,6 +30,16 @@ namespace Lafarge_WPF
         public MainWindow()
         {
             InitializeComponent();
+
+
+            if (GlobalClass.CheckForInternetConnection())
+            {
+                // internet connection is fine
+            }
+            else
+            {
+                MessageBox.Show("Warning: you are not connected to internet!");
+            }
         }
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
@@ -90,6 +100,7 @@ namespace Lafarge_WPF
             catch (Exception ex)
             {
                 Wrong_usrpwd.Text = ex.Message;
+                MessageBox.Show("Error! Check your Internet.");
             }
 
 
@@ -108,42 +119,34 @@ namespace Lafarge_WPF
             String Pass_Word = inputPassword.Password.ToString();
             Wrong_usrpwd.Text = "";
 
-
-
-            GlobalClass.setCon();
-            GlobalClass.login_status = login_check(U_Name, Pass_Word);
-
-
-
- /*           // test
-            try
+            if (GlobalClass.CheckForInternetConnection())
             {
-                SelectAccount sa = new SelectAccount();
-                sa = GlobalOperations.getAccountData("zheer");
-                MessageBox.Show("Username: " + sa.accUsername + ", " + sa.accFullName + ", " + ", " + sa.accEmail + ", " + sa.accPhoneNum + ", " + sa.accUserRole);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }*/
 
 
 
+                GlobalClass.setCon();
+                GlobalClass.login_status = login_check(U_Name, Pass_Word);
 
 
-            if (GlobalClass.login_status)
-            {
-                //MessageBox.Show("Login successful for " + GlobalClass.Account_username);
-                this.Hide();
-                HomePage home_page = new HomePage();
-                home_page.ShowDialog();
+
+                if (GlobalClass.login_status)
+                {
+                    //MessageBox.Show("Login successful for " + GlobalClass.Account_username);
+                    this.Hide();
+                    HomePage home_page = new HomePage();
+                    home_page.ShowDialog();
+
+                }
+                else
+                {
+                    // do nothing... 
+
+                }
 
             }
             else
             {
-                // do nothing... 
-                //MessageBox.Show("Incorrect Username or password");
+                MessageBox.Show("Warning: you are not connected to internet!");
             }
 
         }
