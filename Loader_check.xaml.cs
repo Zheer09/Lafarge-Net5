@@ -78,12 +78,14 @@ namespace Lafarge_WPF
 
         private void true_p1btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p1.Opacity = 0.15;
+            true_p1.Opacity = 1;
         }
 
         private void false_p1btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p1.Opacity = 1;
+            true_p1.Opacity =0.15;
         }
 
         /*
