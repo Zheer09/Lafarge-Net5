@@ -9,6 +9,16 @@
       Title="Account_info_Page">
 
     <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="35,45,0,0" Text="Username: " TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="35,82,0,0" Text="Full Name: " TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="35,119,0,0" Text="Email: " TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="35,156,0,0" Text="Phone Number: " TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="35,193,0,0" Text="User Role: " TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
+        <TextBlock x:Name="username_label" HorizontalAlignment="Left" Margin="210,45,0,0" Text="U" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
+        <TextBlock x:Name="full_label" HorizontalAlignment="Left" Margin="210,79,0,0" Text="U" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
+        <TextBlock x:Name="email_abel" HorizontalAlignment="Left" Margin="210,116,0,0" Text="U" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
+        <TextBlock x:Name="role_label" HorizontalAlignment="Left" Margin="210,190,0,0" Text="U" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
+        <TextBlock x:Name="phone_label" HorizontalAlignment="Left" Margin="210,156,0,0" Text="U" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="144" FontSize="18"/>
 
     </Grid>
 </Page>

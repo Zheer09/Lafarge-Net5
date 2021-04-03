@@ -23,6 +23,17 @@ namespace Lafarge_WPF.Pages
         public Account_info_Page()
         {
             InitializeComponent();
+
+            SelectAccount myAccount = new SelectAccount();
+            myAccount = GlobalOperations.getAccountData(GlobalClass.Account_username);
+
+            username_label.Text = myAccount.accUsername;
+            full_label.Text = myAccount.accFullName;
+            phone_label.Text = myAccount.accPhoneNum;
+            email_abel.Text = myAccount.accEmail;
+            role_label.Text = myAccount.accUserRole;
+
+
         }
     }
 }
