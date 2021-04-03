@@ -15,25 +15,31 @@ using System.Windows.Shapes;
 using Lafarge_WPF.Pages;
 
 namespace Lafarge_WPF.Pages
+
 {
     /// <summary>
-    /// Interaction logic for view_report.xaml
+    /// Interaction logic for weekly_report.xaml
     /// </summary>
-    public partial class view_report : Page
+    public partial class weekly_report : Page
     {
-        public view_report()
+        public weekly_report()
         {
             InitializeComponent();
         }
 
-        private void Weekly_report(object sender, RoutedEventArgs e)
+        private void weekly_report_Selection(object sender, SelectionChangedEventArgs e)
         {
-            this.NavigationService.Navigate(new Pages.weekly_report());
+
         }
 
-        private void Monthly_report(object sender, RoutedEventArgs e)
+        private void Goback_btn(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Pages.Monthly_report());
+
+        }
+
+        private void Download_btn(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
