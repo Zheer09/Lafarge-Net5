@@ -49,11 +49,10 @@
                 <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
             </Button.Effect>
         </Button>
-        <Viewbox Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-                         Width="142" Height="50">
-            <DatePicker SelectedDate="{x:Static sys:DateTime.Now}" x:Name="Weekly_date_date" Width="70"
-                        FontWeight="SemiBold" FontSize="9" Foreground="Black" 
-                        Background="White"/>
-        </Viewbox>
+
+        <DatePicker  Grid.Row="2" HorizontalAlignment="Center" SelectedDate="{x:Static sys:DateTime.Now}" x:Name="Weekly_date_date" Width="94"
+                        FontWeight="SemiBold" FontSize="15" Foreground="Black" 
+                        Background="White" Height="40"/>
+
     </Grid>
 </Page>

@@ -10,6 +10,11 @@
       ShowsNavigationUI="False">
 
     <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <DataGrid
           x:Name="Check_maintanance"
           ItemsSource="{Binding Items2}"

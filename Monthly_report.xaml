@@ -50,12 +50,11 @@
             </Button.Effect>
         </Button>
 
-        <Viewbox  Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-                         Width="60" Height="30">
-            <DatePicker IsTodayHighlighted="True" SelectedDate="{x:Static sys:DateTime.Now}" x:Name="Weekly_date_date" Width="70"
-                        FontWeight="SemiBold" FontSize="9" Foreground="Black" 
-                        Background="White"/>
-        </Viewbox>
+
+        <DatePicker  Grid.Row="2" HorizontalAlignment="Center" IsTodayHighlighted="True" SelectedDate="{x:Static sys:DateTime.Now}"
+                     x:Name="Weekly_date_date" Width="106" FontWeight="SemiBold" FontSize="15" Foreground="Black" 
+                     Background="White" Height="40"/>
+
 
     </Grid>
 </Page>
