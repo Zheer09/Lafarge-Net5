@@ -26,11 +26,13 @@ namespace Lafarge_WPF.Pages
         {
             InitializeComponent();
             MySqlDataAdapter sql_cmd = 
-            new MySqlDataAdapter("select vehicle_code as 'Vehicle Code', vehicle_status as 'Status', DATE_FORMAT(maintenance_date, '%Y %m %d') as 'Maintenance Date' from maintenance_vehicle", GlobalClass.con);
+            new MySqlDataAdapter("select mv.vehicle_code, v.vehicle_type, v.batch_plant, vp.working_hour, mv.vehicle_status, "
+            +"mv.maintenance_date from maintenance_vehicle as mv join vehicle as v on mv.vehicle_code = v.vehicle_code "
+            +"left join vehicle_property as vp on v.vehicle_code = vp.vehicle_code ; ", GlobalClass.con);
             GlobalClass.con.Open();
             //GlobalClass.sql_dr = sql_cmd.ExecuteReader();
 
-            DataTable dt1 = new DataTable("maintenance_vehicle");
+            DataTable dt1 = new DataTable();
             sql_cmd.Fill(dt1);
 
             Check_maintanance.ItemsSource = dt1.DefaultView;
