@@ -29,6 +29,7 @@ namespace Lafarge_WPF
         double last_wh = 0, new_wh = 0;
         double wh_50 = 0;
         double wh_300 = 0;
+        int num_of_index = 0;
 
        
 
@@ -110,13 +111,13 @@ namespace Lafarge_WPF
             }
             else
             {
-                
+                num_of_index = GlobalOperations.GetIndexNumber_v_ch();
 
                 GlobalOperations.Insert_into_vehicle(v_code.Text, v_type, batch_plant.Text.ToString() );
                 GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), 0, 0, GlobalClass.GetNistTime());
-                for(int i = 0; i < 16; i++)
+                for(int i = 1; i <= 16; i++)
                 {
-                    GlobalOperations.Insert_into_vehicle_check(i, loader_check[i], loader_note[i], v_code.Text, GlobalClass.GetNistTime());
+                    GlobalOperations.Insert_into_vehicle_check((i+num_of_index), loader_check[i-1], loader_note[i-1], v_code.Text, GlobalClass.GetNistTime());
                 }
                
             }

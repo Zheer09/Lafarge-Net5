@@ -272,6 +272,19 @@ and property_date = ( select max(property_date) from vehicle_property as b where
 
         }
 
+        public static int GetIndexNumber_v_ch()
+        {
+            GlobalClass.con.Open();
+            string command_select = "SELECT COUNT(*) FROM vehicle_check;";
+            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+            GlobalClass.sql_dr.Read();
+            int index_num = GlobalClass.sql_dr.GetInt32(0);
+            GlobalClass.con.Close();
+            return index_num;
+
+        }
+
 
 
     }
