@@ -127,7 +127,7 @@ namespace Lafarge_WPF
                 GlobalClass.setCon();
                 GlobalClass.login_status = login_check(U_Name, Pass_Word);
 
-
+                MessageBox.Show(" "+ GlobalOperations.GetIndexNumber_v_ch().ToString());
 
                 if (GlobalClass.login_status)
                 {
