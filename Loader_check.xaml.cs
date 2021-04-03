@@ -45,6 +45,9 @@ namespace Lafarge_WPF
                 loader_check[i] = true;
             }
 
+            // zheeer here...
+            true_p1.Opacity = 0.15;
+            false_p1.Opacity = 0.15;
 
 
         }
@@ -75,24 +78,26 @@ namespace Lafarge_WPF
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
 
-            Note_p1.Text = loader_note[0];
-            Note_p2.Text = loader_note[1];
-            Note_p3.Text = loader_note[2];
-            Note_p4.Text = loader_note[3];
-            Note_p5.Text = loader_note[4];
-            Note_p6.Text = loader_note[5];
-            Note_p7.Text = loader_note[6];
-            Note_p8.Text = loader_note[7];
-            Note_p9.Text = loader_note[8];
-            Note_p10.Text = loader_note[9];
-            Note_p11.Text = loader_note[10];
-            Note_p12.Text = loader_note[11];
-            Note_p13.Text = loader_note[12];
-            Note_p14.Text = loader_note[13];
-            Note_p15.Text = loader_note[14];
-            Note_p16.Text = loader_note[15];
+            loader_note[0] = Note_p1.Text;
+            loader_note[1] = Note_p2.Text;
+            loader_note[2] = Note_p3.Text;
+            loader_note[3] = Note_p4.Text;
+            loader_note[4] = Note_p5.Text;
+            loader_note[5] = Note_p6.Text;
+            loader_note[6] = Note_p7.Text; 
+            loader_note[7] = Note_p8.Text;
+            loader_note[8] = Note_p9.Text;
+            loader_note[9]= Note_p10.Text;
+            loader_note[10]= Note_p11.Text;
+            loader_note[11] = Note_p12.Text;
+            loader_note[12] = Note_p13.Text;
+            loader_note[13] = Note_p14.Text;
+            loader_note[14] =  Note_p15.Text;
+            loader_note[15] = Note_p16.Text;
 
+            //MessageBox.Show();
 
+            
             if (GlobalOperations.doesVehicleExist( v_code.Text ))
             {
 
@@ -111,17 +116,18 @@ namespace Lafarge_WPF
             }
             else
             {
+                // 16
                 num_of_index = GlobalOperations.GetIndexNumber_v_ch();
 
                 GlobalOperations.Insert_into_vehicle(v_code.Text, v_type, batch_plant.Text.ToString() );
                 GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), 0, 0, GlobalClass.GetNistTime());
-                for(int i = 1; i <= 16; i++)
+                for(int i = 1; i < 17; i++)
                 {
                     GlobalOperations.Insert_into_vehicle_check((i+num_of_index), loader_check[i-1], loader_note[i-1], v_code.Text, GlobalClass.GetNistTime());
                 }
                
             }
-
+            
 
 
         }

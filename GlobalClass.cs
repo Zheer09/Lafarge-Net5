@@ -8,8 +8,6 @@ using System.Globalization;
 
 
 
-
-
 namespace Lafarge_WPF
 {
 

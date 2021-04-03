@@ -26,16 +26,6 @@ namespace Lafarge_WPF.Pages
         {
             InitializeComponent();
 
-
-            /*
-                select mv.vehicle_code, lv.vehicle_type, lv.batch_plant, mv.vehicle_status , mv.maintenance_date 
-from maintenance_vehicle as mv 
- join vehicle as lv on mv.vehicle_code = lv.vehicle_code
- where mv.maintenance_date = (select max(b.maintenance_date) 
- from maintenance_vehicle as b where mv.vehicle_code = b.vehicle_code);
-            */
-
-
             MySqlDataAdapter sql_cmd =
           new MySqlDataAdapter("select mv.vehicle_code as 'Vehicle Code', lv.vehicle_type as 'Type', lv.batch_plant as 'Batch Plant', " +
           " mv.vehicle_status as 'Status' , DATE_FORMAT(mv.maintenance_date, '%Y %M %D') as 'Maintenance Date' " +
