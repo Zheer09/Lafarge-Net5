@@ -59,7 +59,15 @@ namespace Lafarge_WPF
 
         private void MainCheck_button3(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Pages.main_check();
+            if (GlobalClass.CheckForInternetConnection())
+            {
+                Main.Content = new Pages.main_check();
+            }
+            else
+            {
+                MessageBox.Show("Warning: you are not connected to internet!");
+            }
+           
         }
 
         private void Search_button4(object sender, RoutedEventArgs e)

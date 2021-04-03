@@ -27,18 +27,42 @@ namespace Lafarge_WPF.Pages
 
         private void Loader_Checked(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Loader_check());
+            if (GlobalClass.CheckForInternetConnection())
+            {
+                this.NavigationService.Navigate(new Loader_check());
+            }
+            else
+            {
+                MessageBox.Show("Warning: you are not connected to internet!");
+            }
+            
         }
 
 
         private void Pump_Checked(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Pump_Check());
+            
+            if (GlobalClass.CheckForInternetConnection())
+            {
+                this.NavigationService.Navigate(new Pump_Check());
+            }
+            else
+            {
+                MessageBox.Show("Warning: you are not connected to internet!");
+            }
         }
 
         private void Mixer_Checked(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Mixer_check());
+            
+            if (GlobalClass.CheckForInternetConnection())
+            {
+                this.NavigationService.Navigate(new Mixer_check());
+            }
+            else
+            {
+                MessageBox.Show("Warning: you are not connected to internet!");
+            }
         }
     }
 }

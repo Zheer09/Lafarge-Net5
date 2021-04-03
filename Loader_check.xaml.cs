@@ -65,17 +65,6 @@ namespace Lafarge_WPF
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
 
-/*
-            if (GlobalOperations.doesVehicleExist("L385"))
-            {
-                MessageBox.Show("It Exists!");
-            }
-            else
-            {
-                MessageBox.Show("It doesn't exist bitch bitch");
-            }
-
-*/
 
 
 
