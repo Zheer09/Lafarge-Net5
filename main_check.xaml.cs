@@ -25,7 +25,8 @@ namespace Lafarge_WPF.Pages
         public main_check()
         {
             InitializeComponent();
-            MySqlDataAdapter sql_cmd = new MySqlDataAdapter("select * from maintenance_vehicle", GlobalClass.con);
+            MySqlDataAdapter sql_cmd = 
+            new MySqlDataAdapter("select vehicle_code as 'Vehicle Code', vehicle_status as 'Status', DATE_FORMAT(maintenance_date, '%Y %m %d') as 'Maintenance Date' from maintenance_vehicle", GlobalClass.con);
             GlobalClass.con.Open();
             //GlobalClass.sql_dr = sql_cmd.ExecuteReader();
 
