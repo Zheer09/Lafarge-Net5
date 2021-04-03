@@ -203,13 +203,13 @@ namespace Lafarge_WPF
 
         // this function is used to insert data into maintenance vehicle table in our database;
         // it inserts data into all columns for that particular table.
-        public static void insert_maintenance_vehicle(string v_c, DateTime v_d)
+        public static void insert_maintenance_vehicle(string v_c, string v_s, DateTime v_d)
         {
 
             GlobalClass.con.Open();
             string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
             string command_insert =
-            "INSERT INTO maintenance_vehicle (vehicle_code, maintenance_date) VALUES ('" + v_c + "',   '" + v_d.ToString(format) + "');";
+            "INSERT INTO maintenance_vehicle (vehicle_code, vehicle_status, maintenance_date) VALUES ('" + v_c + "',   '"+ v_s +"',  '" + v_d.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
             GlobalClass.con.Close();
@@ -230,9 +230,9 @@ namespace Lafarge_WPF
             while (GlobalClass.sql_dr.Read())
             {
                 myVehicle.vehicle_code = GlobalClass.sql_dr.GetString(0);
-                myVehicle.maintenance_date = GlobalClass.sql_dr.GetDateTime(1);
+                myVehicle.vehicle_status = GlobalClass.sql_dr.GetString(1);
+                myVehicle.maintenance_date = GlobalClass.sql_dr.GetDateTime(2);
                 
-
             }
 
             return myVehicle;
