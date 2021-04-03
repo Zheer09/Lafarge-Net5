@@ -30,7 +30,17 @@ namespace Lafarge_WPF.Pages
 
         }
 
+        private void Goback_btn(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Pages.view_report());
+        }
+
         private void Download_btn(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Weekly_date_date_SizeChanged(object sender, SizeChangedEventArgs e)
         {
 
         }
