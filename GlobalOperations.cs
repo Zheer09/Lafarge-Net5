@@ -223,7 +223,7 @@ namespace Lafarge_WPF
             SelectMaintenanceVehicle myVehicle = new SelectMaintenanceVehicle();
 
             GlobalClass.con.Open();
-            string command_select = "SELECT vehicle_code, maintenance_date FROM vehicle where vehicle_code = '" + v_c + "';";
+            string command_select = "SELECT vehicle_code, vehicle_status, maintenance_date FROM vehicle where vehicle_code = '" + v_c + "';";
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
 
