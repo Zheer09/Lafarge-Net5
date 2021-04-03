@@ -173,6 +173,7 @@ namespace Lafarge_WPF
                 myAccount.accUserRole = GlobalClass.sql_dr.GetString(4);
 
             }
+            GlobalClass.con.Close();
 
             return myAccount;
         }

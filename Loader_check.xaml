@@ -178,7 +178,7 @@
                     </TextBox>
 
                     <Ellipse x:Name="true_p1" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="1"
-                                     Margin="38,46,168,0" Height="60" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="true_p1btn">
+                                     Margin="38,46,168,0" Height="60" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="true_p1btn" >
                         <Ellipse.Fill>
                             <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
                         </Ellipse.Fill>
