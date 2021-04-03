@@ -103,8 +103,8 @@
                                 </TextBlock.Effect>
                             </TextBlock>
 
-                            <TextBlock  Grid.Row="3" Foreground="Black" FontSize="25" FontWeight="SemiBold" 
-                      HorizontalAlignment="Left" Text="Counter: " Width="105" Margin="65,0,0,0">
+                            <TextBlock  Grid.Row="3" Foreground="Black" FontSize="20" FontWeight="SemiBold" 
+                      HorizontalAlignment="Left" Text="Working Hours: " Width="150" Margin="20,0,0,0">
                                 <TextBlock.Effect>
                                     <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
@@ -140,7 +140,7 @@
                                 </TextBox.Effect>
                             </TextBox>
 
-                            <TextBox Foreground="Black" Grid.Row="3" Grid.Column="1" x:Name="counter" Background="White"
+                            <TextBox Foreground="Black" Grid.Row="3" Grid.Column="1" x:Name="working_hours" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Counter"  BorderBrush="{x:Null}" Margin="0,1,332,5" Height="28">
                                 <TextBox.Effect>
@@ -583,13 +583,13 @@
                             <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
                         </Ellipse.Fill>
                     </Ellipse>
-                    
+
                     <!--p18-->
 
                     <TextBlock Grid.Column="0" Grid.Row="17" FontWeight="SemiBold" Text="Problem 16" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="17" Grid.Column="3" x:Name="Note_p17" Background="White"
+                    <TextBox Foreground="Black" Grid.Row="17" Grid.Column="3" x:Name="Note_p16" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
                         <TextBox.Effect>

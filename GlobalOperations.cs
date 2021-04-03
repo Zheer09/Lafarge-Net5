@@ -27,13 +27,13 @@ namespace Lafarge_WPF
 
         // this function is used to insert data into vehicle property table in our database;
         // it inserts vehicle code that is foreign key, working hour and the date for the inserted working hour
-        public static void Insert_into_vehicle_property(string v_c, double w_h, DateTime p_d)
+        public static void Insert_into_vehicle_property(string v_c, double w_h, double wh_50h, double wh_300h, DateTime p_d)
         {
 
 
             GlobalClass.con.Open();
             string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
-            string command_insert = "INSERT INTO vehicle_property (vehicle_code, working_hour, property_date) VALUES ('" + v_c + "', " + w_h + ", '" + p_d.ToString(format) + "');";
+            string command_insert = "INSERT INTO vehicle_property (vehicle_code, working_hour, wh_50h, wh_300h, property_date) VALUES ('" + v_c + "', " + w_h + ", "+ wh_50h +", "+ wh_300h +", '" + p_d.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
             GlobalClass.con.Close();
@@ -44,13 +44,13 @@ namespace Lafarge_WPF
 
         // this function is used to insert data into vehicle check table in our database;
         // it inserts data into all columns for that particular table.
-        public static void Insert_into_vehicle_check(int ch_i, bool ch_r, string ch_n, string ch_note, string v_c, DateTime s_d)
+        public static void Insert_into_vehicle_check(int ch_i, bool ch_r, string ch_note, string v_c, DateTime s_d)
         {
 
 
             GlobalClass.con.Open();
             string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
-            string command_insert = "INSERT INTO vehicle_check (check_index, check_result, check_name, check_note, vehicle_code, submit_date) VALUES (" + ch_i + ", " + ch_r + ", '" + ch_n + "', '" + ch_note + "', '" + v_c + "',  '" + s_d.ToString(format) + "');";
+            string command_insert = "INSERT INTO vehicle_check (check_index, check_result, check_note, vehicle_code, submit_date) VALUES (" + ch_i + ", " + ch_r + ", '" + ch_note + "', '" + v_c + "',  '" + s_d.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
             GlobalClass.con.Close();
@@ -237,6 +237,38 @@ namespace Lafarge_WPF
             }
 
             return myVehicle;
+
+        }
+
+        public static SelectVehicleProperty getVehicleProperty(string v_c)
+        {
+
+            /*
+                   SELECT a.vehicle_code, a.working_hour, a.wh_50h, a.wh_300h, a.property_date FROM vehicle_property as a where vehicle_code = 'M62' 
+and property_date = ( select max(property_date) from vehicle_property as b where a.vehicle_code = b.vehicle_code ) ;
+            */
+
+
+            SelectVehicleProperty myVehicleProperty = new SelectVehicleProperty();
+
+            GlobalClass.con.Open();
+            string command_select = "SELECT a.vehicle_code, a.working_hour, a.wh_50h, a.wh_300h, a.property_date FROM vehicle_property as a"
+                + " where a.vehicle_code = '"+ v_c + "' and  a.property_date = "
+                + "( select max(b.property_date) from vehicle_property as b where a.vehicle_code = b.vehicle_code ); ";
+            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+
+            while (GlobalClass.sql_dr.Read())
+            {
+                myVehicleProperty.vehicle_code = GlobalClass.sql_dr.GetString(0);
+                myVehicleProperty.working_hour = GlobalClass.sql_dr.GetDouble(1);
+                myVehicleProperty.wh_50h = GlobalClass.sql_dr.GetDouble(2);
+                myVehicleProperty.wh_300h = GlobalClass.sql_dr.GetDouble(2);
+                myVehicleProperty.property_date = GlobalClass.sql_dr.GetDateTime(2);
+
+            }
+
+            return myVehicleProperty;
 
         }
 

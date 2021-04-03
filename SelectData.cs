@@ -39,7 +39,11 @@ namespace Lafarge_WPF
 
         public double working_hour;
 
-        public string property_date;
+        public double wh_50h;
+
+        public double wh_300h;
+
+        public DateTime property_date;
 
     }
 
