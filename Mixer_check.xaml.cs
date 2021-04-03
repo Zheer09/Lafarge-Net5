@@ -24,6 +24,8 @@ namespace Lafarge_WPF
         public Mixer_check()
         {
             InitializeComponent();
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)

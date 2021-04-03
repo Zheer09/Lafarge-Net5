@@ -11,11 +11,12 @@
 
     <Grid>
         <DataGrid
+          x:Name="Check_maintanance"
           ItemsSource="{Binding Items2}"
           CanUserAddRows="False"
           SelectionUnit="Cell"
           SelectionMode="Extended"
-            Margin="22">
+          Margin="20" SelectionChanged="Check_maintanance_selection">
             
         </DataGrid>
 

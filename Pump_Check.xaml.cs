@@ -24,6 +24,8 @@ namespace Lafarge_WPF
         public Pump_Check()
         {
             InitializeComponent();
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
