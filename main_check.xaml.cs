@@ -26,8 +26,9 @@ namespace Lafarge_WPF.Pages
         {
             InitializeComponent();
             MySqlDataAdapter sql_cmd = 
-            new MySqlDataAdapter("select mv.vehicle_code, v.vehicle_type, v.batch_plant, vp.working_hour, mv.vehicle_status, "
-            +"mv.maintenance_date from maintenance_vehicle as mv join vehicle as v on mv.vehicle_code = v.vehicle_code "
+            new MySqlDataAdapter("select mv.vehicle_code as 'Vehicle Code', v.vehicle_type as 'Type', v.batch_plant as 'Batch Plant', "
+            +"vp.working_hour as 'Working Hour', mv.vehicle_status as 'Status', "
+            +"DATE_FORMAT(mv.maintenance_date, '%Y %M %D') as 'Maintenance Date' from maintenance_vehicle as mv join vehicle as v on mv.vehicle_code = v.vehicle_code "
             +"left join vehicle_property as vp on v.vehicle_code = vp.vehicle_code ; ", GlobalClass.con);
             GlobalClass.con.Open();
             //GlobalClass.sql_dr = sql_cmd.ExecuteReader();
@@ -43,6 +44,8 @@ namespace Lafarge_WPF.Pages
 
         private void Check_maintanance_selection(object sender, SelectionChangedEventArgs e)
         {
+
+
 
         }
     }
