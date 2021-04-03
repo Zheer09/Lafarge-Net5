@@ -130,7 +130,7 @@
                                 </TextBox.Effect>
                             </TextBox>
 
-                            <TextBox Foreground="Black" Grid.Row="2" Grid.Column="1" x:Name="code" Background="White"
+                            <TextBox Foreground="Black" Grid.Row="2" Grid.Column="1" x:Name="v_code" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Code"  BorderBrush="{x:Null}" Margin="0,1,332,5" Height="30">
                                 <TextBox.Effect>

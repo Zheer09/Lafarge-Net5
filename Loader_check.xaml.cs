@@ -43,8 +43,42 @@ namespace Lafarge_WPF
             this.NavigationService.Navigate(new Pages.vehicle());
         }
 
+
+
+        // this function checks if every check has been selected and if the required textboxes are filled.
+        private bool validateSubmit()
+        {
+
+            // code...
+
+
+            return false;
+        }
+
+
+
+
+
+
+        // MAIN FUNCTION
+        // this is where everything happens man.
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
+
+/*
+            if (GlobalOperations.doesVehicleExist("L385"))
+            {
+                MessageBox.Show("It Exists!");
+            }
+            else
+            {
+                MessageBox.Show("It doesn't exist bitch bitch");
+            }
+
+*/
+
+
+
 
         }
     }
