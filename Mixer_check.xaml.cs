@@ -21,6 +21,15 @@ namespace Lafarge_WPF
     /// </summary>
     public partial class Mixer_check : Page
     {
+
+        bool[] mixer_check = new bool[16];
+        string[] loader_note = new string[16];
+        string v_type = "Loader";
+        double last_wh = 0, new_wh = 0;
+        double wh_50 = 0;
+        double wh_300 = 0;
+        int num_of_index = 0;
+
         public Mixer_check()
         {
             InitializeComponent();
@@ -92,7 +101,14 @@ namespace Lafarge_WPF
             false_p16.Opacity = 0.15;
         }
 
+        private bool validateSubmit()
+        {
 
+            // code...
+
+
+            return false;
+        }
 
 
         /*
@@ -101,12 +117,16 @@ namespace Lafarge_WPF
 
         private void true_p1btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p1.Opacity = 0.15;
+            true_p1.Opacity = 1;
+            mixer_check[0] = true;
         }
 
         private void false_p1btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p1.Opacity = 1;
+            true_p1.Opacity = 0.15;
+            mixer_check[0] = false;
         }
 
         /*
@@ -114,11 +134,16 @@ namespace Lafarge_WPF
          */
         private void true_p2btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p2.Opacity = 0.15;
+            true_p2.Opacity = 1;
+            mixer_check[1] = true;
         }
 
         private void false_p2btn(object sender, MouseButtonEventArgs e)
         {
+            false_p2.Opacity = 1;
+            true_p2.Opacity = 0.15;
+            mixer_check[1] = false;
 
         }
 
@@ -129,11 +154,17 @@ namespace Lafarge_WPF
         private void true_p3btn(object sender, MouseButtonEventArgs e)
         {
 
+            false_p3.Opacity = 0.15;
+            true_p3.Opacity = 1;
+            mixer_check[2] = true;
+
         }
 
         private void false_p3btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p3.Opacity = 1;
+            true_p3.Opacity = 0.15;
+            mixer_check[2] = false;
         }
 
         /*
@@ -142,12 +173,16 @@ namespace Lafarge_WPF
 
         private void true_p4btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p4.Opacity = 0.15;
+            true_p4.Opacity = 1;
+            mixer_check[3] = true;
         }
 
         private void false_p4btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p4.Opacity = 1;
+            true_p4.Opacity = 0.15;
+            mixer_check[3] = false;
         }
 
         /*
@@ -156,40 +191,52 @@ namespace Lafarge_WPF
 
         private void true_p5btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p5.Opacity = 0.15;
+            true_p5.Opacity = 1;
+            mixer_check[4] = true;
         }
 
         private void false_p5btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p5.Opacity = 1;
+            true_p5.Opacity = 0.15;
+            mixer_check[4] = false;
         }
 
         /*
-        p6
+            p6
         */
 
         private void true_p6btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p6.Opacity = 0.15;
+            true_p6.Opacity = 1;
+            mixer_check[5] = true;
         }
 
         private void false_p6btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p6.Opacity = 1;
+            true_p6.Opacity = 0.15;
+            mixer_check[5] = false;
         }
 
         /*
-        p7
+            p7
         */
 
         private void true_p7btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p7.Opacity = 0.15;
+            true_7.Opacity = 1;
+            mixer_check[6] = true;
         }
 
         private void false_p7btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p7.Opacity = 1;
+            true_7.Opacity = 0.15;
+            mixer_check[6] = false;
         }
 
         /*
@@ -198,12 +245,16 @@ namespace Lafarge_WPF
 
         private void true_p8btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p8.Opacity = 0.15;
+            true_p8.Opacity = 1;
+            mixer_check[7] = true;
         }
 
         private void false_p8btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p8.Opacity = 1;
+            true_p8.Opacity = 0.15;
+            mixer_check[7] = false;
         }
 
         /*
@@ -212,12 +263,16 @@ namespace Lafarge_WPF
 
         private void true_p9btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p9.Opacity = 0.15;
+            true_p9.Opacity = 1;
+            mixer_check[8] = true;
         }
 
         private void false_p9btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p9.Opacity = 1;
+            true_p9.Opacity = 0.15;
+            mixer_check[8] = false;
         }
 
         /*
@@ -226,12 +281,16 @@ namespace Lafarge_WPF
 
         private void true_p10btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p10.Opacity = 0.15;
+            true_p10.Opacity = 1;
+            mixer_check[9] = true;
         }
 
         private void false_p10btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p10.Opacity = 1;
+            true_p10.Opacity = 0.15;
+            mixer_check[9] = false;
         }
 
         /*
@@ -240,12 +299,16 @@ namespace Lafarge_WPF
 
         private void true_p11btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p11.Opacity = 0.15;
+            true_p11.Opacity = 1;
+            mixer_check[10] = true;
         }
 
         private void false_p11btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p11.Opacity = 1;
+            true_p11.Opacity = 0.15;
+            mixer_check[10] = false;
         }
 
         /*
@@ -254,12 +317,16 @@ namespace Lafarge_WPF
 
         private void true_p12btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_12.Opacity = 0.15;
+            true_p12.Opacity = 1;
+            mixer_check[11] = true;
         }
 
         private void false_p12btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_12.Opacity = 1;
+            true_p12.Opacity = 0.15;
+            mixer_check[11] = false;
         }
 
         /*
@@ -268,12 +335,16 @@ namespace Lafarge_WPF
 
         private void true_p13btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p13.Opacity = 0.15;
+            true_p13.Opacity = 1;
+            mixer_check[12] = true;
         }
 
         private void false_p13btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p13.Opacity = 1;
+            true_p13.Opacity = 0.15;
+            mixer_check[12] = false;
         }
 
         /*
@@ -282,12 +353,16 @@ namespace Lafarge_WPF
 
         private void true_p14btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p14.Opacity = 0.15;
+            true_p14.Opacity = 1;
+            mixer_check[13] = true;
         }
 
         private void false_p14btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p14.Opacity = 1;
+            true_p14.Opacity = 0.15;
+            mixer_check[13] = false;
         }
 
         /*
@@ -296,12 +371,16 @@ namespace Lafarge_WPF
 
         private void true_p15btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_15.Opacity = 0.15;
+            true_p15.Opacity = 1;
+            mixer_check[14] = true;
         }
 
         private void false_p15btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_15.Opacity = 1;
+            true_p15.Opacity = 0.15;
+            mixer_check[14] = false;
         }
 
         /*
@@ -310,12 +389,16 @@ namespace Lafarge_WPF
 
         private void true_16btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p16.Opacity = 0.15;
+            true_16.Opacity = 1;
+            mixer_check[15] = true;
         }
 
         private void false_p16btn(object sender, MouseButtonEventArgs e)
         {
-
+            false_p16.Opacity = 1;
+            true_16.Opacity = 0.15;
+            mixer_check[15] = false;
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)

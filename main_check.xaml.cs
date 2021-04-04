@@ -39,16 +39,32 @@ namespace Lafarge_WPF.Pages
             DataTable dt1 = new DataTable();
             sql_cmd.Fill(dt1);
 
-            Check_maintanance.ItemsSource = dt1.DefaultView;
+            Uncheck_maintanance.ItemsSource = dt1.DefaultView;
             GlobalClass.con.Close();
 
 
+        }
+
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void Row2_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // execute some code
+           
         }
 
         private void Check_maintanance_selection(object sender, SelectionChangedEventArgs e)
         {
 
            
+        }
+
+        private void check_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
