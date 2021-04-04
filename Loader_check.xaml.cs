@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Lafarge_WPF.Pages;
+using MySql.Data.MySqlClient;
 
 
 namespace Lafarge_WPF
@@ -30,6 +31,7 @@ namespace Lafarge_WPF
         double wh_50 = 0;
         double wh_300 = 0;
         int num_of_index = 0;
+        DateTime s_d = GlobalClass.GetNistTime();
 
        
 
@@ -95,7 +97,6 @@ namespace Lafarge_WPF
             loader_note[14] =  Note_p15.Text;
             loader_note[15] = Note_p16.Text;
 
-            //MessageBox.Show();
 
             
             if (GlobalOperations.doesVehicleExist( v_code.Text ))
@@ -121,11 +122,37 @@ namespace Lafarge_WPF
 
                 GlobalOperations.Insert_into_vehicle(v_code.Text, v_type, batch_plant.Text.ToString() );
                 GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), 0, 0, GlobalClass.GetNistTime());
+                /*  for(int i = 1; i < 17; i++)
+                  {
+                      GlobalOperations.Insert_into_vehicle_check((i+num_of_index), loader_check[i-1], loader_note[i-1], v_code.Text, GlobalClass.GetNistTime());
+                  }*/
+        
+        
+                GlobalClass.con.Open();
+                string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+                string concatString = " ";
+
                 for(int i = 1; i < 17; i++)
                 {
-                    GlobalOperations.Insert_into_vehicle_check((i+num_of_index), loader_check[i-1], loader_note[i-1], v_code.Text, GlobalClass.GetNistTime());
+                    if(i != 16)
+                    {
+                        concatString += "(" + (i + num_of_index) + ", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'), ";
+                    }
+                    else
+                    {
+                        concatString += "(" + (i + num_of_index) + ", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'); ";
+
+                    }
                 }
-               
+
+                string command_insert = "INSERT INTO vehicle_check (check_index, check_result, check_note, vehicle_code, submit_date) VALUES "  + concatString;
+                 
+
+                MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
+                GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+                GlobalClass.con.Close();
+
+
             }
             
 
