@@ -26,6 +26,70 @@ namespace Lafarge_WPF
             InitializeComponent();
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+
+            //P1
+            true_p1.Opacity = 0.15;
+            false_p1.Opacity = 0.15;
+
+            //P2
+            true_p2.Opacity = 0.15;
+            false_p2.Opacity = 0.15;
+
+            //P3
+            true_p3.Opacity = 0.15;
+            false_p3.Opacity = 0.15;
+
+            //P4
+            true_p4.Opacity = 0.15;
+            false_p4.Opacity = 0.15;
+
+            //P5
+            true_p5.Opacity = 0.15;
+            false_p5.Opacity = 0.15;
+
+            //P6
+            true_p6.Opacity = 0.15;
+            false_p6.Opacity = 0.15;
+
+            //P7
+            true_7.Opacity = 0.15;
+            false_p7.Opacity = 0.15;
+
+            //P8
+            true_p8.Opacity = 0.15;
+            false_p8.Opacity = 0.15;
+
+            //P9
+            true_p9.Opacity = 0.15;
+            false_p9.Opacity = 0.15;
+
+            //P10
+            true_p10.Opacity = 0.15;
+            false_p10.Opacity = 0.15;
+
+            //P11
+            true_p11.Opacity = 0.15;
+            false_p11.Opacity = 0.15;
+
+            //P12
+            true_p12.Opacity = 0.15;
+            false_12.Opacity = 0.15;
+
+            //P13
+            true_p13.Opacity = 0.15;
+            false_p13.Opacity = 0.15;
+
+            //P14
+            true_p14.Opacity = 0.15;
+            false_p14.Opacity = 0.15;
+
+            //P15
+            true_p15.Opacity = 0.15;
+            false_15.Opacity = 0.15;
+
+            //P16
+            true_16.Opacity = 0.15;
+            false_p16.Opacity = 0.15;
         }
 
         /*
