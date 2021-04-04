@@ -11,12 +11,13 @@
       Title="main_check"
       ShowsNavigationUI="False">
 
+
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="50"/>
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -137,12 +138,13 @@
         </DataGrid>
 
 
-        <TextBlock Grid.Row="1" Text="Proccessing" VerticalAlignment="Top" HorizontalAlignment="Center"
-                   FontSize="30"  FontWeight="SemiBold" Margin="0,332,0,0" Grid.RowSpan="2">
+        <TextBlock Grid.Row="2" Text="Proccessing" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="30"  FontWeight="SemiBold">
             <TextBlock.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
             </TextBlock.Effect>
         </TextBlock>
 
     </Grid>
+
 </Page>

@@ -65,7 +65,13 @@
 
         </Button>
 
-        <DataGrid x:Name="search_grid" Grid.Row="1" Margin="15"/>
+        <DataGrid x:Name="search_grid" Grid.Row="1" Background="White" Margin="15">
+            <DataGrid.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                                          RenderingBias="Quality" 
+                                          ShadowDepth="4" Opacity="0.3"/>
+            </DataGrid.Effect>
+        </DataGrid>
 
     </Grid>
 </Page>
