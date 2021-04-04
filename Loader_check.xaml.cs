@@ -32,6 +32,7 @@ namespace Lafarge_WPF
         double wh_300 = 0;
         int num_of_index = 0;
         DateTime s_d = GlobalClass.GetNistTime();
+        bool insert_status = false;
 
        
 
@@ -98,64 +99,98 @@ namespace Lafarge_WPF
             loader_note[15] = Note_p16.Text;
 
 
-            
-            if (GlobalOperations.doesVehicleExist( v_code.Text ))
+            if (v_code.Text == "")
             {
-
-                SelectVehicleProperty my_v_p = GlobalOperations.getVehicleProperty(v_code.Text);
-                last_wh = my_v_p.working_hour;
-                wh_50 = my_v_p.wh_50h;
-                wh_300 = my_v_p.wh_300h;
-
-                new_wh = double.Parse(working_hours.Text) - last_wh;
-                wh_50 += new_wh;
-                wh_300 += new_wh;
-
-
-
-
+                MessageBox.Show("Vehicle Code field is required!");
+            }
+            else if (batch_plant.Text == "")
+            {
+                MessageBox.Show("Batch Plant field is required!");
+            }
+            else if (working_hours.Text == "")
+            {
+                MessageBox.Show("Working Hours field is required!");
             }
             else
             {
-                // 16
-                num_of_index = GlobalOperations.GetIndexNumber_v_ch();
 
-                GlobalOperations.Insert_into_vehicle(v_code.Text, v_type, batch_plant.Text.ToString() );
-                GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), 0, 0, GlobalClass.GetNistTime());
-                /*  for(int i = 1; i < 17; i++)
-                  {
-                      GlobalOperations.Insert_into_vehicle_check((i+num_of_index), loader_check[i-1], loader_note[i-1], v_code.Text, GlobalClass.GetNistTime());
-                  }*/
-        
-        
-                GlobalClass.con.Open();
-                string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
-                string concatString = " ";
 
-                for(int i = 1; i < 17; i++)
+                try
                 {
-                    if(i != 16)
+
+                    if (GlobalOperations.doesVehicleExist(v_code.Text))
                     {
-                        concatString += "(" + (i + num_of_index) + ", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'), ";
+
+                        SelectVehicleProperty my_v_p = GlobalOperations.getVehicleProperty(v_code.Text);
+                        last_wh = my_v_p.working_hour;
+                        wh_50 = my_v_p.wh_50h;
+                        wh_300 = my_v_p.wh_300h;
+
+                        new_wh = double.Parse(working_hours.Text) - last_wh;
+                        wh_50 += new_wh;
+                        wh_300 += new_wh;
+
+
                     }
                     else
                     {
-                        concatString += "(" + (i + num_of_index) + ", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'); ";
+                        // 16
+                        num_of_index = GlobalOperations.GetIndexNumber_v_ch();
+
+                        GlobalOperations.Insert_into_vehicle(v_code.Text, v_type, batch_plant.Text.ToString());
+                        GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), 0, 0, GlobalClass.GetNistTime());
+                        /*  for(int i = 1; i < 17; i++)
+                          {
+                              GlobalOperations.Insert_into_vehicle_check((i+num_of_index), loader_check[i-1], loader_note[i-1], v_code.Text, GlobalClass.GetNistTime());
+                          }*/
+
+
+                        GlobalClass.con.Open();
+                        string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+                        string concatString = " ";
+
+                        for (int i = 1; i < 17; i++)
+                        {
+                            if (i != 16)
+                            {
+                                concatString += "(" + (i + num_of_index) + ", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'), ";
+                            }
+                            else
+                            {
+                                concatString += "(" + (i + num_of_index) + ", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'); ";
+
+                            }
+                        }
+
+                        string command_insert = "INSERT INTO vehicle_check (check_index, check_result, check_note, vehicle_code, submit_date) VALUES " + concatString;
+
+
+                        MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
+                        GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+                        GlobalClass.con.Close();
+
+                        insert_status = true;
 
                     }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    insert_status = false;
                 }
 
-                string command_insert = "INSERT INTO vehicle_check (check_index, check_result, check_note, vehicle_code, submit_date) VALUES "  + concatString;
-                 
 
-                MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
-                GlobalClass.sql_dr = sql_cmd.ExecuteReader();
-                GlobalClass.con.Close();
-
+                if (insert_status == true)
+                {
+                    MessageBox.Show("Data has been successfully saved for vehicle: " + v_code.Text + ".");
+                }
+                else
+                {
+                    MessageBox.Show("An error has occurred! The data was not fully Saved.");
+                }
 
             }
-            
-
 
         }
 
