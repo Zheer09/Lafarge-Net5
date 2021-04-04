@@ -167,7 +167,7 @@
                     <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="0" Grid.Row="2" FontWeight="SemiBold" Text="Problem 1" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox  VirtualizingStackPanel.VirtualizationMode="Recycling" Foreground="Black" Grid.Row="2" Grid.Column="3" x:Name="Note_p_nothing" Background="White"
+                    <TextBox  VirtualizingStackPanel.VirtualizationMode="Recycling" Foreground="Black" Grid.Row="2" Grid.Column="3" x:Name="Note_p1" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
                         <TextBox.Effect>
