@@ -66,5 +66,20 @@ namespace Lafarge_WPF.Pages
         {
 
         }
+
+        private void check2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SeeMore_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SeeMore1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

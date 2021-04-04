@@ -30,7 +30,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Background="White" Height="50" CornerRadius="10">
+        <Border Background="White" Height="50" CornerRadius="10" Margin="15,12,15,13">
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
@@ -64,6 +64,8 @@
             </Button.Resources>
 
         </Button>
+
+        <DataGrid x:Name="search_grid" Grid.Row="1" Margin="15"/>
 
     </Grid>
 </Page>
