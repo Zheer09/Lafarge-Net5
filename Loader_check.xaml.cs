@@ -129,6 +129,12 @@ namespace Lafarge_WPF
 
 
 
+      /*  private bool addInto_wr_sub()
+        {
+
+        }*/
+
+
         // MAIN FUNCTION
         // this is where everything happens man.
         private void Submit_Click(object sender, RoutedEventArgs e)
@@ -231,6 +237,25 @@ namespace Lafarge_WPF
                         MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
                         GlobalClass.sql_dr = sql_cmd.ExecuteReader();
                         GlobalClass.con.Close();
+
+
+
+                        // this is to insert fasle checks into sub
+                        for (int i = 0; i < 16; i++)
+                        {
+                            if(loader_check[i] == false)
+                            {
+
+                               // GlobalOperations.Insert_into_weekly_checks_sub((i + 1), (1 + num_of_index_w_r), );
+
+                                    // this has to insert the weekly sub and update the false check rep 
+                                    // it should be different from a vehicle that doesn't exist
+                                    //you have modify the functions in the globalOperations class for inserting and updating.
+
+                            }
+
+                        }
+
 
                         insert_status = true;
 

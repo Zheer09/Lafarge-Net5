@@ -300,6 +300,23 @@ and property_date = ( select max(property_date) from vehicle_property as b where
         }
 
 
+        public static void updateIncrement_sub()
+        {
+            GlobalClass.con.Open();
+            string command_select = "update weekly_checks_sub set false_check_rep = false_check_rep + 1 " +
+               " where  " ;
+
+            /*
+             UPDATE mytable 
+              SET logins = logins + 1 
+              WHERE id = 12
+             */
+
+
+            GlobalClass.con.Close();
+        }
+
+
 
     }
 
