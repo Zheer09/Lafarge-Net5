@@ -30,7 +30,8 @@ namespace Lafarge_WPF
         double last_wh = 0, new_wh = 0;
         double wh_50 = 0;
         double wh_300 = 0;
-        int num_of_index = 0;
+        int num_of_index_v_ch = 0;
+        int num_of_index_w_r = 0;
         DateTime s_d = GlobalClass.GetNistTime();
         bool insert_status = false;
 
@@ -173,6 +174,7 @@ namespace Lafarge_WPF
                     if (GlobalOperations.doesVehicleExist(v_code.Text))
                     {
 
+
                         SelectVehicleProperty my_v_p = GlobalOperations.getVehicleProperty(v_code.Text);
                         last_wh = my_v_p.working_hour;
                         wh_50 = my_v_p.wh_50h;
@@ -182,19 +184,65 @@ namespace Lafarge_WPF
                         wh_50 += new_wh;
                         wh_300 += new_wh;
 
+                        if (wh_50 >= 50)
+                        {
+                            // send into 50 hour maintenance check...                                       /////
+                            wh_50 -= 50;
+                        }
+                        if(wh_300 >= 300)
+                        {
+                            // send into 300 hour maintenance check...                                      /////
+                            wh_300 -= 300;
+                        }
+
+                        GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), wh_50, wh_300, GlobalClass.GetNistTime());
+
+
+                        num_of_index_w_r = GlobalOperations.GetIndexNumber_w_r();
+                        GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", GlobalClass.GetNistTime());
+
+
+                        
+                        string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+                        string concatString = " ";
+
+                        for (int i = 1; i < 17; i++)
+                        {
+                            if (i != 16)
+                            {
+
+                                concatString += "(" + (i + num_of_index_v_ch) + ", " + i + ", " + loader_check[i - 1] + ", '" + 
+                                loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'), ";
+
+                            }
+                            else
+                            {
+
+                                concatString += "(" + (i + num_of_index_v_ch) + ",  " + 16 + ", " + loader_check[i - 1] + ", '" + 
+                                loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'); ";
+
+                            }
+                        }
+                        GlobalClass.con.Open();
+
+
+                        string command_insert = "INSERT INTO vehicle_check ( check_id, check_index, check_result, check_note, vehicle_code, submit_date) VALUES " + concatString;
+
+                        MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
+                        GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+                        GlobalClass.con.Close();
+
+                        insert_status = true;
+
 
                     }
-                    else
+                    else //  if the vehicle doesn't exist
                     {
-                        // 16
-                        num_of_index = GlobalOperations.GetIndexNumber_v_ch();
+                        
+                        num_of_index_v_ch = GlobalOperations.GetIndexNumber_v_ch();
 
                         GlobalOperations.Insert_into_vehicle(v_code.Text, v_type, batch_plant.Text.ToString());
                         GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), 0, 0, GlobalClass.GetNistTime());
-                        /*  for(int i = 1; i < 17; i++)
-                          {
-                              GlobalOperations.Insert_into_vehicle_check((i+num_of_index), loader_check[i-1], loader_note[i-1], v_code.Text, GlobalClass.GetNistTime());
-                          }*/
 
 
                         GlobalClass.con.Open();
@@ -205,16 +253,19 @@ namespace Lafarge_WPF
                         {
                             if (i != 16)
                             {
-                                concatString += "(" + (i + num_of_index) + ", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'), ";
+
+                                concatString += "(" + (i + num_of_index_v_ch) + ", "+ i +", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'), ";
+                            
                             }
                             else
                             {
-                                concatString += "(" + (i + num_of_index) + ", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'); ";
+
+                                concatString += "(" + (i + num_of_index_v_ch) + ",  "+ 16 +", " + loader_check[i - 1] + ", '" + loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'); ";
 
                             }
                         }
 
-                        string command_insert = "INSERT INTO vehicle_check (check_index, check_result, check_note, vehicle_code, submit_date) VALUES " + concatString;
+                        string command_insert = "INSERT INTO vehicle_check ( check_id, check_index, check_result, check_note, vehicle_code, submit_date) VALUES " + concatString;
 
 
                         MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
@@ -280,7 +331,6 @@ namespace Lafarge_WPF
             false_p2.Opacity = 1;
             true_p2.Opacity = 0.15;
             loader_check[1] = false;
-           
         }
 
         /*
