@@ -44,13 +44,13 @@ namespace Lafarge_WPF
 
         // this function is used to insert data into vehicle check table in our database;
         // it inserts data into all columns for that particular table.
-        public static void Insert_into_vehicle_check(int ch_i, bool ch_r, string ch_note, string v_c, DateTime s_d)
+        public static void Insert_into_vehicle_check(int ch_id, int ch_i, bool ch_r, string ch_note, string v_c, DateTime s_d)
         {
 
 
             GlobalClass.con.Open();
             string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
-            string command_insert = "INSERT INTO vehicle_check (check_index, check_result, check_note, vehicle_code, submit_date) VALUES (" + ch_i + ", " + ch_r + ", '" + ch_note + "', '" + v_c + "',  '" + s_d.ToString(format) + "');";
+            string command_insert = "INSERT INTO vehicle_check (check_id, check_index, check_result, check_note, vehicle_code, submit_date) VALUES ( "+ ch_id +"  " + ch_i + ", " + ch_r + ", '" + ch_note + "', '" + v_c + "',  '" + s_d.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
             GlobalClass.con.Close();
@@ -276,6 +276,20 @@ and property_date = ( select max(property_date) from vehicle_property as b where
         {
             GlobalClass.con.Open();
             string command_select = "SELECT COUNT(*) FROM vehicle_check;";
+            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+            GlobalClass.sql_dr.Read();
+            int index_num = GlobalClass.sql_dr.GetInt32(0);
+            GlobalClass.con.Close();
+            return index_num;
+
+        }
+
+
+        public static int GetIndexNumber_w_r()
+        {
+            GlobalClass.con.Open();
+            string command_select = "SELECT COUNT(*) FROM weekly_reports;";
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
             GlobalClass.sql_dr.Read();
