@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ClosedXML.Excel;
 using Lafarge_WPF.Pages;
 
 namespace Lafarge_WPF.Pages
@@ -25,6 +26,7 @@ namespace Lafarge_WPF.Pages
         public weekly_report()
         {
             InitializeComponent();
+
         }
 
         private void weekly_report_Selection(object sender, SelectionChangedEventArgs e)
@@ -39,7 +41,24 @@ namespace Lafarge_WPF.Pages
 
         private void Download_btn(object sender, RoutedEventArgs e)
         {
-
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog() { Filter ="Excel Workbook|*.xlsx" };
+            Nullable<bool> result = dlg.ShowDialog();
+            
+            if (result == true)
+            {
+                try
+                {
+                    using (XLWorkbook workbook = new XLWorkbook())
+                    {
+                        workbook.Worksheets.Add();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Message", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+               
+            }
         }
     }
 }
