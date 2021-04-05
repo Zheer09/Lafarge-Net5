@@ -83,6 +83,7 @@ namespace Lafarge_WPF
         public int check_rep_index;
         public int weekly_index;
         public int false_check_rep;
+        public string check_rep_date;
 
     }
 

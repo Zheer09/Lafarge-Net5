@@ -80,12 +80,13 @@ namespace Lafarge_WPF
 
         // this function is used to insert data into weekly checks sub table in our database;
         // it inserts data into all columns for that particular table.
-        public static void Insert_into_weekly_checks_sub(int ch_r_i, int w_i, int f_ch_rep)
+        public static void Insert_into_weekly_checks_sub(string v_c, int ch_r_i, int w_i, int f_ch_rep, DateTime sub_date)
         {
 
-
+            string format = "yyyy-MM-dd";
             GlobalClass.con.Open();
-            string command_insert = "INSERT INTO weekly_checks_sub (check_rep_index, weekly_index, false_check_rep) VALUES (" + ch_r_i + ", " + w_i + ", " + f_ch_rep + ");";
+            
+            string command_insert = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES ( '"+ v_c +"', " + ch_r_i + ", " + w_i + ", " + f_ch_rep + ",  '"+ sub_date.ToString(format) +"' );";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
             GlobalClass.con.Close();
@@ -243,10 +244,6 @@ namespace Lafarge_WPF
         public static SelectVehicleProperty getVehicleProperty(string v_c)
         {
 
-            /*
-                   SELECT a.vehicle_code, a.working_hour, a.wh_50h, a.wh_300h, a.property_date FROM vehicle_property as a where vehicle_code = 'M62' 
-and property_date = ( select max(property_date) from vehicle_property as b where a.vehicle_code = b.vehicle_code ) ;
-            */
 
 
             SelectVehicleProperty myVehicleProperty = new SelectVehicleProperty();
@@ -263,10 +260,12 @@ and property_date = ( select max(property_date) from vehicle_property as b where
                 myVehicleProperty.vehicle_code = GlobalClass.sql_dr.GetString(0);
                 myVehicleProperty.working_hour = GlobalClass.sql_dr.GetDouble(1);
                 myVehicleProperty.wh_50h = GlobalClass.sql_dr.GetDouble(2);
-                myVehicleProperty.wh_300h = GlobalClass.sql_dr.GetDouble(2);
-                myVehicleProperty.property_date = GlobalClass.sql_dr.GetDateTime(2);
+                myVehicleProperty.wh_300h = GlobalClass.sql_dr.GetDouble(3);
+                myVehicleProperty.property_date = GlobalClass.sql_dr.GetDateTime(4);
 
             }
+
+            GlobalClass.con.Close();
 
             return myVehicleProperty;
 
@@ -300,25 +299,85 @@ and property_date = ( select max(property_date) from vehicle_property as b where
         }
 
 
-        public static void updateIncrement_sub()
+ /*       public static void updateIncrement_sub()
         {
             GlobalClass.con.Open();
             string command_select = "update weekly_checks_sub set false_check_rep = false_check_rep + 1 " +
                " where  " ;
 
-            /*
+            *//*
              UPDATE mytable 
               SET logins = logins + 1 
               WHERE id = 12
-             */
+             *//*
 
 
             GlobalClass.con.Close();
         }
+*/
+
+
+
+        // according to max date
+        // also according to weekly index and check rep index, 
+        // so it means according to 3 parameters
+        public static int getLastFalseCheck(int ch_r_i, int w_i, string v_c)
+        {
+
+            GlobalClass.con.Open();
+
+
+            /*
+             select a.false_check_rep from weekly_checks_sub as a where 
+            a.check_rep_index = 1 and a.weekly_index = 1 -- last weekly index 
+            and a.vehicle_code = 'L38'
+            and a.check_rep_date = ( select max(b.check_rep_date) from weekly_checks_sub as b  ); 
+
+             */
+
+
+            string command_select = "select a.false_check_rep from weekly_checks_sub as a where "
+                + " a.check_rep_index = "+ ch_r_i + " and a.weekly_index = " + w_i +
+                " and a.vehicle_code = '" + v_c + "' " +
+                " and a.check_rep_date = ( select max(b.check_rep_date) from weekly_checks_sub as b  ); ";
+
+            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+            GlobalClass.sql_dr.Read();
+            int lastFalse = GlobalClass.sql_dr.GetInt32(0);
+
+            GlobalClass.con.Close();
+
+            return lastFalse;
+        }
+
+
+        public static int getLastWeeklyIndex(string v_c, int new_w_i)
+        {
+
+            GlobalClass.con.Open();
+
+
+            string command_select = "select a.weekly_index from weekly_reports as a where" +
+                " weekly_index < "+ new_w_i +" " +
+                " and a.vehicle_code = '"+ v_c +"' " +
+                " and a.weekly_Date = ( select max(b.weekly_Date) from weekly_reports as b  ); ";
+
+            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+            GlobalClass.sql_dr.Read();
+            int lastFalse = GlobalClass.sql_dr.GetInt32(0);
+
+            GlobalClass.con.Close();
+
+            return lastFalse;
+        }
+
+
 
 
 
     }
 
-
+                                                                // 'YYYY-MM-DD hh:mm:ss'
 }
