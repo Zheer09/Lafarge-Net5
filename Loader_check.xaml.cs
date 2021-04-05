@@ -26,14 +26,16 @@ namespace Lafarge_WPF
 
         bool[] loader_check = new bool[16];
         string[] loader_note = new string[16];
-        string v_type = "Loader";
-        double last_wh = 0, new_wh = 0;
+        readonly string v_type = "Loader";
+        double last_wh = 0;
+        double change_wh = 0;
         double wh_50 = 0;
         double wh_300 = 0;
         int num_of_index_v_ch = 0;
         int num_of_index_w_r = 0;
-        DateTime s_d = GlobalClass.GetNistTime();
+        DateTime s_d;
         bool insert_status = false;
+        int currentFasleCheck_num = 0;
 
        
 
@@ -48,6 +50,8 @@ namespace Lafarge_WPF
             {
                 loader_check[i] = true;
             }
+
+            s_d = GlobalClass.GetNistTime();
 
             //P1
             true_p1.Opacity = 0.15;
@@ -180,16 +184,24 @@ namespace Lafarge_WPF
                     if (GlobalOperations.doesVehicleExist(v_code.Text))
                     {
 
+                        MessageBox.Show("Got here! 1");
+                        SelectVehicleProperty my_v_p = new SelectVehicleProperty();
+                        my_v_p = GlobalOperations.getVehicleProperty(v_code.Text);
 
-                        SelectVehicleProperty my_v_p = GlobalOperations.getVehicleProperty(v_code.Text);
+
+                        MessageBox.Show("Got here! 1.55");
+
                         last_wh = my_v_p.working_hour;
                         wh_50 = my_v_p.wh_50h;
                         wh_300 = my_v_p.wh_300h;
 
-                        new_wh = double.Parse(working_hours.Text) - last_wh;
-                        wh_50 += new_wh;
-                        wh_300 += new_wh;
+                        // logic behind the working hour stuff.
+                        change_wh = double.Parse(working_hours.Text) - last_wh;
+                        wh_50 += change_wh;
+                        wh_300 += change_wh;
 
+
+                        MessageBox.Show("Got here! 2");
                         if (wh_50 >= 50)
                         {
                             // send into 50 hour maintenance check...                                       /////
@@ -201,16 +213,21 @@ namespace Lafarge_WPF
                             wh_300 -= 300;
                         }
 
-                        GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), wh_50, wh_300, GlobalClass.GetNistTime());
+                        MessageBox.Show("Got here! 3");
 
+                        GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), wh_50, wh_300, s_d);
+
+                        MessageBox.Show("Got here! 4");
 
                         num_of_index_w_r = GlobalOperations.GetIndexNumber_w_r();
-                        GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", GlobalClass.GetNistTime());
+                        GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", s_d);
 
+                        MessageBox.Show("Got here! 5");
 
-                        
                         string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
                         string concatString = " ";
+
+                        num_of_index_v_ch = GlobalOperations.GetIndexNumber_v_ch();
 
                         for (int i = 1; i < 17; i++)
                         {
@@ -229,6 +246,9 @@ namespace Lafarge_WPF
 
                             }
                         }
+
+                        MessageBox.Show("Got here! 6");
+
                         GlobalClass.con.Open();
 
 
@@ -238,7 +258,7 @@ namespace Lafarge_WPF
                         GlobalClass.sql_dr = sql_cmd.ExecuteReader();
                         GlobalClass.con.Close();
 
-
+                        MessageBox.Show("Got here! 7");
 
                         // this is to insert fasle checks into sub
                         for (int i = 0; i < 16; i++)
@@ -246,19 +266,27 @@ namespace Lafarge_WPF
                             if(loader_check[i] == false)
                             {
 
-                               // GlobalOperations.Insert_into_weekly_checks_sub((i + 1), (1 + num_of_index_w_r), );
+                                // I need to get last weekly index according to max date and vehicle code
+                                int last_week_index = GlobalOperations.getLastWeeklyIndex(v_code.Text, (num_of_index_w_r + 1) );
 
-                                    // this has to insert the weekly sub and update the false check rep 
-                                    // it should be different from a vehicle that doesn't exist
-                                    //you have modify the functions in the globalOperations class for inserting and updating.
+                               currentFasleCheck_num = GlobalOperations.getLastFalseCheck((i + 1), (1 + last_week_index), v_code.Text);
+
+                                currentFasleCheck_num += 1;
+
+                                MessageBox.Show("got here 7." + i );
+
+
+                               GlobalOperations.Insert_into_weekly_checks_sub(v_code.Text, (i + 1), (1 + num_of_index_w_r), currentFasleCheck_num, s_d);
+
 
                             }
 
                         }
 
 
-                        insert_status = true;
 
+                        insert_status = true;
+                        MessageBox.Show("Got here! 8 donnneeeee!");
 
                     }
                     else //  if the vehicle doesn't exist
@@ -267,7 +295,7 @@ namespace Lafarge_WPF
                         num_of_index_v_ch = GlobalOperations.GetIndexNumber_v_ch();
 
                         GlobalOperations.Insert_into_vehicle(v_code.Text, v_type, batch_plant.Text.ToString());
-                        GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), 0, 0, GlobalClass.GetNistTime());
+                        GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), 0, 0, s_d);
 
 
                         GlobalClass.con.Open();
@@ -296,6 +324,36 @@ namespace Lafarge_WPF
                         MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
                         GlobalClass.sql_dr = sql_cmd.ExecuteReader();
                         GlobalClass.con.Close();
+
+
+                        num_of_index_w_r = GlobalOperations.GetIndexNumber_w_r();
+                        GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", s_d);
+
+
+                        // this is to insert fasle checks into sub
+                        for (int i = 0; i < 16; i++)
+                        {
+                            if (loader_check[i] == false)
+                            {
+
+                                
+
+                                GlobalOperations.Insert_into_weekly_checks_sub(v_code.Text, (i + 1), (1 + num_of_index_w_r), 1, s_d);
+
+                                // this has to insert the weekly sub and update the false check rep 
+                                // it should be different from a vehicle that doesn't exist
+                                //you have modify the functions in the globalOperations class for inserting and updating.
+
+                            }
+                            else
+                            {
+                                GlobalOperations.Insert_into_weekly_checks_sub(v_code.Text, (i + 1), (1 + num_of_index_w_r), 0, s_d);
+                            }
+
+                        }
+
+
+
 
                         insert_status = true;
 
@@ -332,6 +390,7 @@ namespace Lafarge_WPF
             false_p1.Opacity = 0.15;
             true_p1.Opacity = 1;
             loader_check[0] = true;
+
         }
 
         private void false_p1btn(object sender, MouseButtonEventArgs e)
