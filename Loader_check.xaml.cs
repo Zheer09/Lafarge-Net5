@@ -36,8 +36,10 @@ namespace Lafarge_WPF
         DateTime s_d;
         bool insert_status = false;
         int currentFasleCheck_num = 0;
+        int[] lastRep = new int[16];
+        int myIndex = 0;
 
-       
+
 
         public Loader_check()
         {
@@ -184,12 +186,10 @@ namespace Lafarge_WPF
                     if (GlobalOperations.doesVehicleExist(v_code.Text))
                     {
 
-                        MessageBox.Show("Got here! 1");
+                        
                         SelectVehicleProperty my_v_p = new SelectVehicleProperty();
                         my_v_p = GlobalOperations.getVehicleProperty(v_code.Text);
 
-
-                        MessageBox.Show("Got here! 1.55");
 
                         last_wh = my_v_p.working_hour;
                         wh_50 = my_v_p.wh_50h;
@@ -201,7 +201,7 @@ namespace Lafarge_WPF
                         wh_300 += change_wh;
 
 
-                        MessageBox.Show("Got here! 2");
+                        
                         if (wh_50 >= 50)
                         {
                             // send into 50 hour maintenance check...                                       /////
@@ -213,16 +213,16 @@ namespace Lafarge_WPF
                             wh_300 -= 300;
                         }
 
-                        MessageBox.Show("Got here! 3");
+                        
 
                         GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), wh_50, wh_300, s_d);
 
-                        MessageBox.Show("Got here! 4");
+                        
 
                         num_of_index_w_r = GlobalOperations.GetIndexNumber_w_r();
                         GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", s_d);
 
-                        MessageBox.Show("Got here! 5");
+                        
 
                         string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
                         string concatString = " ";
@@ -247,7 +247,7 @@ namespace Lafarge_WPF
                             }
                         }
 
-                        MessageBox.Show("Got here! 6");
+                        
 
                         GlobalClass.con.Open();
 
@@ -258,45 +258,111 @@ namespace Lafarge_WPF
                         GlobalClass.sql_dr = sql_cmd.ExecuteReader();
                         GlobalClass.con.Close();
 
-                        MessageBox.Show("Got here! 7");
+                        int last_week_index = GlobalOperations.getLastWeeklyIndex(v_code.Text, (num_of_index_w_r + 1));
+
+
+
+                        string con_strrr_append = " ";
+
+                        string con_last_check_command = " select a.false_check_rep from weekly_checks_sub as a where " +
+                                            "  a.weekly_index = " + last_week_index +
+                                           " and a.vehicle_code = '"+ v_code.Text +"' " +
+                                            " order by a.check_rep_date desc " +
+                                            " limit 16; ";
+
+                        GlobalClass.con.Open();
+
+                        MySqlCommand sql_cmd_neww = new MySqlCommand(con_last_check_command, GlobalClass.con);
+                        GlobalClass.sql_dr = sql_cmd_neww.ExecuteReader();
+                        while (GlobalClass.sql_dr.Read())
+                        {
+                            lastRep[myIndex] = GlobalClass.sql_dr.GetInt32(0);
+                            myIndex += 1;
+                        }
+                        myIndex = 0;
+               
+                        GlobalClass.con.Close();
+
 
                         // this is to insert fasle checks into sub
                         for (int i = 0; i < 16; i++)
                         {
 
                             // I need to get last weekly index according to max date and vehicle code
-                            int last_week_index = GlobalOperations.getLastWeeklyIndex(v_code.Text, (num_of_index_w_r + 1));
+                            
 
-                            MessageBox.Show("Passed this " + i);
+                            
 
-                            currentFasleCheck_num = GlobalOperations.getLastFalseCheck((i + 1), last_week_index, v_code.Text);
+                            //currentFasleCheck_num = GlobalOperations.getLastFalseCheck((i + 1), last_week_index, v_code.Text);
+
+                            /* 
+                             select a.false_check_rep from weekly_checks_sub as a where 
+                                              a.weekly_index = 1
+                                            and a.vehicle_code = 'M44'  
+                                             order by a.check_rep_date desc
+                                             limit 16;
+                             */
 
 
 
-                            if (loader_check[i] == false)
+
+
+
+                            if (i != 15)
                             {
 
-
-                                currentFasleCheck_num += 1;
-
-                                MessageBox.Show("got here 7." + i );
+                                if (loader_check[i] == false)
+                                {
 
 
-                               GlobalOperations.Insert_into_weekly_checks_sub(v_code.Text, (i + 1), (1 + num_of_index_w_r), currentFasleCheck_num, s_d);
+
+                                    lastRep[i] += 1;
 
 
-                            }
-                            else
+                                    con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ", '" + s_d.ToString(format) + "' ), ";
+
+
+
+                                }
+                                else
+                                {
+                                    con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' ), ";
+                                }
+                            }else if(i == 15)
                             {
-                                GlobalOperations.Insert_into_weekly_checks_sub(v_code.Text, (i + 1), (1 + num_of_index_w_r), currentFasleCheck_num, s_d);
+                                if (loader_check[i] == false)
+                                {
+
+
+                                    lastRep[i] += 1;
+
+
+
+                                    con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' );";
+
+
+
+                                }
+                                else
+                                {
+                                    con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' );";
+                                }
                             }
 
                         }
 
+                        string command_insert_2 = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES" + con_strrr_append;
+                        //INSERT INTO weekly_checks_sub(vehicle_code, check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES
+                        GlobalClass.con.Open();
+
+                           
+                        MySqlCommand sql_cmd_2 = new MySqlCommand(command_insert_2, GlobalClass.con);
+                        GlobalClass.sql_dr = sql_cmd_2.ExecuteReader();
+                        GlobalClass.con.Close();
 
 
                         insert_status = true;
-                        MessageBox.Show("Got here! 8 donnneeeee!");
+                        
 
                     }
                     else //  if the vehicle doesn't exist
@@ -340,28 +406,71 @@ namespace Lafarge_WPF
                         GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", s_d);
 
 
+                        //string command_insert_3 = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES";
+                        string concat_string_new = " ";
+
+
+
                         // this is to insert fasle checks into sub
                         for (int i = 0; i < 16; i++)
                         {
-                            if (loader_check[i] == false)
+
+
+
+
+                            if (i != 15)
                             {
 
-                                
+                                if (loader_check[i] == false)
+                                {
 
-                                GlobalOperations.Insert_into_weekly_checks_sub(v_code.Text, (i + 1), (1 + num_of_index_w_r), 1, s_d);
 
-                                // this has to insert the weekly sub and update the false check rep 
-                                // it should be different from a vehicle that doesn't exist
-                                //you have modify the functions in the globalOperations class for inserting and updating.
+                                    //currentFasleCheck_num += 1;
 
+
+
+                                    concat_string_new += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + 1 + ",  '" + s_d.ToString(format) + "' ),";
+
+
+
+                                }
+                                else
+                                {
+                                    concat_string_new += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + 0 + ",  '" + s_d.ToString(format) + "' ),";
+                                }
                             }
-                            else
+                            else if (i == 15)
                             {
-                                GlobalOperations.Insert_into_weekly_checks_sub(v_code.Text, (i + 1), (1 + num_of_index_w_r), 0, s_d);
+                                if (loader_check[i] == false)
+                                {
+
+
+                                    currentFasleCheck_num += 1;
+
+
+
+                                    concat_string_new += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + 1 + ",  '" + s_d.ToString(format) + "' );";
+
+
+
+                                }
+                                else
+                                {
+                                    concat_string_new += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + 0 + ",  '" + s_d.ToString(format) + "' );";
+                                }
                             }
 
                         }
 
+
+                        string command_insert_3 = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES" + concat_string_new;
+                        //INSERT INTO weekly_checks_sub(vehicle_code, check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES
+                        GlobalClass.con.Open();
+
+
+                        MySqlCommand sql_cmd_3 = new MySqlCommand(command_insert_3, GlobalClass.con);
+                        GlobalClass.sql_dr = sql_cmd_3.ExecuteReader();
+                        GlobalClass.con.Close();
 
 
 
