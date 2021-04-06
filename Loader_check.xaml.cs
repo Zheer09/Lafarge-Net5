@@ -44,8 +44,8 @@ namespace Lafarge_WPF
             InitializeComponent();
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
-            DateTime_lable.Text = GlobalClass.GetNistTime().ToString("dd MMMM yyyy");
-            //MessageBox.Show(GlobalClass.GetNistTime().ToString("dd MMMM yyyy"));
+            DateTime_lable.Text = GlobalClass.GetNistTime().ToString("yyyy-MM-dd HH:mm");
+            
             for(int i = 0; i < 16; i++)
             {
                 loader_check[i] = true;
@@ -224,7 +224,7 @@ namespace Lafarge_WPF
 
                         MessageBox.Show("Got here! 5");
 
-                        string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+                        string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
                         string concatString = " ";
 
                         num_of_index_v_ch = GlobalOperations.GetIndexNumber_v_ch();
@@ -263,13 +263,19 @@ namespace Lafarge_WPF
                         // this is to insert fasle checks into sub
                         for (int i = 0; i < 16; i++)
                         {
-                            if(loader_check[i] == false)
+
+                            // I need to get last weekly index according to max date and vehicle code
+                            int last_week_index = GlobalOperations.getLastWeeklyIndex(v_code.Text, (num_of_index_w_r + 1));
+
+                            MessageBox.Show("Passed this " + i);
+
+                            currentFasleCheck_num = GlobalOperations.getLastFalseCheck((i + 1), last_week_index, v_code.Text);
+
+
+
+                            if (loader_check[i] == false)
                             {
 
-                                // I need to get last weekly index according to max date and vehicle code
-                                int last_week_index = GlobalOperations.getLastWeeklyIndex(v_code.Text, (num_of_index_w_r + 1) );
-
-                               currentFasleCheck_num = GlobalOperations.getLastFalseCheck((i + 1), (1 + last_week_index), v_code.Text);
 
                                 currentFasleCheck_num += 1;
 
@@ -279,6 +285,10 @@ namespace Lafarge_WPF
                                GlobalOperations.Insert_into_weekly_checks_sub(v_code.Text, (i + 1), (1 + num_of_index_w_r), currentFasleCheck_num, s_d);
 
 
+                            }
+                            else
+                            {
+                                GlobalOperations.Insert_into_weekly_checks_sub(v_code.Text, (i + 1), (1 + num_of_index_w_r), currentFasleCheck_num, s_d);
                             }
 
                         }
@@ -299,7 +309,7 @@ namespace Lafarge_WPF
 
 
                         GlobalClass.con.Open();
-                        string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+                        string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
                         string concatString = " ";
 
                         for (int i = 1; i < 17; i++)

@@ -24,7 +24,6 @@ namespace Lafarge_WPF
             InitializeComponent();
             Main.Content = new Pages.vehicle();
             Account_btn.Content = GlobalClass.Account_username;
-            //MessageBox.Show(System.Windows.Media.RenderCapability.Tier.ToString() );
             MaxHeight = SystemParameters.WorkArea.Height;
             MaxWidth = SystemParameters.WorkArea.Width;
 

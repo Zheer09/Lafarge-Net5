@@ -32,7 +32,7 @@ namespace Lafarge_WPF
 
 
             GlobalClass.con.Open();
-            string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+            string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database  "yyyy-MM-dd HH:mm:ss"
             string command_insert = "INSERT INTO vehicle_property (vehicle_code, working_hour, wh_50h, wh_300h, property_date) VALUES ('" + v_c + "', " + w_h + ", "+ wh_50h +", "+ wh_300h +", '" + p_d.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
@@ -49,7 +49,7 @@ namespace Lafarge_WPF
 
 
             GlobalClass.con.Open();
-            string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+            string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
             string command_insert = "INSERT INTO vehicle_check (check_id, check_index, check_result, check_note, vehicle_code, submit_date) VALUES ( "+ ch_id +"  " + ch_i + ", " + ch_r + ", '" + ch_note + "', '" + v_c + "',  '" + s_d.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
@@ -67,7 +67,7 @@ namespace Lafarge_WPF
 
 
             GlobalClass.con.Open();
-            string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+            string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
             string command_insert = "INSERT INTO weekly_reports (weekly_index, vehicle_code, weekly_note, weekly_Date) VALUES (" + w_i + ", '" + v_c + "', '" + w_note + "', '" + s_d.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
@@ -83,7 +83,7 @@ namespace Lafarge_WPF
         public static void Insert_into_weekly_checks_sub(string v_c, int ch_r_i, int w_i, int f_ch_rep, DateTime sub_date)
         {
 
-            string format = "yyyy-MM-dd";
+            string format = "yyyy-MM-dd HH:mm:ss";
             GlobalClass.con.Open();
             
             string command_insert = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES ( '"+ v_c +"', " + ch_r_i + ", " + w_i + ", " + f_ch_rep + ",  '"+ sub_date.ToString(format) +"' );";
@@ -102,7 +102,7 @@ namespace Lafarge_WPF
 
 
             GlobalClass.con.Open();
-            string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+            string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
             string command_insert =
             "INSERT INTO monthly_reports (vehicle_code, 10hr_d, 50hr_w, 300hr_m, working_hours, report_status, report_mm_yyyy) VALUES ('" + v_c + "', " + ten_d + ", '" + fifty_w + "', '" + threeh_m + "', " + w_h + ", '" + r_s + "', '" + r_m_y.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
@@ -209,7 +209,7 @@ namespace Lafarge_WPF
         {
 
             GlobalClass.con.Open();
-            string format = "yyyy-MM-dd";    // modify the format depending upon input required in the column in database 
+            string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
             string command_insert =
             "INSERT INTO maintenance_vehicle (vehicle_code, vehicle_status, maintenance_date) VALUES ('" + v_c + "',   '"+ v_s +"',  '" + v_d.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
@@ -299,22 +299,22 @@ namespace Lafarge_WPF
         }
 
 
- /*       public static void updateIncrement_sub()
+        public static int GetLastNumber_w_r(string v_c)
         {
             GlobalClass.con.Open();
-            string command_select = "update weekly_checks_sub set false_check_rep = false_check_rep + 1 " +
-               " where  " ;
+            string command_select = " SELECT a.weekly_index FROM weekly_reports as a where a.vehicle_code = '" + v_c + "' " +
+                                    " and a.weekly_Date = (select max(b.weekly_Date) from weekly_reports as b) " +
+                                    " order by weekly_index desc limit 1; ";
 
-            *//*
-             UPDATE mytable 
-              SET logins = logins + 1 
-              WHERE id = 12
-             *//*
-
-
+            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+            GlobalClass.sql_dr.Read();
+            int index_num = GlobalClass.sql_dr.GetInt32(0);
             GlobalClass.con.Close();
+            return index_num;
+
         }
-*/
+
 
 
 
@@ -327,19 +327,23 @@ namespace Lafarge_WPF
             GlobalClass.con.Open();
 
 
-            /*
-             select a.false_check_rep from weekly_checks_sub as a where 
-            a.check_rep_index = 1 and a.weekly_index = 1 -- last weekly index 
-            and a.vehicle_code = 'L38'
-            and a.check_rep_date = ( select max(b.check_rep_date) from weekly_checks_sub as b  ); 
-
-             */
-
-
             string command_select = "select a.false_check_rep from weekly_checks_sub as a where "
                 + " a.check_rep_index = "+ ch_r_i + " and a.weekly_index = " + w_i +
                 " and a.vehicle_code = '" + v_c + "' " +
-                " and a.check_rep_date = ( select max(b.check_rep_date) from weekly_checks_sub as b  ); ";
+                " order by a.check_rep_date desc " + 
+                " limit 1; ";
+
+
+
+
+            /*
+              select a.false_check_rep from weekly_checks_sub as a where 
+                 a.check_rep_index = 10 and a.weekly_index = 1
+                and a.vehicle_code = 'M62'  
+                 order by a.check_rep_date desc
+                 limit 1;  
+             */
+
 
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
@@ -352,16 +356,25 @@ namespace Lafarge_WPF
         }
 
 
+        // this returns the last week for such vehicle
         public static int getLastWeeklyIndex(string v_c, int new_w_i)
         {
 
             GlobalClass.con.Open();
 
+            /*
+             select a.weekly_index from weekly_reports as a where
+                             weekly_index < 2
+                             and a.vehicle_code = 'M62'
+                             order by weekly_index desc
+                             limit 1;
+             */
 
             string command_select = "select a.weekly_index from weekly_reports as a where" +
                 " weekly_index < "+ new_w_i +" " +
                 " and a.vehicle_code = '"+ v_c +"' " +
-                " and a.weekly_Date = ( select max(b.weekly_Date) from weekly_reports as b  ); ";
+                " order by weekly_index desc  " +
+                " limit 1;  "  ;
 
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
