@@ -35,9 +35,11 @@ namespace Lafarge_WPF
         int num_of_index_w_r = 0;
         DateTime s_d;
         bool insert_status = false;
-        int currentFasleCheck_num = 0;
+        //int currentFasleCheck_num = 0;
         int[] lastRep = new int[16];
         int myIndex = 0;
+        bool h50_condition = false;
+        bool h300_condition = false;
 
 
 
@@ -162,6 +164,10 @@ namespace Lafarge_WPF
             loader_note[13] = Note_p14.Text;
             loader_note[14] =  Note_p15.Text;
             loader_note[15] = Note_p16.Text;
+            h50_condition = false;
+            h300_condition = false;
+            v_code.Text = v_code.Text.ToUpper();
+
 
 
             if (v_code.Text == "")
@@ -190,179 +196,191 @@ namespace Lafarge_WPF
                         SelectVehicleProperty my_v_p = new SelectVehicleProperty();
                         my_v_p = GlobalOperations.getVehicleProperty(v_code.Text);
 
-
                         last_wh = my_v_p.working_hour;
                         wh_50 = my_v_p.wh_50h;
                         wh_300 = my_v_p.wh_300h;
 
-                        // logic behind the working hour stuff.
-                        change_wh = double.Parse(working_hours.Text) - last_wh;
-                        wh_50 += change_wh;
-                        wh_300 += change_wh;
-
-
-                        
-                        if (wh_50 >= 50)
+                        if (last_wh >= double.Parse(working_hours.Text))
                         {
-                            // send into 50 hour maintenance check...                                       /////
-                            wh_50 -= 50;
+                            MessageBox.Show("Invalid Working Hour! Please Enter data carefully.");
                         }
-                        if(wh_300 >= 300)
+                        else
                         {
-                            // send into 300 hour maintenance check...                                      /////
-                            wh_300 -= 300;
-                        }
 
-                        
 
-                        GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), wh_50, wh_300, s_d);
 
-                        
+                            // logic behind the working hour stuff.
+                            change_wh = double.Parse(working_hours.Text) - last_wh;
+                            wh_50 += change_wh;
+                            wh_300 += change_wh;
 
-                        num_of_index_w_r = GlobalOperations.GetIndexNumber_w_r();
-                        GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", s_d);
 
-                        
 
-                        string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
-                        string concatString = " ";
-
-                        num_of_index_v_ch = GlobalOperations.GetIndexNumber_v_ch();
-
-                        for (int i = 1; i < 17; i++)
-                        {
-                            if (i != 16)
+                            if (wh_50 >= 50)
                             {
+                                // send into 50 hour maintenance check...                                       /////
+                                wh_50 -= 50;
 
-                                concatString += "(" + (i + num_of_index_v_ch) + ", " + i + ", " + loader_check[i - 1] + ", '" + 
-                                loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'), ";
+                                h50_condition = true;
+                                
+
 
                             }
-                            else
+                            if (wh_300 >= 300)
                             {
+                                // send into 300 hour maintenance check...                                      /////
+                                wh_300 -= 300;
+                                h300_condition = true;
 
-                                concatString += "(" + (i + num_of_index_v_ch) + ",  " + 16 + ", " + loader_check[i - 1] + ", '" + 
-                                loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'); ";
 
                             }
-                        }
-
-                        
-
-                        GlobalClass.con.Open();
-
-
-                        string command_insert = "INSERT INTO vehicle_check ( check_id, check_index, check_result, check_note, vehicle_code, submit_date) VALUES " + concatString;
-
-                        MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
-                        GlobalClass.sql_dr = sql_cmd.ExecuteReader();
-                        GlobalClass.con.Close();
-
-                        int last_week_index = GlobalOperations.getLastWeeklyIndex(v_code.Text, (num_of_index_w_r + 1));
 
 
 
-                        string con_strrr_append = " ";
-
-                        string con_last_check_command = " select a.false_check_rep from weekly_checks_sub as a where " +
-                                            "  a.weekly_index = " + last_week_index +
-                                           " and a.vehicle_code = '"+ v_code.Text +"' " +
-                                            " order by a.check_rep_date desc " +
-                                            " limit 16; ";
-
-                        GlobalClass.con.Open();
-
-                        MySqlCommand sql_cmd_neww = new MySqlCommand(con_last_check_command, GlobalClass.con);
-                        GlobalClass.sql_dr = sql_cmd_neww.ExecuteReader();
-                        while (GlobalClass.sql_dr.Read())
-                        {
-                            lastRep[myIndex] = GlobalClass.sql_dr.GetInt32(0);
-                            myIndex += 1;
-                        }
-                        myIndex = 0;
-               
-                        GlobalClass.con.Close();
-
-
-                        // this is to insert fasle checks into sub
-                        for (int i = 0; i < 16; i++)
-                        {
-
-                            // I need to get last weekly index according to max date and vehicle code
-                            
-
-                            
-
-                            //currentFasleCheck_num = GlobalOperations.getLastFalseCheck((i + 1), last_week_index, v_code.Text);
-
-                            /* 
-                             select a.false_check_rep from weekly_checks_sub as a where 
-                                              a.weekly_index = 1
-                                            and a.vehicle_code = 'M44'  
-                                             order by a.check_rep_date desc
-                                             limit 16;
-                             */
+                            GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), wh_50, wh_300, s_d);
 
 
 
+                            num_of_index_w_r = GlobalOperations.GetIndexNumber_w_r();
+                            GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", s_d);
 
 
 
-                            if (i != 15)
+                            string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
+                            string concatString = " ";
+
+                            num_of_index_v_ch = GlobalOperations.GetIndexNumber_v_ch();
+
+                            for (int i = 1; i < 17; i++)
                             {
-
-                                if (loader_check[i] == false)
+                                if (i != 16)
                                 {
 
-
-
-                                    lastRep[i] += 1;
-
-
-                                    con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ", '" + s_d.ToString(format) + "' ), ";
-
-
+                                    concatString += "(" + (i + num_of_index_v_ch) + ", " + i + ", " + loader_check[i - 1] + ", '" +
+                                    loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'), ";
 
                                 }
                                 else
                                 {
-                                    con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' ), ";
-                                }
-                            }else if(i == 15)
-                            {
-                                if (loader_check[i] == false)
-                                {
 
+                                    concatString += "(" + (i + num_of_index_v_ch) + ",  " + 16 + ", " + loader_check[i - 1] + ", '" +
+                                    loader_note[i - 1] + "', '" + v_code.Text + "',  '" + s_d.ToString(format) + "'); ";
 
-                                    lastRep[i] += 1;
-
-
-
-                                    con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' );";
-
-
-
-                                }
-                                else
-                                {
-                                    con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' );";
                                 }
                             }
 
+
+
+                            GlobalClass.con.Open();
+
+
+                            string command_insert = "INSERT INTO vehicle_check ( check_id, check_index, check_result, check_note, vehicle_code, submit_date) VALUES " + concatString;
+
+                            MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
+                            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+                            GlobalClass.con.Close();
+
+                            int last_week_index = GlobalOperations.getLastWeeklyIndex(v_code.Text, (num_of_index_w_r + 1));
+
+
+
+                            string con_strrr_append = " ";
+
+                            string con_last_check_command = " select a.false_check_rep from weekly_checks_sub as a where " +
+                                                "  a.weekly_index = " + last_week_index +
+                                               " and a.vehicle_code = '" + v_code.Text + "' " +
+                                                " order by a.check_rep_date desc " +
+                                                " limit 16; ";
+
+                            GlobalClass.con.Open();
+
+                            MySqlCommand sql_cmd_neww = new MySqlCommand(con_last_check_command, GlobalClass.con);
+                            GlobalClass.sql_dr = sql_cmd_neww.ExecuteReader();
+                            while (GlobalClass.sql_dr.Read())
+                            {
+                                lastRep[myIndex] = GlobalClass.sql_dr.GetInt32(0);
+                                myIndex += 1;
+                            }
+                            myIndex = 0;
+
+                            GlobalClass.con.Close();
+
+
+                            // this is to insert fasle checks into sub
+                            for (int i = 0; i < 16; i++)
+                            {
+
+
+                                if (i != 15)
+                                {
+
+                                    if (loader_check[i] == false)
+                                    {
+
+
+
+                                        lastRep[i] += 1;
+
+
+                                        con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ", '" + s_d.ToString(format) + "' ), ";
+
+
+
+                                    }
+                                    else
+                                    {
+                                        con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' ), ";
+                                    }
+                                }
+                                else if (i == 15)
+                                {
+                                    if (loader_check[i] == false)
+                                    {
+
+
+                                        lastRep[i] += 1;
+
+
+
+                                        con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' );";
+
+
+
+                                    }
+                                    else
+                                    {
+                                        con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' );";
+                                    }
+                                }
+
+                            }
+
+                            string command_insert_2 = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES" + con_strrr_append;
+                            //INSERT INTO weekly_checks_sub(vehicle_code, check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES
+                            GlobalClass.con.Open();
+
+
+                            MySqlCommand sql_cmd_2 = new MySqlCommand(command_insert_2, GlobalClass.con);
+                            GlobalClass.sql_dr = sql_cmd_2.ExecuteReader();
+                            GlobalClass.con.Close();
+
+
+
+
+                            if (h50_condition)
+                            {
+                                GlobalOperations.insert_maintenance_vehicle(v_code.Text, (1 + num_of_index_w_r), "50 Hour Check", "Unchecked", s_d);
+                            }
+                            if (h300_condition)
+                            {
+                                GlobalOperations.insert_maintenance_vehicle(v_code.Text, (1 + num_of_index_w_r), "300 Hour Check", "Unchecked", s_d);
+                            }
+
+
+
+
+                            insert_status = true;
                         }
-
-                        string command_insert_2 = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES" + con_strrr_append;
-                        //INSERT INTO weekly_checks_sub(vehicle_code, check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES
-                        GlobalClass.con.Open();
-
-                           
-                        MySqlCommand sql_cmd_2 = new MySqlCommand(command_insert_2, GlobalClass.con);
-                        GlobalClass.sql_dr = sql_cmd_2.ExecuteReader();
-                        GlobalClass.con.Close();
-
-
-                        insert_status = true;
-                        
 
                     }
                     else //  if the vehicle doesn't exist
@@ -443,10 +461,6 @@ namespace Lafarge_WPF
                             {
                                 if (loader_check[i] == false)
                                 {
-
-
-                                    currentFasleCheck_num += 1;
-
 
 
                                     concat_string_new += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + 1 + ",  '" + s_d.ToString(format) + "' );";

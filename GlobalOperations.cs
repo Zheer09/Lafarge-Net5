@@ -205,16 +205,18 @@ namespace Lafarge_WPF
 
         // this function is used to insert data into maintenance vehicle table in our database;
         // it inserts data into all columns for that particular table.
-        public static void insert_maintenance_vehicle(string v_c, string v_s, DateTime v_d)
+        public static void insert_maintenance_vehicle( string v_c, int w_i, string ch_t, string v_s, DateTime v_d)
         {
 
             GlobalClass.con.Open();
             string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
             string command_insert =
-            "INSERT INTO maintenance_vehicle (vehicle_code, vehicle_status, maintenance_date) VALUES ('" + v_c + "',   '"+ v_s +"',  '" + v_d.ToString(format) + "');";
+            "INSERT INTO maintenance_vehicle (vehicle_code, weekly_index, Check_type, vehicle_status, maintenance_date) VALUES " +
+            " ('" + v_c + "',  "+ w_i +", '"+ ch_t +"', '"+ v_s +"', '" + v_d.ToString(format) + "');";
             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
             GlobalClass.con.Close();
+
 
         }
 
@@ -317,7 +319,6 @@ namespace Lafarge_WPF
 
 
 
-
         // according to max date
         // also according to weekly index and check rep index, 
         // so it means according to 3 parameters
@@ -332,17 +333,6 @@ namespace Lafarge_WPF
                 " and a.vehicle_code = '" + v_c + "' " +
                 " order by a.check_rep_date desc " + 
                 " limit 1; ";
-
-
-
-
-            /*
-              select a.false_check_rep from weekly_checks_sub as a where 
-                 a.check_rep_index = 10 and a.weekly_index = 1
-                and a.vehicle_code = 'M62'  
-                 order by a.check_rep_date desc
-                 limit 1;  
-             */
 
 
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
