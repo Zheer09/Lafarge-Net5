@@ -30,40 +30,74 @@ namespace Lafarge_WPF.Pages
         string[] allVCode;
         int[] currentVFalseChecks = new int[16];
         int[,] AllFalseCheck;
-
+        List<WeeklyData> wData = new List<WeeklyData>();
 
         public weekly_report()
         {
             InitializeComponent();
+            LoadData();
+           
 
+        }
+
+
+        void LoadData()
+        {
             numOfV = GlobalOperations.num_of_vehicles();
             allVCode = new string[numOfV];
-            AllFalseCheck = new int[numOfV,16];
+            AllFalseCheck = new int[numOfV, 16];
 
             allVCode = GlobalOperations.getAllVehicleCode();
 
-            for(int i = 0; i < numOfV; i++)
+            for (int i = 0; i < numOfV; i++)
             {
 
                 currentWeek = GlobalOperations.GetLastNumber_w_r(allVCode[i]);
                 currentVFalseChecks = GlobalOperations.getAllLatestFalseCheck(currentWeek, allVCode[i]);
-                
-                for(int x = 0; x < 16; x++)
+
+                for (int x = 0; x < 16; x++)
                 {
                     AllFalseCheck[i, x] = currentVFalseChecks[x];
+
                 }
+
+
+                wData.Add(new WeeklyData()
+                {
+                    v_codee = allVCode[i],
+                    P1 = AllFalseCheck[i, 0],
+                    P2 = AllFalseCheck[i, 1],
+                    P3 = AllFalseCheck[i, 2],
+                    P4 = AllFalseCheck[i, 3],
+                    P5 = AllFalseCheck[i, 4],
+                    P6 = AllFalseCheck[i, 5],
+                    P7 = AllFalseCheck[i, 6],
+                    P8 = AllFalseCheck[i, 7],
+                    P9 = AllFalseCheck[i, 8],
+                    P10 = AllFalseCheck[i, 9],
+                    P11 = AllFalseCheck[i, 10],
+                    P12 = AllFalseCheck[i, 11],
+                    P13 = AllFalseCheck[i, 12],
+                    P14 = AllFalseCheck[i, 13],
+                    P15 = AllFalseCheck[i, 14],
+                    P16 = AllFalseCheck[i, 15],
+                    weeklyNote = ""
+                });
+
 
             }
 
-            
 
-            //weekly_report1
 
+            weekly_report1.ItemsSource = wData;
+            DataContext = wData;
+            MessageBox.Show(wData[0].v_codee);
         }
+
 
         private void weekly_report_Selection(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
 
         private void Goback_btn(object sender, RoutedEventArgs e)
@@ -91,6 +125,11 @@ namespace Lafarge_WPF.Pages
                 }
                
             }
+        }
+
+        private void Refresh_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LoadData();
         }
     }
 }

@@ -307,7 +307,7 @@ namespace Lafarge_WPF
         {
             GlobalClass.con.Open();
             string command_select = " SELECT a.weekly_index FROM weekly_reports as a where a.vehicle_code = '" + v_c + "' " +
-                                    " and a.weekly_Date = (select max(b.weekly_Date) from weekly_reports as b) " +
+                                   
                                     " order by weekly_index desc limit 1; ";
 
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
@@ -383,9 +383,9 @@ namespace Lafarge_WPF
         public static string[] getAllVehicleCode()
         {
 
-            int x = num_of_vehicles();
+            int xV = num_of_vehicles();
             int indexx = 0;
-            string[] allVehicles = new string[x];
+            string[] allVehicles = new string[xV];
 
 
             GlobalClass.con.Open();
@@ -395,6 +395,7 @@ namespace Lafarge_WPF
             while (GlobalClass.sql_dr.Read())
             {
                 allVehicles[indexx] = GlobalClass.sql_dr.GetString(0);
+                indexx += 1;
             }
             GlobalClass.con.Close();
 
