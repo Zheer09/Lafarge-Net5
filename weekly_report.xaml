@@ -20,10 +20,10 @@
         <DataGrid 
           x:Name="weekly_report1"
           ItemsSource="{Binding}"
-          HeadersVisibility="Column"
+          
           CanUserAddRows="False"
           SelectionUnit="Cell"
-          SelectionMode="Single"
+          SelectionMode="Extended"
           Margin="20" SelectionChanged="weekly_report_Selection"
           AutoGenerateColumns="True" CanUserDeleteRows="False" 
           HorizontalScrollBarVisibility="Auto"
@@ -31,7 +31,7 @@
           HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch" GridLinesVisibility="Horizontal"
           ScrollViewer.CanContentScroll="True" 
-          ScrollViewer.HorizontalScrollBarVisibility="Visible">
+          ScrollViewer.HorizontalScrollBarVisibility="Visible" Foreground="Black">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vehicle Code" Binding="{Binding Vehicle_Code}"/>
                 <DataGridTextColumn Header="P1" Binding="{Binding P1}"/>
