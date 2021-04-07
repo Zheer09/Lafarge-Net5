@@ -44,7 +44,7 @@
             <DataGrid.ItemContainerStyle>
 
                 <Style TargetType="DataGridRow">
-                    
+
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Effect>
@@ -76,7 +76,8 @@
             </TextBlock.Effect>
         </TextBlock>
         <Button Content="View Vehicle" HorizontalAlignment="Left" Margin="1229,61,0,0" Grid.Row="1" VerticalAlignment="Top" Height="65" Width="126" Click="Button_Click_View_Vehicle"/>
-        <Button Content="Set to Proccessing" HorizontalAlignment="Left" Margin="1229,134,0,0" Grid.Row="1" VerticalAlignment="Top" Height="65" Width="150"/>
+        <Button Content="Set to Proccessing" HorizontalAlignment="Left" Margin="1229,134,0,0" Grid.Row="1" VerticalAlignment="Top" Height="65" Width="150" Click="Button_Click_set_to_Pro"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="256,421,0,0" Grid.Row="3" VerticalAlignment="Top" Click="Refresh_Button_Click"/>
 
     </Grid>
 

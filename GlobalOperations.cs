@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Collections;
 
 namespace Lafarge_WPF
 {
@@ -238,6 +239,7 @@ namespace Lafarge_WPF
                 myVehicle.maintenance_date = GlobalClass.sql_dr.GetDateTime(2) ;
                 
             }
+            GlobalClass.con.Close();
 
             return myVehicle;
 
@@ -378,6 +380,69 @@ namespace Lafarge_WPF
 
 
 
+        public static string[] getAllVehicleCode()
+        {
+
+            int x = num_of_vehicles();
+            int indexx = 0;
+            string[] allVehicles = new string[x];
+
+
+            GlobalClass.con.Open();
+
+            MySqlCommand cmdd = new MySqlCommand(" select vehicle_code from vehicle; ", GlobalClass.con);
+            GlobalClass.sql_dr = cmdd.ExecuteReader();
+            while (GlobalClass.sql_dr.Read())
+            {
+                allVehicles[indexx] = GlobalClass.sql_dr.GetString(0);
+            }
+            GlobalClass.con.Close();
+
+
+            return allVehicles;
+
+        }
+
+
+        public static int[] getAllLatestFalseCheck(int w_i, string v_c)
+        {
+
+
+            int[] falseCheckList = new int[16];
+            int i = 0;
+
+            /*
+            select false_check_rep from weekly_checks_sub where 
+            weekly_index =  2
+            and vehicle_code = 'M44'
+            order by check_rep_date desc ;
+             */
+
+
+            GlobalClass.con.Open();
+
+
+            string command_select = "select false_check_rep from weekly_checks_sub where " +
+                " weekly_index = " + w_i + " and vehicle_code = '" + v_c + "' " +
+                " order by check_rep_date desc limit 16 ; ";
+            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+
+            while (GlobalClass.sql_dr.Read())
+            {
+                falseCheckList[i] = GlobalClass.sql_dr.GetInt32(0);
+                i += 1;
+
+            }
+            GlobalClass.con.Close();
+
+
+
+
+
+            return falseCheckList;
+
+        }
 
 
     }

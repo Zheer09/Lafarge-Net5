@@ -23,9 +23,41 @@ namespace Lafarge_WPF.Pages
     /// </summary>
     public partial class weekly_report : Page
     {
+
+        int latestWeekForV;
+        int numOfV;
+        int currentWeek=0;
+        string[] allVCode;
+        int[] currentVFalseChecks = new int[16];
+        int[,] AllFalseCheck;
+
+
         public weekly_report()
         {
             InitializeComponent();
+
+            numOfV = GlobalOperations.num_of_vehicles();
+            allVCode = new string[numOfV];
+            AllFalseCheck = new int[numOfV,16];
+
+            allVCode = GlobalOperations.getAllVehicleCode();
+
+            for(int i = 0; i < numOfV; i++)
+            {
+
+                currentWeek = GlobalOperations.GetLastNumber_w_r(allVCode[i]);
+                currentVFalseChecks = GlobalOperations.getAllLatestFalseCheck(currentWeek, allVCode[i]);
+                
+                for(int x = 0; x < 16; x++)
+                {
+                    AllFalseCheck[i, x] = currentVFalseChecks[x];
+                }
+
+            }
+
+            
+
+            //weekly_report1
 
         }
 
