@@ -102,7 +102,9 @@ namespace Lafarge_WPF
 
     class SelectMaintenanceVehicle
     {
+        public string maintenance_id;
         public string vehicle_code;
+        public string Check_type;
         public string vehicle_status;
         public DateTime maintenance_date;
     }

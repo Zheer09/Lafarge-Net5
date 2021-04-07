@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Collections;
 
 namespace Lafarge_WPF.Pages
 {
@@ -22,17 +23,22 @@ namespace Lafarge_WPF.Pages
     /// </summary>
     public partial class main_check : Page
     {
+
+        string Selected_v_index = "";
+
+
         public main_check()
         {
             InitializeComponent();
 
             MySqlDataAdapter sql_cmd =
-          new MySqlDataAdapter("select mv.vehicle_code as 'Vehicle Code', lv.vehicle_type as 'Type', lv.batch_plant as 'Batch Plant', " +
-          " mv.vehicle_status as 'Status' , DATE_FORMAT(mv.maintenance_date, '%Y %M %D') as 'Maintenance Date' " +
-            "from maintenance_vehicle as mv " +
+          new MySqlDataAdapter("select mv.maintenance_id as 'ID', mv.vehicle_code as 'Vehicle Code', lv.vehicle_type as 'Type',  " +
+          " mv.vehicle_status as 'Status', mv.Check_type as 'Check Type', " +
+          " DATE_FORMAT(mv.maintenance_date, '%Y %M %D') as 'Maintenance Date', " +
+          " '     Select    ' as '     Select Row     ' " +
+            " from maintenance_vehicle as mv " +
             " join vehicle as lv on mv.vehicle_code = lv.vehicle_code " +
-            " where mv.maintenance_date = (select max(b.maintenance_date) " +
-            " from maintenance_vehicle as b where mv.vehicle_code = b.vehicle_code); ", GlobalClass.con);
+            "  where mv.vehicle_status = 'Unchecked'; ", GlobalClass.con);
             GlobalClass.con.Open();
             //GlobalClass.sql_dr = sql_cmd.ExecuteReader();
 
@@ -40,45 +46,53 @@ namespace Lafarge_WPF.Pages
             sql_cmd.Fill(dt1);
 
             Uncheck_maintanance.ItemsSource = dt1.DefaultView;
+
+            sql_cmd =
+          new MySqlDataAdapter("select mv.maintenance_id as 'ID', mv.vehicle_code as 'Vehicle Code', lv.vehicle_type as 'Type',  " +
+          " mv.vehicle_status as 'Status', mv.Check_type as 'Check Type', " +
+          " DATE_FORMAT(mv.maintenance_date, '%Y %M %D') as 'Maintenance Date', " +
+          " '     Select    ' as '     Select Row     ' " +
+            " from maintenance_vehicle as mv " +
+            " join vehicle as lv on mv.vehicle_code = lv.vehicle_code " +
+            "  where mv.vehicle_status = 'Processing'; ", GlobalClass.con);
+
+
+            DataTable dt2 = new DataTable();
+            sql_cmd.Fill(dt2);
+
+            Proccessing_maintanance.ItemsSource = dt2.DefaultView;
+
             GlobalClass.con.Close();
 
 
         }
 
-        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
 
-        private void Row2_DoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            // execute some code
-           
-        }
 
         private void Check_maintanance_selection(object sender, SelectionChangedEventArgs e)
         {
-
-           
-        }
-
-        private void check_Click(object sender, RoutedEventArgs e)
-        {
+            //MessageBox.Show("hello man");
+            DataRowView Selected_vehicle = Uncheck_maintanance.SelectedItem as DataRowView;
+            Selected_v_index = Selected_vehicle.Row.ItemArray[0].ToString();
 
         }
 
-        private void check2_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_View_Vehicle(object sender, RoutedEventArgs e)
         {
 
-        }
+            if (Selected_v_index == "")
+            {
+                MessageBox.Show("You haven't selected any vehicle!");
+            }
+            else
+            {
 
-        private void SeeMore_Click(object sender, RoutedEventArgs e)
-        {
+                ViewMaintenanceVehicle vmv = new ViewMaintenanceVehicle(Selected_v_index);
+                vmv.ShowDialog();
 
-        }
+            }
 
-        private void SeeMore1_Click(object sender, RoutedEventArgs e)
-        {
+
 
         }
     }

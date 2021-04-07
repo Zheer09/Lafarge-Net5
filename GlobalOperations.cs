@@ -235,7 +235,7 @@ namespace Lafarge_WPF
             {
                 myVehicle.vehicle_code = GlobalClass.sql_dr.GetString(0);
                 myVehicle.vehicle_status = GlobalClass.sql_dr.GetString(1);
-                myVehicle.maintenance_date = GlobalClass.sql_dr.GetDateTime(2);
+                myVehicle.maintenance_date = GlobalClass.sql_dr.GetDateTime(2) ;
                 
             }
 
