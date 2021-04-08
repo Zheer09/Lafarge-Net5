@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Lafarge_WPF.UserControls.YesNoSwitch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lafarge_WPF.UserControls"
+            mc:Ignorable="d" 
+             MinHeight="60"
+             MinWidth="140"
+             d:DesignHeight="60" d:DesignWidth="140"
+             Name="YesNoSwitchControl">
+    <UserControl.Resources>
+        <PathGeometry x:Key="yes"
+                      Figures="M22.566406 4.730469L20.773438 3.511719C20.277344 3.175781 19.597656 3.304688 19.265625 3.796875L10.476563 16.757813L6.4375 12.71875C6.015625 12.296875 5.328125 12.296875 4.90625 12.71875L3.371094 14.253906C2.949219 14.675781 2.949219 15.363281 3.371094 15.789063L9.582031 22C9.929688 22.347656 10.476563 22.613281 10.96875 22.613281C11.460938 22.613281 11.957031 22.304688 12.277344 21.839844L22.855469 6.234375C23.191406 5.742188 23.0625 5.066406 22.566406 4.730469Z">
+
+        </PathGeometry>
+
+        <PathGeometry x:Key="no"
+                      Figures="M21.734375 19.640625L19.636719 21.734375C19.253906 22.121094 18.628906 22.121094 18.242188 21.734375L13 16.496094L7.761719 21.734375C7.375 22.121094 6.746094 22.121094 6.363281 21.734375L4.265625 19.640625C3.878906 19.253906 3.878906 18.628906 4.265625 18.242188L9.503906 13L4.265625 7.761719C3.882813 7.371094 3.882813 6.742188 4.265625 6.363281L6.363281 4.265625C6.746094 3.878906 7.375 3.878906 7.761719 4.265625L13 9.507813L18.242188 4.265625C18.628906 3.878906 19.257813 3.878906 19.636719 4.265625L21.734375 6.359375C22.121094 6.746094 22.121094 7.375 21.738281 7.761719L16.496094 13L21.734375 18.242188C22.121094 18.628906 22.121094 19.253906 21.734375 19.640625Z"/>
+        <Style
+            x:Key="RadioButtonStyle"
+            TargetType="{x:Type ToggleButton}">
+            <Setter Property="IsChecked" Value="{x:Null}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border
+                            Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Ellipse x:Name="ellipse"
+                                         Height="50"
+                                         Width="50"/>
+                                <Path
+                                    Data="{TemplateBinding Content}"
+                                    Fill="{TemplateBinding Foreground}"
+                                    Height="30"
+                                    Stretch="Uniform"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked"
+                                     Value="True">
+                                <Setter TargetName="ellipse" Property="Fill" Value="LightBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <RadioButton
+            Name="yesButton"
+            Content="{StaticResource yes}"
+            Foreground="{Binding TrueBrush, ElementName=YesNoSwitchControl, FallbackValue=Green, TargetNullValue=Green}"
+            GroupName="check"
+            Style="{StaticResource RadioButtonStyle}"
+            Checked="YesButton_OnChecked"/>
+
+        <RadioButton
+            Name="noButton"
+            Grid.Column="1"
+            
+            Content="{StaticResource no}"
+            Foreground="{Binding FalseBrush, ElementName=YesNoSwitchControl, FallbackValue=Red, TargetNullValue=Red}"
+            GroupName="check"
+            Style="{StaticResource RadioButtonStyle}"
+            Checked="NoButton_OnChecked"/>
+    </Grid>
+</UserControl>
