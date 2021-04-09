@@ -21,63 +21,102 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="290"/>
+        </Grid.ColumnDefinitions>
 
 
-        <TextBlock Text="Uncheck " VerticalAlignment="Center" HorizontalAlignment="Center"
+
+        <TextBlock Grid.Column="1"  Text="Uncheck " VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontSize="30" FontWeight="SemiBold">
             <TextBlock.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
             </TextBlock.Effect>
         </TextBlock>
 
-        <DataGrid Grid.Row="1" Width="1000" HorizontalAlignment="Center"
+
+        <ScrollViewer Grid.Column="1" Grid.Row="1">
+         <DataGrid  Width="1570" VerticalAlignment="Stretch"
           x:Name="Uncheck_maintanance"
-          ItemsSource="{Binding Items2}"
-          CanUserAddRows="False"
+          ItemsSource="{Binding}"
+          CanUserAddRows="False" 
           SelectionUnit="FullRow"
           SelectionMode="Extended" Margin="15"
-          SelectionChanged="Check_maintanance_selection"
-          
-                 
-          IsReadOnly="True">
+          SelectionChanged="Check_maintanance_selection"  
+          IsReadOnly="True" HorizontalAlignment="Stretch"
+          HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto"
+          ScrollViewer.CanContentScroll="True" 
+          ScrollViewer.HorizontalScrollBarVisibility="Visible"
+          GridLinesVisibility="Horizontal"
+          Foreground="Black">
 
-            <DataGrid.ItemContainerStyle>
+                <DataGrid.Effect>
+                    <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+                </DataGrid.Effect>
 
-                <Style TargetType="DataGridRow">
+            </DataGrid>
+        </ScrollViewer>
 
-                </Style>
-            </DataGrid.ItemContainerStyle>
-            <DataGrid.Effect>
-                <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
-            </DataGrid.Effect>
-        </DataGrid>
 
-        <DataGrid Grid.Row="3" Width="1000" HorizontalAlignment="Center"
+        <ScrollViewer Grid.Column="1" Grid.Row="3">
+            <DataGrid  Width="1570"
           x:Name="Proccessing_maintanance"
           ItemsSource="{Binding Items2}"
-          CanUserAddRows="False"
-          SelectionUnit="FullRow"
+          CanUserAddRows="False" ScrollViewer.CanContentScroll="True" 
+          ScrollViewer.HorizontalScrollBarVisibility="Visible"
+          SelectionUnit="Cell"
           SelectionMode="Single"
-          Margin="10" 
-          SelectionChanged="Check_maintanance_selection">
-
-
-
-            <DataGrid.Effect>
+          Margin="10" HorizontalAlignment="Stretch"
+          SelectionChanged="Check_maintanance_selection"
+          HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto"
+          VerticalAlignment="Stretch"
+          GridLinesVisibility="Horizontal" Foreground="Black">
+                
+                <DataGrid.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
             </DataGrid.Effect>
         </DataGrid>
+        </ScrollViewer>
 
-
-        <TextBlock Grid.Row="2" Text="Proccessing" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Proccessing" VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontSize="30"  FontWeight="SemiBold">
             <TextBlock.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
             </TextBlock.Effect>
         </TextBlock>
-        <Button Content="View Vehicle" HorizontalAlignment="Left" Margin="1229,61,0,0" Grid.Row="1" VerticalAlignment="Top" Height="65" Width="126" Click="Button_Click_View_Vehicle"/>
-        <Button Content="Set to Proccessing" HorizontalAlignment="Left" Margin="1229,134,0,0" Grid.Row="1" VerticalAlignment="Top" Height="65" Width="150" Click="Button_Click_set_to_Pro"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" Margin="256,421,0,0" Grid.Row="3" VerticalAlignment="Top" Click="Refresh_Button_Click"/>
+        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                Grid.Column="2" Content="View Vehicle" x:Name="View_vehicle"
+                HorizontalAlignment="Center" Grid.Row="1"  
+                materialDesign:ButtonAssist.CornerRadius="20" BorderThickness="35" 
+                BorderBrush="#00955E" FontSize="15" Margin="0 20 0 0" Foreground="White"
+                VerticalAlignment="Top" Height="70" Width="150" 
+                Click="Button_Click_View_Vehicle">
+            <Button.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
+            </Button.Effect>
+        </Button>
+
+        <Button Style="{StaticResource MaterialDesignRaisedButton}" Content="Set to Proccessing" 
+                HorizontalAlignment="Center" Grid.Column="2" Margin="0 130 0 0" Grid.Row="1" 
+                VerticalAlignment="Top" Height="70" Width="150" 
+                materialDesign:ButtonAssist.CornerRadius="20" BorderThickness="35" 
+                BorderBrush="#00955E" FontSize="14" Foreground="White" Click="Button_Click_set_to_Pro">
+            <Button.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
+            </Button.Effect>
+        </Button>
+
+        <Button Grid.Column="2" x:Name="refresh_btn" Width="90" Height="45"  Content="Refresh" HorizontalAlignment="Center"  
+                Grid.Row="3" VerticalAlignment="Bottom" 
+                Margin="0 0 0 60" Click="Refresh_Button_Click">
+            <Button.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
+            </Button.Effect>
+        </Button>
 
     </Grid>
 
