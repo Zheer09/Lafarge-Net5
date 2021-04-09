@@ -35,6 +35,7 @@ namespace Lafarge_WPF.Pages
         int[,] AllFalseCheck;
         List<WeeklyData> wData = new List<WeeklyData>();
         public static DateTime currentDate;
+        public static int ScrollThroughWeeks;
 
         public weekly_report()
         {
@@ -42,6 +43,7 @@ namespace Lafarge_WPF.Pages
             currentDate = GlobalClass.GetNistTime(); 
             Weekly_date_date.Text = currentDate.ToString();
             LoadData();
+            ScrollThroughWeeks = 0;
            
             
             //DateTime dt2 = currentDate.AddDays(-3); //this is how you subtract days 
@@ -236,6 +238,7 @@ namespace Lafarge_WPF.Pages
                     currentDate = lastWeek;
                     Weekly_date_date.Text = currentDate.ToString();
                     GlobalClass.con.Close();
+                    ScrollThroughWeeks -= 1;
 
                 }
 
@@ -516,7 +519,7 @@ namespace Lafarge_WPF.Pages
             weekly_report1.ItemsSource = wData;
             DataContext = wData;
             
-            //MessageBox.Show(wData[0].v_codee);
+           
         }
 
 
@@ -536,33 +539,6 @@ namespace Lafarge_WPF.Pages
            
             download_buttonn(); 
 
-            // save the application  
-            // Exit from the application  
-            //app.Quit();
-            
-
-
-
-
-/*
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog() { Filter ="Excel Workbook|*.xlsx" };
-            Nullable<bool> result = dlg.ShowDialog();
-            
-            if (result == true)
-            {
-                try
-                {
-                    using (XLWorkbook workbook = new XLWorkbook())
-                    {
-                        workbook.Worksheets.Add();
-                    }
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Message", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-               
-            }*/
         }
 
         private void Refresh_Button_Click(object sender, RoutedEventArgs e)
@@ -572,13 +548,26 @@ namespace Lafarge_WPF.Pages
 
         private void prev_button_click(object sender, MouseButtonEventArgs e)
         {
-            //MessageBox.Show("You clicked");
+           
             previousWeek();
         }
 
         private void nextWeek_button_click(object sender, MouseButtonEventArgs e)
         {
-            nextWeek();
+            if (ScrollThroughWeeks == -1)
+            {
+                LoadData();
+            }
+
+            else if(ScrollThroughWeeks == 0)
+                {
+                    MessageBox.Show("There is no data for next week!");
+                }
+            else
+            {
+                nextWeek();
+            }  
+             
         }
 
 
@@ -607,14 +596,7 @@ namespace Lafarge_WPF.Pages
                 worKsheeT.Cells.Font.Size = 15;
 
 
-                //int rowcount = 2;
-
-                
-                //worKsheeT.Range[worKsheeT.Cells[1, 1]].Styl
-                //worKsheeT.Cells.HorizontalAlignment = HorizontalAlignment.Center;
-                //worKsheeT.Cells.VerticalAlignment = VerticalAlignment.Center;
-                //worKsheeT.Cells.Columns.VerticalAlignment = VerticalAlignment.Center;
-                //worKsheeT.Cells.Range[worKsheeT.Cells[1, 1], worKsheeT.Cells[1,1]].VerticalAlignment = VerticalAlignment.Center;
+            
 
                 for (int i = 1; i < weekly_report1.Columns.Count + 1; i++)
                 {
@@ -647,13 +629,10 @@ namespace Lafarge_WPF.Pages
                 }
 
 
-/*
-           
-*/
                 celLrangE = worKsheeT.Range[worKsheeT.Cells[1, 1], worKsheeT.Cells[weekly_report1.Items.Count+2, weekly_report1.Columns.Count]];
                 celLrangE.EntireColumn.AutoFit();
                 Microsoft.Office.Interop.Excel.Borders border = celLrangE.Borders;
-                //celLrangE.VerticalAlignment = VerticalAlignment.Center;
+                
                 border.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                 border.Weight = 2d;
 
