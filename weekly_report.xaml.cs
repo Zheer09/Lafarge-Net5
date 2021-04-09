@@ -254,6 +254,7 @@ namespace Lafarge_WPF.Pages
                     Weekly_date_date.Text = currentDate.ToString();
                     GlobalClass.con.Close();
                     ScrollThroughWeeks -= 1;
+                    wData = PrevWData;
 
 
                 }
@@ -456,6 +457,7 @@ namespace Lafarge_WPF.Pages
                     currentDate = lastWeek;
                     Weekly_date_date.Text = currentDate.ToString();
                     GlobalClass.con.Close();
+                    wData = PrevWData;
                     //ScrollThroughWeeks += 1;
 
                 }
@@ -634,6 +636,7 @@ namespace Lafarge_WPF.Pages
             }
 weekly_report1.ItemsSource = ThisWData;
                         DataContext = ThisWData;
+            wData = ThisWData;
 
 GlobalClass.con.Close();
             
