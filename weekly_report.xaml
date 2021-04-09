@@ -17,7 +17,7 @@
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="1">
-        <DataGrid 
+            <DataGrid 
           x:Name="weekly_report1"
           ItemsSource="{Binding}"
           
@@ -25,49 +25,41 @@
           SelectionUnit="Cell"
           SelectionMode="Extended"
           Margin="20" SelectionChanged="weekly_report_Selection"
-          AutoGenerateColumns="True" CanUserDeleteRows="False" 
+          AutoGenerateColumns="False" CanUserDeleteRows="False" 
           HorizontalScrollBarVisibility="Auto"
           VerticalScrollBarVisibility="Auto"
           HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch" GridLinesVisibility="Horizontal"
           ScrollViewer.CanContentScroll="True" 
           ScrollViewer.HorizontalScrollBarVisibility="Visible" Foreground="Black">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Vehicle Code" Binding="{Binding Vehicle_Code}"/>
-                <DataGridTextColumn Header="P1" Binding="{Binding P1}"/>
-                <DataGridTextColumn Header="P2" Binding="{Binding P2}"/>
-                <DataGridTextColumn Header="P3" Binding="{Binding P3}"/>
-                <DataGridTextColumn Header="P4" Binding="{Binding P4}"/>
-                <DataGridTextColumn Header="P5" Binding="{Binding P5}"/>
-                <DataGridTextColumn Header="P6" Binding="{Binding P6}"/>
-                <DataGridTextColumn Header="P7" Binding="{Binding P7}"/>
-                <DataGridTextColumn Header="P8" Binding="{Binding P8}"/>
-                <DataGridTextColumn Header="P9" Binding="{Binding P9}"/>
-                <DataGridTextColumn Header="P10" Binding="{Binding P10}"/>
-                <DataGridTextColumn Header="P11" Binding="{Binding P11}"/>
-                <DataGridTextColumn Header="P12" Binding="{Binding P12}"/>
-                <DataGridTextColumn Header="P13" Binding="{Binding P13}"/>
-                <DataGridTextColumn Header="P14" Binding="{Binding P14}"/>
-                <DataGridTextColumn Header="P16" Binding="{Binding P15}"/>
-                    <DataGridTextColumn Header="Note" Binding="{Binding Note}">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextWrapping" Value="Wrap" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Vehicle Code" Binding="{Binding v_codee}"/>
+                    <DataGridTextColumn Header="P1" Binding="{Binding P1}"/>
+                    <DataGridTextColumn Header="P2" Binding="{Binding P2}"/>
+                    <DataGridTextColumn Header="P3" Binding="{Binding P3}"/>
+                    <DataGridTextColumn Header="P4" Binding="{Binding P4}"/>
+                    <DataGridTextColumn Header="P5" Binding="{Binding P5}"/>
+                    <DataGridTextColumn Header="P6" Binding="{Binding P6}"/>
+                    <DataGridTextColumn Header="P7" Binding="{Binding P7}"/>
+                    <DataGridTextColumn Header="P8" Binding="{Binding P8}"/>
+                    <DataGridTextColumn Header="P9" Binding="{Binding P9}"/>
+                    <DataGridTextColumn Header="P10" Binding="{Binding P10}"/>
+                    <DataGridTextColumn Header="P11" Binding="{Binding P11}"/>
+                    <DataGridTextColumn Header="P12" Binding="{Binding P12}"/>
+                    <DataGridTextColumn Header="P13" Binding="{Binding P13}"/>
+                    <DataGridTextColumn Header="P14" Binding="{Binding P14}"/>
+                    <DataGridTextColumn Header="P15" Binding="{Binding P15}"/>
+                    <DataGridTextColumn Header="P16" Binding="{Binding P16}"/>
+                    <DataGridTextColumn Header="Note" Binding="{Binding weeklyNote}">
+                        
                     </DataGridTextColumn>
-                <DataGridTextColumn Header="P16" Binding="{Binding P15}"/>
-                <DataGridTextColumn Header="P16" Binding="{Binding P15}"/>
-                <DataGridTextColumn Header="P16" Binding="{Binding P15}"/>
-                <DataGridTextColumn Header="P16" Binding="{Binding P15}"/>
-                <DataGridTextColumn Header="P16" Binding="{Binding P15}"/>
-                <DataGridTextColumn Header="P16" Binding="{Binding P15}"/>
-            </DataGrid.Columns>
+                   
+                </DataGrid.Columns>
 
-            <DataGrid.Effect>
-                <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
-            </DataGrid.Effect>
-        </DataGrid>
+                <DataGrid.Effect>
+                    <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+                </DataGrid.Effect>
+            </DataGrid>
         </ScrollViewer>
         <Button x:Name="Weekly_report_download" Grid.Row="2" Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
                             materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="20" BorderBrush="#00955E" Foreground="White"
@@ -90,9 +82,11 @@
             </Button.Effect>
         </Button>
 
-        <DatePicker  Grid.Row="2" HorizontalAlignment="Center" SelectedDate="{x:Static sys:DateTime.Now}" x:Name="Weekly_date_date" Width="94"
-                        FontWeight="SemiBold" FontSize="15" Foreground="Black" 
-                        Background="White" Height="40"/>
 
+        <TextBlock Grid.Row="2" Text="slaw" HorizontalAlignment="Center" TextAlignment="Center" x:Name="Weekly_date_date" Width="211" 
+                   FontWeight="SemiBold" FontSize="20" Foreground="Black"
+                   Background ="Transparent" Height="40" Margin="0,20,0,20"></TextBlock>
+        <Image x:Name="nextWeek_button" HorizontalAlignment="Right" Height="100" Margin="0,18,482,0" Grid.Row="2" VerticalAlignment="Top" Width="45" Source="/NandP.png" MouseLeftButtonDown="nextWeek_button_click" />
+        <Image x:Name="prev_button" HorizontalAlignment="Left" Height="100" Margin="482,16,0,0" Grid.Row="2" VerticalAlignment="Top" Width="48" Source="/NandP2.png" MouseLeftButtonDown="prev_button_click"/>
     </Grid>
 </Page>

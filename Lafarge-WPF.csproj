@@ -35,6 +35,20 @@
     <None Remove="image\Transport__28189_29.png" />
     <None Remove="image\true.png" />
     <None Remove="image\wheel_loader.png" />
+    <None Remove="NandP.png" />
+    <None Remove="NandP2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>9</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>00020813-0000-0000-c000-000000000046</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -65,6 +79,8 @@
     <Resource Include="image\Transport__28189_29.png" />
     <Resource Include="image\true.png" />
     <Resource Include="image\wheel_loader.png" />
+    <Resource Include="NandP.png" />
+    <Resource Include="NandP2.png" />
   </ItemGroup>
 
 </Project>
