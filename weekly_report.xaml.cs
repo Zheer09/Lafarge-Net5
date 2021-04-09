@@ -80,6 +80,7 @@ namespace Lafarge_WPF.Pages
             if (dayNum == 6 || dayNum == 7)
             {
                 MessageBox.Show("Today is not a working day!");
+                GlobalClass.con.Close();
             }
             else
             {
