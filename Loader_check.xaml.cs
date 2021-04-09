@@ -168,7 +168,7 @@ namespace Lafarge_WPF
             h300_condition = false;
             v_code.Text = v_code.Text.ToUpper();
 
-
+            
 
             if (v_code.Text == "")
             {
@@ -214,7 +214,7 @@ namespace Lafarge_WPF
                             wh_50 += change_wh;
                             wh_300 += change_wh;
 
-
+                            //s_d = new DateTime(2021, 4, 2);
 
                             if (wh_50 >= 50)
                             {

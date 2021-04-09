@@ -30,7 +30,7 @@ namespace Lafarge_WPF.Pages
         int latestWeekForV;
         int numOfV;
         int currentWeek=0;
-        string[] allVCode;
+        //string[] allVCode;
         int[] currentVFalseChecks = new int[16];
         int[,] AllFalseCheck;
         List<WeeklyData> wData = new List<WeeklyData>();
@@ -70,169 +70,183 @@ namespace Lafarge_WPF.Pages
             else
             {
                 MessageBox.Show("There was an isuue connecting!");
-                
+
             }
             //GlobalClass.con.Close();
             GlobalClass.sql_dr.Close();
 
             //MessageBox.Show("got here 2");
 
-            DateTime lastWeek = currentDate.AddDays(-(dayNum + 2));
-
-
-            //numOfV = GlobalOperations.num_of_vehicles();
-            /////
-            //GlobalClass.con.Open();
-            //SELECT COUNT(*) FROM cities;
-            string command_select = "SELECT COUNT(*) FROM vehicle as a " +
-                " inner join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
-                " where b.weekly_Date = '" + lastWeek.ToString("yyyy-MM-dd") + "' ;";
-            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
-            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
-            GlobalClass.sql_dr.Read();
-
-            numOfV = GlobalClass.sql_dr.GetInt16(0);
-            //GlobalClass.con.Close();
-            GlobalClass.sql_dr.Close();
-            ///////////////
-            ///
-
-            //MessageBox.Show("got here 3");
-
-            if (numOfV > 0)
+            if (dayNum == 6 || dayNum == 7)
             {
-
-            
-
-            allVCode = new string[numOfV];
-            AllFalseCheck = new int[numOfV, 16];
-
-
-            //
-            //allVCode = GlobalOperations.getAllVehicleCode();
-
-            
-            int indexx = 0;
-            string[] allVehicles = new string[numOfV];
-
-
-            //GlobalClass.con.Open();
-
-            MySqlCommand cmdd = new MySqlCommand(" select a.vehicle_code from vehicle as a" +
-                " join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
-                " where weekly_Date > '" + lastWeek.ToString("yyyy-MM-dd") + "' ;", GlobalClass.con);
-            GlobalClass.sql_dr = cmdd.ExecuteReader();
-            while (GlobalClass.sql_dr.Read())
-            {
-                allVehicles[indexx] = GlobalClass.sql_dr.GetString(0);
-                if(numOfV != (indexx+1) )
-                    indexx += 1;
+                MessageBox.Show("Today is not a working day!");
             }
-            //GlobalClass.con.Close();
+            else
+            {
 
+                DateTime lastWeek = currentDate.AddDays(-(dayNum + 2));
+
+
+                //numOfV = GlobalOperations.num_of_vehicles();
+                /////
+                //GlobalClass.con.Open();
+                //SELECT COUNT(*) FROM cities;
+                DateTime tempdate = lastWeek.AddDays(-5);
+                string command_select = "SELECT COUNT(*) FROM vehicle as a " +
+                    " inner join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
+                    " where b.weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                    " and b.weekly_Date >= '"+ tempdate.ToString("yyyy-MM-dd") +"' ;";
+                MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+                GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+                GlobalClass.sql_dr.Read();
+
+                numOfV = GlobalClass.sql_dr.GetInt16(0);
+                //GlobalClass.con.Close();
                 GlobalClass.sql_dr.Close();
-                //MessageBox.Show("got here 4");
+                ///////////////
+                ///
 
+                //MessageBox.Show("got here 3");
 
-
-
-                //currentDate = lastWeek;
-
-
-
-                for (int i = 0; i < numOfV; i++)
+                if (numOfV > 0)
                 {
 
 
-                    /////////////////////
-                    //GlobalClass.con.Open();
-                    string command_select_w_i = " SELECT a.weekly_index FROM weekly_reports as a where a.vehicle_code = '" + allVehicles[i] + "' " +
-                        " and weekly_Date = '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
-                                            " order by weekly_index desc limit 1; ";
 
-                    MySqlCommand sql_cmd_w_i = new MySqlCommand(command_select_w_i, GlobalClass.con);
-                    GlobalClass.sql_dr = sql_cmd_w_i.ExecuteReader();
-                    GlobalClass.sql_dr.Read();
-                    int currentPrevWeek = GlobalClass.sql_dr.GetInt32(0);
-
-                    GlobalClass.sql_dr.Close();
-
-                    //GlobalClass.con.Close();
-                    //////////////////////////
+                    //allVCode = new string[numOfV];
+                    AllFalseCheck = new int[numOfV, 16];
 
 
-                    ///////////
-                    //currentVFalseChecks = GlobalOperations.getAllLatestFalseCheck(currentWeek, allVCode[i]);
+                    //
+                    //allVCode = GlobalOperations.getAllVehicleCode();
 
 
-                    int[] falseCheckList = new int[16];
-                    int ii = 0;
-
-                    /*
-                    select false_check_rep from weekly_checks_sub where 
-                    weekly_index =  2
-                    and vehicle_code = 'M44'
-                    order by check_rep_date desc ;
-                     */
+                    int indexx = 0;
+                    string[] allVehicles = new string[numOfV];
 
 
                     //GlobalClass.con.Open();
-
-
-                    string command_select2 = "select false_check_rep from weekly_checks_sub where " +
-                        " weekly_index = " + currentPrevWeek + " and vehicle_code = '" + allVehicles[i] + "' " +
-                        " order by check_rep_date desc limit 16 ; ";
-                    MySqlCommand sql_cmd2 = new MySqlCommand(command_select2, GlobalClass.con);
-                    GlobalClass.sql_dr = sql_cmd2.ExecuteReader();
-
+                    string cmdtxtt = " select a.vehicle_code from vehicle as a" +
+                        " join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
+                         " where b.weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                    " and b.weekly_Date >= '" + tempdate.ToString("yyyy-MM-dd") + "' ;";
+                    MySqlCommand cmdd = new MySqlCommand(cmdtxtt, GlobalClass.con);
+                    GlobalClass.sql_dr = cmdd.ExecuteReader();
                     while (GlobalClass.sql_dr.Read())
                     {
-
-                        falseCheckList[i] = GlobalClass.sql_dr.GetInt32(0);
-                        ii += 1;
-
+                        allVehicles[indexx] = GlobalClass.sql_dr.GetString(0);
+                        if (numOfV != (indexx + 1))
+                            indexx += 1;
                     }
+                    //GlobalClass.con.Close();
 
                     GlobalClass.sql_dr.Close();
-                    //GlobalClass.con.Close();
-                    /////////////////////////
-                    ///
+                    //MessageBox.Show("got here 4");
 
 
 
 
-                    for (int x = 0; x < 16; x++)
-                    {
-                        AllFalseCheck[i, x] = currentVFalseChecks[x];
-
-                    }
+                    //currentDate = lastWeek;
 
                     List<WeeklyData> PrevWData = new List<WeeklyData>();
 
-                    PrevWData.Add(new WeeklyData()
+                    for (int i = 0; i < numOfV; i++)
                     {
-                        v_codee = allVehicles[i],
-                        P1 = AllFalseCheck[i, 0],
-                        P2 = AllFalseCheck[i, 1],
-                        P3 = AllFalseCheck[i, 2],
-                        P4 = AllFalseCheck[i, 3],
-                        P5 = AllFalseCheck[i, 4],
-                        P6 = AllFalseCheck[i, 5],
-                        P7 = AllFalseCheck[i, 6],
-                        P8 = AllFalseCheck[i, 7],
-                        P9 = AllFalseCheck[i, 8],
-                        P10 = AllFalseCheck[i, 9],
-                        P11 = AllFalseCheck[i, 10],
-                        P12 = AllFalseCheck[i, 11],
-                        P13 = AllFalseCheck[i, 12],
-                        P14 = AllFalseCheck[i, 13],
-                        P15 = AllFalseCheck[i, 14],
-                        P16 = AllFalseCheck[i, 15],
-                        weeklyNote = ""
-                    });
 
-                    //MessageBox.Show("got here 5");
 
+                        /////////////////////
+                        //GlobalClass.con.Open();
+                        string command_select_w_i = " SELECT a.weekly_index FROM weekly_reports as a where a.vehicle_code = '" + allVehicles[i] + "' " +
+                             " and a.weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                    " and a.weekly_Date >= '" + tempdate.ToString("yyyy-MM-dd") + "' "+
+                        " order by a.weekly_index desc limit 1; ";
+
+                        MySqlCommand sql_cmd_w_i = new MySqlCommand(command_select_w_i, GlobalClass.con);
+                        GlobalClass.sql_dr = sql_cmd_w_i.ExecuteReader();
+                        GlobalClass.sql_dr.Read();
+                        int currentPrevWeek = GlobalClass.sql_dr.GetInt32(0);
+
+                        GlobalClass.sql_dr.Close();
+
+                        //GlobalClass.con.Close();
+                        //////////////////////////
+
+
+                        ///////////
+                        //currentVFalseChecks = GlobalOperations.getAllLatestFalseCheck(currentWeek, allVCode[i]);
+
+
+                        int[] falseCheckList = new int[16];
+                        int ii = 0;
+
+                        /*
+                        select false_check_rep from weekly_checks_sub where 
+                        weekly_index =  2
+                        and vehicle_code = 'M44'
+                        order by check_rep_date desc ;
+                         */
+
+
+                        //GlobalClass.con.Open();
+
+
+                        string command_select2 = "select false_check_rep from weekly_checks_sub where " +
+                            " weekly_index = " + currentPrevWeek + " and vehicle_code = '" + allVehicles[i] + "' " +
+                            " order by check_rep_date desc limit 16 ; ";
+                        MySqlCommand sql_cmd2 = new MySqlCommand(command_select2, GlobalClass.con);
+                        GlobalClass.sql_dr = sql_cmd2.ExecuteReader();
+
+                        while (GlobalClass.sql_dr.Read())
+                        {
+
+                            falseCheckList[ii] = GlobalClass.sql_dr.GetInt32(0);
+                            ii += 1;
+
+                        }
+
+                        GlobalClass.sql_dr.Close();
+                        //GlobalClass.con.Close();
+                        /////////////////////////
+                        ///
+
+
+
+
+                        for (int x = 0; x < 16; x++)
+                        {
+                            AllFalseCheck[i, x] = falseCheckList[x];
+
+                        }
+
+
+
+                        PrevWData.Add(new WeeklyData()
+                        {
+                            v_codee = allVehicles[i],
+                            P1 = AllFalseCheck[i, 0],
+                            P2 = AllFalseCheck[i, 1],
+                            P3 = AllFalseCheck[i, 2],
+                            P4 = AllFalseCheck[i, 3],
+                            P5 = AllFalseCheck[i, 4],
+                            P6 = AllFalseCheck[i, 5],
+                            P7 = AllFalseCheck[i, 6],
+                            P8 = AllFalseCheck[i, 7],
+                            P9 = AllFalseCheck[i, 8],
+                            P10 = AllFalseCheck[i, 9],
+                            P11 = AllFalseCheck[i, 10],
+                            P12 = AllFalseCheck[i, 11],
+                            P13 = AllFalseCheck[i, 12],
+                            P14 = AllFalseCheck[i, 13],
+                            P15 = AllFalseCheck[i, 14],
+                            P16 = AllFalseCheck[i, 15],
+                            weeklyNote = ""
+                        });
+
+                        //MessageBox.Show("got here 5");
+
+
+
+                    }
                     weekly_report1.ItemsSource = PrevWData;
                     DataContext = PrevWData;
                     currentDate = lastWeek;
@@ -240,15 +254,14 @@ namespace Lafarge_WPF.Pages
                     GlobalClass.con.Close();
                     ScrollThroughWeeks -= 1;
 
-                }
 
+                }
+                else
+                {
+                    MessageBox.Show("There is no data for Previous week");
+                    GlobalClass.con.Close();
+                }
             }
-            else
-            {
-                MessageBox.Show("There is no data for Previous week");
-                GlobalClass.con.Close();
-            }
-          
 
         }
 
@@ -278,6 +291,7 @@ namespace Lafarge_WPF.Pages
             //MessageBox.Show("got here 2");
 
             DateTime lastWeek = currentDate.AddDays(7);
+            DateTime tempDate = lastWeek.AddDays(-5);
 
 
             //numOfV = GlobalOperations.num_of_vehicles();
@@ -286,7 +300,8 @@ namespace Lafarge_WPF.Pages
             //SELECT COUNT(*) FROM cities;
             string command_select = "SELECT COUNT(*) FROM vehicle as a " +
                 " inner join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
-                " where b.weekly_Date = '" + lastWeek.ToString("yyyy-MM-dd") + "' ;";
+                " where b.weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                "and b.weekly_Date >=  '"+ tempDate.ToString("yyyy-MM-dd") +"' ;";
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
             GlobalClass.sql_dr.Read();
@@ -304,7 +319,7 @@ namespace Lafarge_WPF.Pages
 
 
 
-                allVCode = new string[numOfV];
+                //allVCode = new string[numOfV];
                 AllFalseCheck = new int[numOfV, 16];
 
 
@@ -320,7 +335,8 @@ namespace Lafarge_WPF.Pages
 
                 MySqlCommand cmdd = new MySqlCommand(" select a.vehicle_code from vehicle as a" +
                     " join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
-                    " where weekly_Date > '" + lastWeek.ToString("yyyy-MM-dd") + "' ;", GlobalClass.con);
+                    " where weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                    "and weekly_Date >=  '"+ tempDate.ToString("yyyy-MM-dd") +"'  ;", GlobalClass.con);
                 GlobalClass.sql_dr = cmdd.ExecuteReader();
                 while (GlobalClass.sql_dr.Read())
                 {
@@ -338,7 +354,7 @@ namespace Lafarge_WPF.Pages
 
                 //currentDate = lastWeek;
 
-
+                List<WeeklyData> PrevWData = new List<WeeklyData>();
 
                 for (int i = 0; i < numOfV; i++)
                 {
@@ -347,7 +363,8 @@ namespace Lafarge_WPF.Pages
                     /////////////////////
                     //GlobalClass.con.Open();
                     string command_select_w_i = " SELECT a.weekly_index FROM weekly_reports as a where a.vehicle_code = '" + allVehicles[i] + "' " +
-                        " and weekly_Date = '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                        " and weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                        "and weekly_Date >=  '"+ tempDate.ToString("yyyy-MM-dd") +"'  " +
                                             " order by weekly_index desc limit 1; ";
 
                     MySqlCommand sql_cmd_w_i = new MySqlCommand(command_select_w_i, GlobalClass.con);
@@ -407,7 +424,7 @@ namespace Lafarge_WPF.Pages
 
                     }
 
-                    List<WeeklyData> PrevWData = new List<WeeklyData>();
+                    
 
                     PrevWData.Add(new WeeklyData()
                     {
@@ -438,6 +455,7 @@ namespace Lafarge_WPF.Pages
                     currentDate = lastWeek;
                     Weekly_date_date.Text = currentDate.ToString();
                     GlobalClass.con.Close();
+                    //ScrollThroughWeeks += 1;
 
                 }
 
@@ -454,44 +472,143 @@ namespace Lafarge_WPF.Pages
 
         void LoadData()
         {
-            numOfV = GlobalOperations.num_of_vehicles();
-            allVCode = new string[numOfV];
-            AllFalseCheck = new int[numOfV, 16];
+            /////////////////////////
+            GlobalClass.con.Open();
+            string LWcommand = "Select dayofweek('" + currentDate.ToString("yyyy-MM-dd") + "');";
+            MySqlCommand sql_cmd_LW = new MySqlCommand(LWcommand, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd_LW.ExecuteReader();
+            GlobalClass.sql_dr.Read();
+            int dayNum = 0;
+            if (GlobalClass.sql_dr.HasRows)
+            {
+                dayNum = GlobalClass.sql_dr.GetInt16(0);
+            }
+            else
+            {
+                MessageBox.Show("There was an isuue connecting!");
 
-            allVCode = GlobalOperations.getAllVehicleCode();
+            }
+
+            GlobalClass.sql_dr.Close();
+
+            DateTime lastWeek = currentDate.AddDays(-dayNum);
+
+
+            ///////////////////////////
+            //numOfV = GlobalOperations.num_of_vehicles();
+
+            //SELECT COUNT(*) FROM cities;
+            string command_select = "SELECT COUNT(distinct a.vehicle_code) FROM vehicle as a " +
+               " inner join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
+               " where b.weekly_Date > '" + lastWeek.ToString("yyyy-MM-dd") + "' ;";
+           
+
+            MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+            GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+            GlobalClass.sql_dr.Read();
+            numOfV = GlobalClass.sql_dr.GetInt32(0);
+            //GlobalClass.con.Close();
+            //return num_of_v;
+            ////////////
+            GlobalClass.sql_dr.Close();
+
+
+            ///
+
+            AllFalseCheck = new int[numOfV, 16];
+            
+            //allVCode = GlobalOperations.getAllVehicleCode();
+
+
+            
+            int indexx = 0;
+            string[] allVehicles = new string[numOfV];
+
+
+           // GlobalClass.con.Open();
+
+            MySqlCommand cmdd = new MySqlCommand("SELECT distinct a.vehicle_code FROM vehicle as a " +
+               " inner join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
+               " where b.weekly_Date > '" + lastWeek.ToString("yyyy-MM-dd") + "' ;", GlobalClass.con);
+            GlobalClass.sql_dr = cmdd.ExecuteReader();
+            while (GlobalClass.sql_dr.Read())
+            {
+                allVehicles[indexx] = GlobalClass.sql_dr.GetString(0);
+                if (numOfV != (indexx + 1))
+                    indexx += 1;
+            }
+
+            /////////
+            ///
+            GlobalClass.sql_dr.Close();
+
+
+            List<WeeklyData> ThisWData = new();
+
 
             for (int i = 0; i < numOfV; i++)
             {
 
-                currentWeek = GlobalOperations.GetLastNumber_w_r(allVCode[i]);
-/*
-                GlobalClass.con.Open();
-                string command_select = " SELECT a.weekly_index FROM weekly_reports as a where a.vehicle_code = '" + v_c + "' " +
 
-                                        " order by weekly_index desc limit 1; ";
+                ////
+                //currentWeek = GlobalOperations.GetLastNumber_w_r(allVCode[i]);
 
-                MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
-                GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+                string command_select_w_i = " SELECT a.weekly_index FROM weekly_reports as a where a.vehicle_code = '" + allVehicles[i] + "' " +
+                        " and weekly_Date > '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                                            " order by weekly_index desc limit 1; ";
+
+                MySqlCommand sql_cmd_w_i = new MySqlCommand(command_select_w_i, GlobalClass.con);
+                GlobalClass.sql_dr = sql_cmd_w_i.ExecuteReader();
                 GlobalClass.sql_dr.Read();
-                int index_num = GlobalClass.sql_dr.GetInt32(0);
-                GlobalClass.con.Close();
-*/
+                int currentWeekLatest = GlobalClass.sql_dr.GetInt32(0);
 
 
+                ////
+                GlobalClass.sql_dr.Close();
+
+                //currentVFalseChecks = GlobalOperations.getAllLatestFalseCheck(currentWeekLatest, allVCode[i]);
+
+                int[] falseCheckList = new int[16];
+                int iii = 0;
+
+                /*
+                select false_check_rep from weekly_checks_sub where 
+                weekly_index =  2
+                and vehicle_code = 'M44'
+                order by check_rep_date desc ;
+                 */
 
 
-                currentVFalseChecks = GlobalOperations.getAllLatestFalseCheck(currentWeek, allVCode[i]);
+                //GlobalClass.con.Open();
 
-                for (int x = 0; x < 16; x++)
+
+                string command_select_22 = "select false_check_rep from weekly_checks_sub where " +
+                    " weekly_index = " + currentWeekLatest + " and vehicle_code = '" + allVehicles[i] + "' " +
+                    " order by check_rep_date desc limit 16 ; ";
+                MySqlCommand sql_cmd_22 = new MySqlCommand(command_select_22, GlobalClass.con);
+                GlobalClass.sql_dr = sql_cmd_22.ExecuteReader();
+
+                while (GlobalClass.sql_dr.Read())
                 {
-                    AllFalseCheck[i, x] = currentVFalseChecks[x];
+                    falseCheckList[iii] = GlobalClass.sql_dr.GetInt32(0);
+                    iii += 1;
 
                 }
 
+                GlobalClass.sql_dr.Close();
 
-                wData.Add(new WeeklyData()
+                //////
+
+                for (int x = 0; x < 16; x++)
                 {
-                    v_codee = allVCode[i],
+                    AllFalseCheck[i, x] = falseCheckList[x];
+
+                }
+               
+
+                ThisWData.Add(new WeeklyData()
+                {
+                    v_codee = allVehicles[i],
                     P1 = AllFalseCheck[i, 0],
                     P2 = AllFalseCheck[i, 1],
                     P3 = AllFalseCheck[i, 2],
@@ -510,16 +627,17 @@ namespace Lafarge_WPF.Pages
                     P16 = AllFalseCheck[i, 15],
                     weeklyNote = ""
                 });
-
+                        
+                        
 
             }
+weekly_report1.ItemsSource = ThisWData;
+                        DataContext = ThisWData;
 
-
-
-            weekly_report1.ItemsSource = wData;
-            DataContext = wData;
+GlobalClass.con.Close();
             
-           
+
+
         }
 
 
@@ -548,7 +666,7 @@ namespace Lafarge_WPF.Pages
 
         private void prev_button_click(object sender, MouseButtonEventArgs e)
         {
-           
+            //ScrollThroughWeeks -= 1;
             previousWeek();
         }
 
@@ -556,7 +674,9 @@ namespace Lafarge_WPF.Pages
         {
             if (ScrollThroughWeeks == -1)
             {
+                currentDate = GlobalClass.GetNistTime();
                 LoadData();
+                ScrollThroughWeeks += 1;
             }
 
             else if(ScrollThroughWeeks == 0)
@@ -566,6 +686,7 @@ namespace Lafarge_WPF.Pages
             else
             {
                 nextWeek();
+                ScrollThroughWeeks += 1;
             }  
              
         }

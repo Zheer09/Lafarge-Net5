@@ -119,14 +119,15 @@ namespace Lafarge_WPF
 
         public static DateTime GetNistTime()
         {
-            var myHttpWebRequest = (HttpWebRequest)WebRequest.Create("http://www.microsoft.com");
+            /*var myHttpWebRequest = (HttpWebRequest)WebRequest.Create("http://www.microsoft.com");
 
             var response = myHttpWebRequest.GetResponse();
             string todaysDates = response.Headers["date"];
             return DateTime.ParseExact(todaysDates,
            "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
               CultureInfo.InvariantCulture.DateTimeFormat,
-            DateTimeStyles.AssumeUniversal);
+            DateTimeStyles.AssumeUniversal);*/
+            return new DateTime(2021, 4, 8);
         }
 
 
