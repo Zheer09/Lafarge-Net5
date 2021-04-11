@@ -34,7 +34,8 @@
                                 <Path
                                     Data="{TemplateBinding Content}"
                                     Fill="{TemplateBinding Foreground}"
-                                    Height="30"
+                                    Height="40"
+                                    Width="50"
                                     Stretch="Uniform"/>
                             </Grid>
                         </Border>
