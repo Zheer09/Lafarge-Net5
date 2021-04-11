@@ -27,9 +27,9 @@ namespace Lafarge_WPF.Pages
     public partial class weekly_report : Page
     {
 
-        int latestWeekForV;
+        //int latestWeekForV;
         int numOfV;
-        int currentWeek=0;
+        //int currentWeek=0;
         //string[] allVCode;
         int[] currentVFalseChecks = new int[16];
         int[,] AllFalseCheck;
@@ -44,11 +44,7 @@ namespace Lafarge_WPF.Pages
             Weekly_date_date.Text = currentDate.ToString();
             LoadData();
             ScrollThroughWeeks = 0;
-           
-            
-            //DateTime dt2 = currentDate.AddDays(-3); //this is how you subtract days 
-           
-            
+
 
         }
 
@@ -248,10 +244,12 @@ namespace Lafarge_WPF.Pages
 
 
                     }
+
+                    weekly_report1.ItemsSource = null;
                     weekly_report1.ItemsSource = PrevWData;
                     DataContext = PrevWData;
                     currentDate = lastWeek;
-                    Weekly_date_date.Text = currentDate.ToString();
+                    Weekly_date_date.Text = currentDate.ToString("yyyy-MM-dd");
                     GlobalClass.con.Close();
                     ScrollThroughWeeks -= 1;
                     wData = PrevWData;
@@ -407,7 +405,7 @@ namespace Lafarge_WPF.Pages
                     while (GlobalClass.sql_dr.Read())
                     {
 
-                        falseCheckList[i] = GlobalClass.sql_dr.GetInt32(0);
+                        falseCheckList[ii] = GlobalClass.sql_dr.GetInt32(0);
                         ii += 1;
 
                     }
@@ -422,7 +420,7 @@ namespace Lafarge_WPF.Pages
 
                     for (int x = 0; x < 16; x++)
                     {
-                        AllFalseCheck[i, x] = currentVFalseChecks[x];
+                        AllFalseCheck[i, x] = falseCheckList[x];
 
                     }
 
@@ -452,15 +450,21 @@ namespace Lafarge_WPF.Pages
 
                     //MessageBox.Show("got here 5");
 
+                    
+
+                }
+
+                    weekly_report1.ItemsSource = null;
                     weekly_report1.ItemsSource = PrevWData;
                     DataContext = PrevWData;
                     currentDate = lastWeek;
-                    Weekly_date_date.Text = currentDate.ToString();
-                    GlobalClass.con.Close();
+                    Weekly_date_date.Text = currentDate.ToString("yyyy-MM-dd");
+                    
                     wData = PrevWData;
-                    //ScrollThroughWeeks += 1;
+                    ScrollThroughWeeks += 1;
 
-                }
+
+                    GlobalClass.con.Close();
 
             }
             else
@@ -469,6 +473,7 @@ namespace Lafarge_WPF.Pages
                 GlobalClass.con.Close();
             }
 
+            
 
         }
 
@@ -634,11 +639,13 @@ namespace Lafarge_WPF.Pages
                         
 
             }
-weekly_report1.ItemsSource = ThisWData;
-                        DataContext = ThisWData;
-            wData = ThisWData;
 
-GlobalClass.con.Close();
+            weekly_report1.ItemsSource = null;
+            weekly_report1.ItemsSource = ThisWData;
+            DataContext = ThisWData;
+            wData = ThisWData;
+            Weekly_date_date.Text = currentDate.ToString("yyyy-MM-dd");
+            GlobalClass.con.Close();
             
 
 
@@ -690,7 +697,7 @@ GlobalClass.con.Close();
             else
             {
                 nextWeek();
-                ScrollThroughWeeks += 1;
+                //ScrollThroughWeeks += 1;
             }  
              
         }
