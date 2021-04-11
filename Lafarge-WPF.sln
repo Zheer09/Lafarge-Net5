@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lafarge-WPF", "Lafarge-WPF.csproj", "{7F86F79F-0B22-473F-8FAA-33B4A2287C63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lafarge-WPF", "Lafarge-WPF.csproj", "{7F86F79F-0B22-473F-8FAA-33B4A2287C63}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_Lafarge", "..\Setup_Lafarge\Setup_Lafarge.vdproj", "{38C80064-7289-4023-875E-640E14695ABF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,9 @@ Global
 		{7F86F79F-0B22-473F-8FAA-33B4A2287C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F86F79F-0B22-473F-8FAA-33B4A2287C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F86F79F-0B22-473F-8FAA-33B4A2287C63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38C80064-7289-4023-875E-640E14695ABF}.Debug|Any CPU.ActiveCfg = Release
+		{38C80064-7289-4023-875E-640E14695ABF}.Debug|Any CPU.Build.0 = Release
+		{38C80064-7289-4023-875E-640E14695ABF}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
