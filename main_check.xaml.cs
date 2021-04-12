@@ -188,10 +188,21 @@ namespace Lafarge_WPF.Pages
 
             if (Selected_v_index == "")
             {
-
+                MessageBox.Show("You haven't selected any vehicle!");
             }
             else
             {
+
+
+                GlobalClass.con.Open();
+
+                MySqlCommand updateQuery = new MySqlCommand("UPDATE maintenance_vehicle set vehicle_status = 'Done' where maintenance_id = " + Selected_v_index + ";", GlobalClass.con);
+
+                updateQuery.ExecuteNonQuery();
+
+                //MySqlCommand updateWeekly 
+
+                GlobalClass.con.Close();
 
             }
 
