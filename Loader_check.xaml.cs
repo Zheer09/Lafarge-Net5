@@ -35,7 +35,6 @@ namespace Lafarge_WPF
         int num_of_index_w_r = 0;
         DateTime s_d;
         bool insert_status = false;
-        //int currentFasleCheck_num = 0;
         int[] lastRep = new int[16];
         int myIndex = 0;
         bool h50_condition = false;
@@ -236,14 +235,11 @@ namespace Lafarge_WPF
                             }
 
 
-
                             GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), wh_50, wh_300, s_d);
-
 
 
                             num_of_index_w_r = GlobalOperations.GetIndexNumber_w_r();
                             GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", s_d);
-
 
 
                             string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
@@ -317,14 +313,9 @@ namespace Lafarge_WPF
                                     if (loader_check[i] == false)
                                     {
 
-
-
                                         lastRep[i] += 1;
 
-
                                         con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ", '" + s_d.ToString(format) + "' ), ";
-
-
 
                                     }
                                     else
@@ -337,14 +328,9 @@ namespace Lafarge_WPF
                                     if (loader_check[i] == false)
                                     {
 
-
                                         lastRep[i] += 1;
 
-
-
                                         con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' );";
-
-
 
                                     }
                                     else
@@ -375,7 +361,6 @@ namespace Lafarge_WPF
                             {
                                 GlobalOperations.insert_maintenance_vehicle(v_code.Text, (1 + num_of_index_w_r), "300 Hour Check", "Unchecked", s_d);
                             }
-
 
 
 
@@ -428,12 +413,9 @@ namespace Lafarge_WPF
                         string concat_string_new = " ";
 
 
-
                         // this is to insert fasle checks into sub
                         for (int i = 0; i < 16; i++)
                         {
-
-
 
 
                             if (i != 15)

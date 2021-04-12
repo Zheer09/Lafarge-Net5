@@ -26,6 +26,7 @@ namespace Lafarge_WPF.Pages
     {
 
         string Selected_v_index = "";
+        string weekly_indexx = ""; 
 
 
         public main_check()
@@ -44,7 +45,7 @@ namespace Lafarge_WPF.Pages
             
             GlobalClass.con.Open();
             MySqlDataAdapter sql_cmd =
-         new MySqlDataAdapter("select mv.maintenance_id as 'ID', mv.vehicle_code as 'Vehicle Code', lv.vehicle_type as 'Type',  " +
+         new MySqlDataAdapter("select mv.maintenance_id as 'ID', mv.weekly_index as 'Weekly ID',  mv.vehicle_code as 'Vehicle Code', lv.vehicle_type as 'Type',  " +
          " mv.vehicle_status as 'Status', mv.Check_type as 'Check Type', " +
          " DATE_FORMAT(mv.maintenance_date, '%Y %M %D') as 'Maintenance Date', " +
          " '     Select    ' as '     Select Row     ' " +
@@ -60,7 +61,7 @@ namespace Lafarge_WPF.Pages
             Uncheck_maintanance.ItemsSource = dt1.DefaultView;
 
             sql_cmd =
-          new MySqlDataAdapter("select mv.maintenance_id as 'ID', mv.vehicle_code as 'Vehicle Code', lv.vehicle_type as 'Type',  " +
+          new MySqlDataAdapter("select mv.maintenance_id as 'ID', mv.weekly_index as 'Weekly ID',   mv.vehicle_code as 'Vehicle Code', lv.vehicle_type as 'Type',  " +
           " mv.vehicle_status as 'Status', mv.Check_type as 'Check Type', " +
           " DATE_FORMAT(mv.maintenance_date, '%Y %M %D') as 'Maintenance Date', " +
           " '     Select    ' as '     Select Row     ' " +
@@ -79,7 +80,7 @@ namespace Lafarge_WPF.Pages
         }
 
 
-        private void Check_maintanance_selection(object sender, SelectionChangedEventArgs e)
+        private void un_Check_maintanance_selection(object sender, SelectionChangedEventArgs e)
         {
             //MessageBox.Show("hello man");
             
@@ -87,12 +88,32 @@ namespace Lafarge_WPF.Pages
             if (Selected_vehicle != null)
             {
                 Selected_v_index = Selected_vehicle.Row.ItemArray[0].ToString();
+                weekly_indexx = Selected_vehicle.Row.ItemArray[1].ToString() ;
             }
 
         }
 
+
+
+        private void pro_Check_maintanance_selection(object sender, SelectionChangedEventArgs e)
+        {
+            //MessageBox.Show("hello man");
+
+            DataRowView Selected_vehicle = Proccessing_maintanance.SelectedItem as DataRowView;
+            if (Selected_vehicle != null)
+            {
+                Selected_v_index = Selected_vehicle.Row.ItemArray[0].ToString();
+                weekly_indexx = Selected_vehicle.Row.ItemArray[1].ToString();
+
+            }
+
+        }
+
+
         private void Button_Click_View_Vehicle(object sender, RoutedEventArgs e)
         {
+
+
 
             if (Selected_v_index == "")
             {
@@ -101,7 +122,7 @@ namespace Lafarge_WPF.Pages
             else
             {
 
-                ViewMaintenanceVehicle vmv = new ViewMaintenanceVehicle(Selected_v_index);
+                ViewMaintenanceVehicle vmv = new ViewMaintenanceVehicle(Selected_v_index, weekly_indexx);
                 
                 vmv.ShowDialog();
 
@@ -142,6 +163,38 @@ namespace Lafarge_WPF.Pages
         private void Refresh_Button_Click(object sender, RoutedEventArgs e)
         {
             refreshData();
+        }
+
+        private void View_done_m_vehicle_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Selected_v_index == "")
+            {
+                MessageBox.Show("You haven't selected any vehicle!");
+            }
+            else
+            {
+
+                ViewMaintenanceVehicle vmv = new ViewMaintenanceVehicle(Selected_v_index, weekly_indexx);
+
+                vmv.ShowDialog();
+
+            }
+
+        }
+
+        private void set_done_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Selected_v_index == "")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
     }
 }

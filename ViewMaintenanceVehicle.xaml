@@ -5,14 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lafarge_WPF"
         mc:Ignorable="d"
-        Title="ViewMaintenanceVehicle" Height="450" Width="800">
+        Title="ViewMaintenanceVehicle" Height="412" Width="1197">
     <Grid>
-        <Label x:Name="m_iid" Content="maintenance_id" HorizontalAlignment="Left" Margin="67,41,0,0" VerticalAlignment="Top" Height="62" Width="187"/>
-        <Label x:Name="v_cc" Content="Vehicle_code" HorizontalAlignment="Left" Margin="67,103,0,0" VerticalAlignment="Top" Height="62" Width="187"/>
-        <Label x:Name="w_ii" Content="weekly_index" HorizontalAlignment="Left" Margin="67,165,0,0" VerticalAlignment="Top" Height="62" Width="187"/>
-        <Label x:Name="ch_t" Content="Check_type" HorizontalAlignment="Left" Margin="67,217,0,0" VerticalAlignment="Top" Height="62" Width="187"/>
-        <Label x:Name="v_ss" Content="vehicle_status" HorizontalAlignment="Left" Margin="67,279,0,0" VerticalAlignment="Top" Height="62" Width="187"/>
-        <Label x:Name="m_dd" Content="maintenance_date" HorizontalAlignment="Left" Margin="67,341,0,0" VerticalAlignment="Top" Height="62" Width="187"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="353*"/>
+            <ColumnDefinition Width="447*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="209*"/>
+            <RowDefinition Height="225*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="v_cc" Content="Vehicle_code" HorizontalAlignment="Left" Margin="33,24,0,0" VerticalAlignment="Top" Height="62" Width="187"/>
+        <Label x:Name="ch_t" Content="Check_type" HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Center" Height="62" Width="186"/>
+        <Label x:Name="v_ss" Content="vehicle_status" HorizontalAlignment="Left" Margin="172,24,0,0" VerticalAlignment="Top" Height="62" Width="187" Grid.ColumnSpan="2"/>
+        <Label x:Name="m_dd" Content="maintenance_date" HorizontalAlignment="Left" Margin="172,0,0,0" VerticalAlignment="Center" Height="62" Width="187" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="m_v_grid" Margin="23,151,21,78" Grid.RowSpan="2" Grid.ColumnSpan="2" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Vehicle Code" Binding="{Binding v_codee}"/>
+                <DataGridTextColumn Header="P1" Binding="{Binding P1}"/>
+                <DataGridTextColumn Header="P2" Binding="{Binding P2}"/>
+                <DataGridTextColumn Header="P3" Binding="{Binding P3}"/>
+                <DataGridTextColumn Header="P4" Binding="{Binding P4}"/>
+                <DataGridTextColumn Header="P5" Binding="{Binding P5}"/>
+                <DataGridTextColumn Header="P6" Binding="{Binding P6}"/>
+                <DataGridTextColumn Header="P7" Binding="{Binding P7}"/>
+                <DataGridTextColumn Header="P8" Binding="{Binding P8}"/>
+                <DataGridTextColumn Header="P9" Binding="{Binding P9}"/>
+                <DataGridTextColumn Header="P10" Binding="{Binding P10}"/>
+                <DataGridTextColumn Header="P11" Binding="{Binding P11}"/>
+                <DataGridTextColumn Header="P12" Binding="{Binding P12}"/>
+                <DataGridTextColumn Header="P13" Binding="{Binding P13}"/>
+                <DataGridTextColumn Header="P14" Binding="{Binding P14}"/>
+                <DataGridTextColumn Header="P15" Binding="{Binding P15}"/>
+                <DataGridTextColumn Header="P16" Binding="{Binding P16}"/>
+                <DataGridTextColumn Header="Note" Binding="{Binding weeklyNote}">
 
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
