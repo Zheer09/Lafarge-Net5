@@ -33,6 +33,7 @@ namespace Lafarge_WPF
             InitializeComponent();
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+            DateTime_lable.Text = GlobalClass.GetNistTime().ToString("yyyy-MM-dd HH:mm");
 
             //P1
             true_p1.Opacity = 0.15;

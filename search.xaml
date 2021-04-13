@@ -20,7 +20,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Margin="25 20">
+    <Grid Margin="50 50">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="150"/>
