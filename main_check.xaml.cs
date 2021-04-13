@@ -26,7 +26,10 @@ namespace Lafarge_WPF.Pages
     {
 
         string Selected_v_index = "";
-        string weekly_indexx = ""; 
+        string weekly_indexx = "";
+        string v_code = "";
+        string check_t = "";
+        DateTime dt = GlobalClass.GetNistTime();
 
 
         public main_check()
@@ -104,6 +107,8 @@ namespace Lafarge_WPF.Pages
             {
                 Selected_v_index = Selected_vehicle.Row.ItemArray[0].ToString();
                 weekly_indexx = Selected_vehicle.Row.ItemArray[1].ToString();
+                v_code = Selected_vehicle.Row.ItemArray[2].ToString();
+                check_t = Selected_vehicle.Row.ItemArray[5].ToString();
 
             }
 
@@ -192,18 +197,110 @@ namespace Lafarge_WPF.Pages
             }
             else
             {
+                if (MessageBox.Show("Do you want to set this Vehicle to Done state?", "Confirm", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
 
 
-                GlobalClass.con.Open();
+                    GlobalClass.con.Open();
 
-                MySqlCommand updateQuery = new MySqlCommand("UPDATE maintenance_vehicle set vehicle_status = 'Done' where maintenance_id = " + Selected_v_index + ";", GlobalClass.con);
+                    MySqlCommand updateQuery = new MySqlCommand("UPDATE maintenance_vehicle set vehicle_status = 'Done' where maintenance_id = " + Selected_v_index + ";", GlobalClass.con);
 
-                updateQuery.ExecuteNonQuery();
+                    updateQuery.ExecuteNonQuery();
 
-                //MySqlCommand updateWeekly 
+                    //////////////////////
+                    ///
 
-                GlobalClass.con.Close();
+                    int[] AllFalseCheck = new int[16];
+                    int ii = 0;
 
+                    /*
+                    select false_check_rep from weekly_checks_sub where 
+                    weekly_index =  2
+                    and vehicle_code = 'M44'
+                    order by check_rep_date desc ;
+                     */
+
+
+                    //GlobalClass.con.Open();
+
+
+                    string command_select2 = "select false_check_rep from weekly_checks_sub where " +
+                        " weekly_index = " + weekly_indexx + " and vehicle_code = '" + v_code + "' " +
+                        " order by check_rep_date desc limit 16 ; ";
+                    MySqlCommand sql_cmd2 = new MySqlCommand(command_select2, GlobalClass.con);
+                    GlobalClass.sql_dr = sql_cmd2.ExecuteReader();
+
+                    while (GlobalClass.sql_dr.Read())
+                    {
+
+                        AllFalseCheck[ii] = GlobalClass.sql_dr.GetInt32(0);
+                        ii += 1;
+
+                    }
+
+                    GlobalClass.sql_dr.Close();
+
+
+                    for(int i = 0; i < 16; i++)
+                    {
+
+                        if(AllFalseCheck[i] >= 5)
+                        {
+                            AllFalseCheck[i] = 0;
+                        }
+
+                    }
+
+                    ///////////////////////
+
+
+                    MySqlCommand insert_report_cmd = new MySqlCommand(" insert into maintenance_report (check_type, vehicle_status, maintenance_date) " +
+                        " values ( '"+check_t+"', 'Done', '"+dt.ToString("yyyy-MM-dd")+"' ) ", GlobalClass.con);
+
+                    GlobalClass.sql_dr = insert_report_cmd.ExecuteReader();
+
+                    GlobalClass.sql_dr.Close();
+
+
+                    MySqlCommand getLatestID = new MySqlCommand("select report_id from  maintenance_report where maintenance_date = '" + dt.ToString("yyyy-MM-dd") + "' " +
+                        " order by maintenance_date desc limit 1; ", GlobalClass.con);
+                    
+                    GlobalClass.sql_dr = getLatestID.ExecuteReader();
+
+                    GlobalClass.sql_dr.Read();
+                    int currentReportID = GlobalClass.sql_dr.GetInt32(0);
+                    GlobalClass.sql_dr.Close();
+
+                    ///////////////////////
+
+                    string sql_insert_query = " insert into maintenance_report_sub (report_id, check_rep_index, false_check_rep) values ";
+                        for(int i = 0; i < 15; i++)
+                    {
+                        sql_insert_query += " ( " + currentReportID +", " + (i+1) +", " + AllFalseCheck[i] +" ), ";
+                    }
+                        sql_insert_query += " ( " + currentReportID + ", " + 16 + ", " + AllFalseCheck[15] + " ); ";
+
+                    MySqlCommand insert_report_sub_cmd = new MySqlCommand( sql_insert_query , GlobalClass.con);
+                    GlobalClass.sql_dr = insert_report_sub_cmd.ExecuteReader();
+
+                    GlobalClass.sql_dr.Close();
+
+                    ///////////////////
+
+                    string updateStringSub = " update weekly_checks_sub set " +
+                        " false_check_rep = 0 " +
+                        " where false_check_rep >= 5 and " +
+                        " vehicle_code = '"+ v_code + "' and" +
+                        " weekly_index = "+weekly_indexx+"; ";
+
+                    MySqlCommand updateWeekly = new MySqlCommand(updateStringSub, GlobalClass.con);
+
+                    GlobalClass.sql_dr = updateWeekly.ExecuteReader();
+
+                    GlobalClass.con.Close();
+
+
+                }
             }
 
         }
