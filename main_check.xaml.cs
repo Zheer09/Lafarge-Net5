@@ -241,15 +241,6 @@ namespace Lafarge_WPF.Pages
                     GlobalClass.sql_dr.Close();
 
 
-                    for(int i = 0; i < 16; i++)
-                    {
-
-                        if(AllFalseCheck[i] >= 5)
-                        {
-                            AllFalseCheck[i] = 0;
-                        }
-
-                    }
 
                     ///////////////////////
 
@@ -291,7 +282,7 @@ namespace Lafarge_WPF.Pages
                         " false_check_rep = 0 " +
                         " where false_check_rep >= 5 and " +
                         " vehicle_code = '"+ v_code + "' and" +
-                        " weekly_index = "+weekly_indexx+"; ";
+                        " weekly_index = " +weekly_indexx+ "; ";
 
                     MySqlCommand updateWeekly = new MySqlCommand(updateStringSub, GlobalClass.con);
 
