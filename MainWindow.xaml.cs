@@ -140,6 +140,8 @@ namespace Lafarge_WPF
                 else
                 {
                     // do nothing... 
+                    DateTime dtt = GlobalClass.GetNistTime();
+                    MessageBox.Show(dtt.ToString("dd"));
 
                 }
 

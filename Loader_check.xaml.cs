@@ -355,13 +355,61 @@ namespace Lafarge_WPF
 
                             if (h50_condition)
                             {
+                                // insert into maintenance vehicle page
                                 GlobalOperations.insert_maintenance_vehicle(v_code.Text, (1 + num_of_index_w_r), "50 Hour Check", "Unchecked", s_d);
+
+
+
+                                string w1 = "", w2 = "", w3 = "", w4 = "";
+                                string w1_s = "", w2_s = "", w3_s = "", w4_s = "";
+
+
+
+                                if (Int32.Parse( s_d.ToString("dd") ) <= 8)
+                                {
+                                    w1 = "2";
+                                    w1_s = "Unchecked";
+                                }else if (Int32.Parse(s_d.ToString("dd")) <= 16)
+                                {
+                                    w2 = "2";
+                                    w2_s = "Unchecked";
+                                }
+                                else if (Int32.Parse(s_d.ToString("dd")) <= 23)
+                                {
+                                    w3 = "2";
+                                    w3_s = "Unchecked";
+                                }
+                                else if (Int32.Parse(s_d.ToString("dd")) <= 31)
+                                {
+                                    w4 = "2";
+                                    w4_s = "Unchecked";
+                                }
+
+
+                                GlobalClass.con.Open();
+
+                                string command_insert_3 = "INSERT INTO monthly_report (vehicle_code, 50hr_w1, w1_status, 50hr_w2, w2_status, 50hr_w3, w3_status, 50hr_w4, w4_status, workingHours, monthly_date ) VALUES " +
+                                    " ('" + v_code.Text + "', '"+w1+"', '"+ w1_s + "',  '" + w2 + "', '" + w2_s + "', '" + w3 + "', '" + w3_s + "', '" + w4 + "', '" + w4_s + "', "+working_hours.Text+", '"+s_d.ToString("yyyy-MM-dd HH:mm:ss") +"' );";
+                                MySqlCommand sql_cmd_3 = new MySqlCommand(command_insert_3, GlobalClass.con);
+                                GlobalClass.sql_dr = sql_cmd_3.ExecuteReader();
+                                GlobalClass.con.Close();
+
+
                             }
                             if (h300_condition)
                             {
+                                //insert into maintenance vehicle page
                                 GlobalOperations.insert_maintenance_vehicle(v_code.Text, (1 + num_of_index_w_r), "300 Hour Check", "Unchecked", s_d);
-                            }
 
+                                GlobalClass.con.Open();
+
+                                string command_insert_3 = "INSERT INTO monthly_report (vehicle_code, 300hr_m, monthly_status, workingHours, monthly_date ) VALUES " +
+                                    " ('" + v_code.Text + "', '3', 'Unchecked', " + working_hours.Text + ", '" + s_d.ToString("yyyy-MM-dd HH:mm:ss") + "' );";
+                                MySqlCommand sql_cmd_3 = new MySqlCommand(command_insert_3, GlobalClass.con);
+                                GlobalClass.sql_dr = sql_cmd_3.ExecuteReader();
+                                GlobalClass.con.Close();
+
+                            }
 
 
                             insert_status = true;
@@ -425,9 +473,7 @@ namespace Lafarge_WPF
                                 {
 
 
-                                    //currentFasleCheck_num += 1;
-
-
+                                    
 
                                     concat_string_new += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + 1 + ",  '" + s_d.ToString(format) + "' ),";
 
