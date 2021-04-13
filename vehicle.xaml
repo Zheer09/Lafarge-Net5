@@ -86,6 +86,7 @@
 
         <RadioButton  x:Name="Mixer" Grid.Column="1" Style="{StaticResource vehicleType}" GroupName="tyeps" VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center" Content="Mixer" Checked="Mixer_Checked" >
+
             <RadioButton.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
             </RadioButton.Effect>
