@@ -7,8 +7,7 @@
             mc:Ignorable="d" 
              MinHeight="60"
              MinWidth="140"
-             d:DesignHeight="{x:Static SystemParameters.PrimaryScreenHeight}"
-             d:DesignWidth="{x:Static SystemParameters.PrimaryScreenWidth}"
+             d:DesignHeight="60" d:DesignWidth="140"
              Name="YesNoSwitchControl">
     <UserControl.Resources>
         <PathGeometry x:Key="yes"
@@ -35,8 +34,8 @@
                                 <Path
                                     Data="{TemplateBinding Content}"
                                     Fill="{TemplateBinding Foreground}"
-                                    Height="35"
-                                    Width="35"
+                                    Height="40"
+                                    Width="50"
                                     Stretch="Uniform"/>
                             </Grid>
                         </Border>
