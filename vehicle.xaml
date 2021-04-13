@@ -27,13 +27,14 @@
                             <Border CornerRadius="10"
                                     Background="{TemplateBinding Background}"
                                     BorderThickness="{TemplateBinding BorderThickness}">
+                            
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
+                                    <Image x:Name="image" Source="{Binding  }"/>
 
-                                    <Image x:Name="image" Grid.Row="0" Source="{TemplateBinding Tag}"/>
                                     <Ellipse Height="80"
                                              Width="80">
 
@@ -78,11 +79,25 @@
 
         <RadioButton x:Name="Loader" Grid.Column="0" Style="{StaticResource vehicleType}" GroupName="tyeps" VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center" Content="Loader" Checked="Loader_Checked">
+            <RadioButton.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+            </RadioButton.Effect>
         </RadioButton>
+
         <RadioButton  x:Name="Mixer" Grid.Column="1" Style="{StaticResource vehicleType}" GroupName="tyeps" VerticalContentAlignment="Center"
-                     HorizontalContentAlignment="Center" Content="Mixer" Checked="Mixer_Checked" />
+                     HorizontalContentAlignment="Center" Content="Mixer" Checked="Mixer_Checked" >
+
+            <RadioButton.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+            </RadioButton.Effect>
+        </RadioButton>
+
         <RadioButton  x:Name="Pump" Grid.Column="2" Style="{StaticResource vehicleType}" GroupName="tyeps" VerticalContentAlignment="Center"
-                     HorizontalContentAlignment="Center" Content="Pump" Checked="Pump_Checked" />
+                     HorizontalContentAlignment="Center" Content="Pump" Checked="Pump_Checked" >
+            <RadioButton.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
+            </RadioButton.Effect>
+        </RadioButton>
 
         <Frame x:Name="Main" Grid.ColumnSpan="3" Margin=" 5 5 5 5 " NavigationUIVisibility="Hidden"/>
 

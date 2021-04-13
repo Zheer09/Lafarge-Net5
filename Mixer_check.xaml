@@ -164,7 +164,8 @@
                        HorizontalAlignment="Center" FontSize="25" Height="34" Margin="284,2,293,7" Width="158" />
 
                     <!-- P1-->
-                    <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="0" Grid.Row="2" FontWeight="SemiBold" Text="Problem 1" VerticalAlignment="Center"
+                    <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="0" Grid.Row="2" FontWeight="SemiBold" 
+                               Text="Check engine oil level " VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox  VirtualizingStackPanel.VirtualizationMode="Recycling" Foreground="Black" Grid.Row="2" Grid.Column="3" x:Name="Note_p1" Background="White"
@@ -191,7 +192,7 @@
                         </Ellipse.Fill>
                     </Ellipse>
                     <!--P2-->
-                    <TextBlock Grid.Column="0" Grid.Row="3" FontWeight="SemiBold" Text="Problem 2" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="3" FontWeight="SemiBold" Text="Check hydraulic oil level " VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="3" Grid.Column="3" x:Name="Note_p2" Background="White"
@@ -220,7 +221,7 @@
 
 
                     <!--P4-->
-                    <TextBlock Grid.Column="0" Grid.Row="4" FontWeight="SemiBold" Text="Problem 3" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="4" FontWeight="SemiBold" Text="Check water level" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="4" Grid.Column="3" x:Name="Note_p3" Background="White"
@@ -249,7 +250,7 @@
 
 
                     <!--P5-->
-                    <TextBlock Grid.Column="0" Grid.Row="5" FontWeight="SemiBold" Text="Problem 4" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="5" FontWeight="SemiBold" Text="Check tires" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8,0,7" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="5" Grid.Column="3" x:Name="Note_p4" Background="White"
@@ -277,7 +278,7 @@
                     </Ellipse>
 
                     <!--P6-->
-                    <TextBlock Grid.Column="0" Grid.Row="6" FontWeight="SemiBold" Text="Problem 5" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="6" FontWeight="SemiBold" Text="Check lights" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8,0,7" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="6" Grid.Column="3" x:Name="Note_p5" Background="White"
@@ -305,7 +306,7 @@
                     </Ellipse>
 
                     <!--P7-->
-                    <TextBlock Grid.Column="0" Grid.Row="7" FontWeight="SemiBold" Text="Problem 6" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="7" FontWeight="SemiBold" Text="Check seat belt" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8,0,7" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="7" Grid.Column="3" x:Name="Note_p6" Background="White"
@@ -333,7 +334,7 @@
                     </Ellipse>
 
                     <!--P8-->
-                    <TextBlock Grid.Column="0" Grid.Row="8" FontWeight="SemiBold" Text="Problem 7" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="8" FontWeight="SemiBold" Text="Check front and back alarms " VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="8" Grid.Column="3" x:Name="Note_p7" Background="White"
@@ -361,8 +362,8 @@
                     </Ellipse>
 
                     <!--P9-->
-                    <TextBlock Grid.Column="0" Grid.Row="9" FontWeight="SemiBold" Text="Problem 8" VerticalAlignment="Center"
-                       HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
+                    <TextBlock Grid.Column="0" Grid.Row="9" FontWeight="SemiBold" Text="Check fire extinguisher" VerticalAlignment="Center"
+                       HorizontalAlignment="Left" FontSize="25" Height="35" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="9" Grid.Column="3" x:Name="Note_p8" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
@@ -389,7 +390,7 @@
                     </Ellipse>
 
                     <!--P10-->
-                    <TextBlock Grid.Column="0" Grid.Row="10" FontWeight="SemiBold" Text="Problem 9" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="10" FontWeight="SemiBold" Text="Check mirrors" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="10" Grid.Column="3" x:Name="Note_p9" Background="White"
@@ -417,7 +418,7 @@
                     </Ellipse>
 
                     <!--P11-->
-                    <TextBlock Grid.Column="0" Grid.Row="11" FontWeight="SemiBold" Text="Problem 10" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="11" FontWeight="SemiBold" Text="Check windshield and its scrapers" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="11" Grid.Column="3" x:Name="Note_p10" Background="White"
@@ -445,7 +446,7 @@
                     </Ellipse>
 
                     <!--P12-->
-                    <TextBlock Grid.Column="0" Grid.Row="12" FontWeight="SemiBold" Text="Problem 11" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="12" FontWeight="SemiBold" Text="Check brake" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="12" Grid.Column="3" x:Name="Note_p11" Background="White"
@@ -473,7 +474,7 @@
                     </Ellipse>
 
                     <!--P13-->
-                    <TextBlock Grid.Column="0" Grid.Row="13" FontWeight="SemiBold" Text="Problem 12" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="13" FontWeight="SemiBold" Text="Check whole body and stairs" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="13" Grid.Column="3" x:Name="Note_p12" Background="White"
@@ -501,7 +502,7 @@
                     </Ellipse>
 
                     <!--P14-->
-                    <TextBlock Grid.Column="0" Grid.Row="14" FontWeight="SemiBold" Text="Problem 13" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="14" FontWeight="SemiBold" Text="Check all leakages" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="14" Grid.Column="3" x:Name="Note_p13" Background="White"
@@ -529,8 +530,8 @@
                     </Ellipse>
 
                     <!--P15-->
-                    <TextBlock Grid.Column="0" Grid.Row="15" FontWeight="SemiBold" Text="Problem 14" VerticalAlignment="Center"
-                       HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
+                    <TextBlock Grid.Column="0" Grid.Row="15" FontWeight="SemiBold" Text="Check batteries and charging" VerticalAlignment="Center"
+                       HorizontalAlignment="Left" FontSize="25" Height="40" Margin="0,0" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="15" Grid.Column="3" x:Name="Note_p14" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
@@ -557,7 +558,7 @@
                     </Ellipse>
 
                     <!--P16-->
-                    <TextBlock Grid.Column="0" Grid.Row="16" FontWeight="SemiBold" Text="Problem 15" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="16" FontWeight="SemiBold" Text="Check fuel level" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="16" Grid.Column="3" x:Name="Note_p15" Background="White"
@@ -586,7 +587,7 @@
 
                     <!--p18-->
 
-                    <TextBlock Grid.Column="0" Grid.Row="17" FontWeight="SemiBold" Text="Problem 16" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" Grid.Row="17" FontWeight="SemiBold" Text="Check water tank" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
                     <TextBox Foreground="Black" Grid.Row="17" Grid.Column="3" x:Name="Note_p17" Background="White"
