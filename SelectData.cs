@@ -47,7 +47,8 @@ namespace Lafarge_WPF
 
     }
 
-
+    //
+    /*
     class SelectVehicleCheck
     {
 
@@ -100,14 +101,18 @@ namespace Lafarge_WPF
 
     }
 
+    */
+    //
     class SelectMaintenanceVehicle
     {
-        public string maintenance_id;
+        //public string maintenance_id;
         public string vehicle_code;
         public string Check_type;
         public string vehicle_status;
         public DateTime maintenance_date;
     }
+
+
 
     class WeeklyData
     {
@@ -131,5 +136,41 @@ namespace Lafarge_WPF
         public string weeklyNote { get; set; }
     }
 
+    class monthlyData
+    {
+
+        public int monthly_id { get; set; }
+        public string asset { get; set; }
+        public string vehicle_code { get; set; }
+        public string hr50_w1 { get; set; }
+        public string w1_status { get; set; }
+        public string hr50_w2 { get; set; }
+        public string w2_status { get; set; }
+        public string hr50_w3 { get; set; }
+        public string w3_status { get; set; }
+        public string hr50_w4 { get; set; }
+        public string w4_status { get; set; }
+        public string hr300_m  { get; set; }
+        public string monthly_status { get; set; }
+        public float workingHours { get; set; }
+        
+
+
+    }
+
+    /*monthly_id int primary key not null auto_increment,
+        vehicle_code varchar(10) references vehicle(vehicle_code),
+        50hr_w1 varchar(1),
+        w1_status varchar(30),
+        50hr_w2 varchar(1),
+        w2_status varchar(30),
+        50hr_w3 varchar(1),
+        w3_status varchar(30),
+        50hr_w4 varchar(1),
+        w4_status varchar(30),
+        300hr_m varchar(1),
+        monthly_status varchar(30),
+        workingHours float,
+        monthly_date timestamp*/
 
 }

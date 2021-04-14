@@ -27,20 +27,26 @@
                HorizontalScrollBarVisibility="Visible" >
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Vehicle Code" Binding="{Binding v_codee}"/>
-                <DataGridTextColumn Header="Asset" Binding="{Binding P1}"/>
-                <DataGridTextColumn Header="Week 1 Maintenance 50 Hrs" Binding="{Binding P2}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding P3}"/>
-                <DataGridTextColumn Header="Week 2 Maintenance 50 Hrs" Binding="{Binding P4}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding P5}"/>
-                <DataGridTextColumn Header="Week 3 Maintenance 50 Hrs" Binding="{Binding P6}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding P7}"/>
-                <DataGridTextColumn Header="Week 4 Maintenance 50 Hrs" Binding="{Binding P8}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding P9}"/>
-                <DataGridTextColumn Header="Monthly Maintenance 300 Hrs" Binding="{Binding P10}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding P11}"/>
-                <DataGridTextColumn Header="Working Hours" Binding="{Binding P12}"/>
-            
+                <DataGridTextColumn Header="Vehicle Code" Binding="{Binding vehicle_code}"/>
+                <DataGridTextColumn Header="Asset" Binding="{Binding asset}"/>
+                <DataGridTextColumn Header="Week 1 Maintenance 50 Hrs" Binding="{Binding hr50_w1}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding w1_status}"/>
+                <DataGridTextColumn Header="Week 2 Maintenance 50 Hrs" Binding="{Binding hr50_w2}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding w2_status}"/>
+                <DataGridTextColumn Header="Week 3 Maintenance 50 Hrs" Binding="{Binding hr50_w3}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding w3_status}"/>
+                <DataGridTextColumn Header="Week 4 Maintenance 50 Hrs" Binding="{Binding hr50_w4}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding w4_status}"/>
+                <DataGridTextColumn Header="Monthly Maintenance 300 Hrs" Binding="{Binding hr300_m}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding monthly_status}"/>
+                <DataGridTextColumn Header="Working Hours" Binding="{Binding workingHours}"/>
+
+
+                
+              
+                
+              
+
 
             </DataGrid.Columns>
 
