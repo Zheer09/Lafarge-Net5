@@ -29,6 +29,7 @@ namespace Lafarge_WPF.Pages
         string weekly_indexx = "";
         string v_code = "";
         string check_t = "";
+        DateTime selected_date;
         DateTime dt = GlobalClass.GetNistTime();
 
 
@@ -109,6 +110,7 @@ namespace Lafarge_WPF.Pages
                 weekly_indexx = Selected_vehicle.Row.ItemArray[1].ToString();
                 v_code = Selected_vehicle.Row.ItemArray[2].ToString();
                 check_t = Selected_vehicle.Row.ItemArray[5].ToString();
+                selected_date = Convert.ToDateTime( Selected_vehicle.Row.ItemArray[6].ToString() );
 
             }
 
@@ -287,6 +289,96 @@ namespace Lafarge_WPF.Pages
                     MySqlCommand updateWeekly = new MySqlCommand(updateStringSub, GlobalClass.con);
 
                     GlobalClass.sql_dr = updateWeekly.ExecuteReader();
+
+
+                    GlobalClass.sql_dr.Close();
+                    ///////
+                    /// for 50 hours check
+                    if (check_t == "50 Hour Check")
+                    {
+
+                        MySqlCommand getLatestMonthly = new MySqlCommand("select w1_status, w2_status, w3_status, w4_status,  from  monthly_report " +
+                            " where monthly_date = '" + selected_date.ToString("yyyy-MM-dd") + "' " +
+                            " and vehicle_code = '" + v_code + "' ;", GlobalClass.con);
+
+                        int whichWeek = 0;
+
+                        GlobalClass.sql_dr = getLatestMonthly.ExecuteReader();
+
+                        while (GlobalClass.sql_dr.Read())
+                        {
+                            if (!GlobalClass.sql_dr.IsDBNull(0))
+                            {
+                                if (GlobalClass.sql_dr.GetString(0) == "Unckecked")
+                                {
+                                    whichWeek = 1;
+                                }
+                            }
+                            else if (!GlobalClass.sql_dr.IsDBNull(1))
+                            {
+                                if (GlobalClass.sql_dr.GetString(1) == "Unckecked")
+                                {
+                                    whichWeek = 2;
+                                }
+                            }
+                            else if (!GlobalClass.sql_dr.IsDBNull(2))
+                            {
+                                if (GlobalClass.sql_dr.GetString(2) == "Unckecked")
+                                {
+                                    whichWeek = 3;
+                                }
+                            }
+                            else if (!GlobalClass.sql_dr.IsDBNull(3))
+                            {
+                                if (GlobalClass.sql_dr.GetString(3) == "Unckecked")
+                                {
+                                    whichWeek = 4;
+                                }
+                            }
+
+                        }
+
+
+
+
+
+
+                        GlobalClass.sql_dr.Close();
+
+
+                        string SelectWeek = "";
+                        if (whichWeek == 1)
+                        {
+                            SelectWeek = "50hr_w1";
+                        }
+                        else if (whichWeek == 2)
+                        {
+                            SelectWeek = "50hr_w2";
+                        }
+                        else if (whichWeek == 3)
+                        {
+                            SelectWeek = "50hr_w3";
+                        }
+                        else if (whichWeek == 4)
+                        {
+                            SelectWeek = "50hr_w4";
+                        }
+
+                        MySqlCommand updateQuery2 = new MySqlCommand("UPDATE monthly_report set '" + SelectWeek + "' = 'Done'  " +
+                            "  where monthly_date = '" + selected_date.ToString("yyyy-MM-dd") + "' " +
+                            " and vehicle_code = '" + v_code + "' ;", GlobalClass.con);
+
+                        updateQuery2.ExecuteNonQuery();
+
+                    }
+                    else
+                    {
+
+                        MySqlCommand updateQuery3 = new MySqlCommand("UPDATE monthly_report set monthly_status = 'Done'  " +
+                           "  where monthly_date = '" + selected_date.ToString("yyyy-MM-dd") + "' " +
+                           " and vehicle_code = '" + v_code + "' ;", GlobalClass.con);
+                        updateQuery3.ExecuteNonQuery();
+                    }
 
                     GlobalClass.con.Close();
 
