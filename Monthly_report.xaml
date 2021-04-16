@@ -19,12 +19,17 @@
         <DataGrid Grid.Row="1"
           x:Name="Monthly_report1"
           ItemsSource="{Binding Items2}"
-          CanUserAddRows="False"
+         CanUserAddRows="False"
           SelectionUnit="Cell"
-          SelectionMode="Extended"
-          Margin="10" SelectionChanged="Monthly_report_selction"
-           AutoGenerateColumns="False"
-               HorizontalScrollBarVisibility="Visible" >
+          SelectionMode="Extended" 
+          AutoGenerateColumns="False" CanUserDeleteRows="False" 
+          HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch" GridLinesVisibility="Horizontal"
+          ScrollViewer.CanContentScroll="True" 
+          ScrollViewer.HorizontalScrollBarVisibility="Visible" Foreground="Black"
+          Margin="10"  >
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vehicle Code" Binding="{Binding vehicle_code}"/>
@@ -80,10 +85,24 @@
             </Button.Effect>
         </Button>
 
+        <StackPanel Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
 
-        <TextBlock Text="Month_date_label" Height="40" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="186" FontWeight="SemiBold" FontSize="25" Foreground="Black" x:Name="monthly_date_text" TextAlignment="Center" ></TextBlock>
-        <Image x:Name="next_button" Height="100" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="45" Source="/NandP.png" MouseLeftButtonDown="next_button_Click" Margin="1175,17,0,0" />
-        <Image x:Name="prev_button" Grid.Row="2" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="48" Source="/NandP2.png" MouseLeftButtonDown="prev_button_Click"  Margin="422,16,0,0"/>
+                <TextBlock Text="Month_date_label" Height="40" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="186" FontWeight="SemiBold" FontSize="25" Foreground="Black" x:Name="monthly_date_text" TextAlignment="Center" ></TextBlock>
+                <Image x:Name="next_button" Height="100" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="45" Source="/NandP.png" MouseLeftButtonDown="next_button_Click"  />
+                <Image x:Name="prev_button" Grid.Column="0" HorizontalAlignment="Right" Height="100" VerticalAlignment="Center" Width="48" Source="/NandP2.png" MouseLeftButtonDown="prev_button_Click" />
+          
+           </Grid>
+        </StackPanel>
+
     </Grid>
 </Page>

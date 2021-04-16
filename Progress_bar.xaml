@@ -13,7 +13,7 @@
     
     <Grid Background="Transparent" >
         <ProgressBar x:Name="progress" Foreground="Green" 
-                     Background="Gray"  Width="700" Height="50">
+                     Background="Gray"  Width="900" Height="30">
             <ProgressBar.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
             </ProgressBar.Effect>
@@ -21,7 +21,7 @@
         
         <TextBlock x:Name="ProgressTextblock" FontSize="25" FontWeight="SemiBold" Foreground="White" 
                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 135 0 0" />
-        <Grid Background="WhiteSmoke" Opacity="0.1" RenderTransformOrigin="0.504,0.5">
+        <Grid Background="Black" Opacity="0.2" RenderTransformOrigin="0.504,0.5">
             
         </Grid>
         

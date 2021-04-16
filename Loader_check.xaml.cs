@@ -22,7 +22,7 @@ namespace Lafarge_WPF
     /// <summary>
     /// Interaction logic for Loader_check.xaml
     /// </summary>
-    public partial class Loader_check : Page
+    public partial class Loader_check : Page 
     {
 
         bool[] loader_check = new bool[16];
@@ -90,8 +90,8 @@ namespace Lafarge_WPF
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            //Progress_bar.progress.value = e.ProgressPercentage;
-           // Progress_bar.ProgressTextblock.text = (string)e.UserState;
+          //  Progress_bar.progress.value = e.ProgressPercentage;
+          //  Progress_bar.ProgressTextblock.text = (string)e.UserState;
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
@@ -103,15 +103,15 @@ namespace Lafarge_WPF
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            Progress_bar progressBar = new Progress_bar();
-            progressBar.ShowDialog();
+           // Progress_bar progressBar = new Progress_bar();
+           // progressBar.ShowDialog();
 
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            worker.WorkerReportsProgress = true;
-            worker.DoWork += worker_DoWork;
-            worker.ProgressChanged += worker_ProgressChanged;
-            worker.RunWorkerAsync();
+            //BackgroundWorker worker = new BackgroundWorker();
+            //worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            //worker.WorkerReportsProgress = true;
+            //worker.DoWork += worker_DoWork;
+            //worker.ProgressChanged += worker_ProgressChanged;
+            //worker.RunWorkerAsync();
 
             loader_note[0] = Note_p1.Text;
             loader_note[1] = Note_p2.Text;
