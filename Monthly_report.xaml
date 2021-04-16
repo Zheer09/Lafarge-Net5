@@ -82,8 +82,8 @@
 
 
 
-        <TextBlock Text="date" Height="40" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="106" FontWeight="SemiBold" FontSize="25" Foreground="Black" x:Name="monthly_date_text" TextAlignment="Center" ></TextBlock>
-        <Image x:Name="nextWeek_button" Height="100" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="45" Source="/NandP.png"  Margin="1175,17,0,0" />
-        <Image x:Name="prev_button" Grid.Row="2" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="48" Source="/NandP2.png"  Margin="422,16,0,0"/>
+        <TextBlock Text="Month_date_label" Height="40" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="186" FontWeight="SemiBold" FontSize="25" Foreground="Black" x:Name="monthly_date_text" TextAlignment="Center" ></TextBlock>
+        <Image x:Name="next_button" Height="100" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="45" Source="/NandP.png" MouseLeftButtonDown="next_button_Click" Margin="1175,17,0,0" />
+        <Image x:Name="prev_button" Grid.Row="2" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="48" Source="/NandP2.png" MouseLeftButtonDown="prev_button_Click"  Margin="422,16,0,0"/>
     </Grid>
 </Page>
