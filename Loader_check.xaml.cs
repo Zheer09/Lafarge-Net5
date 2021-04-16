@@ -84,7 +84,7 @@ namespace Lafarge_WPF
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Data has been successfully saved for vehicle: " + v_code.Text + ".");
+            MessageBox.Show("Successfully saved vehicle: " + v_code.Text + "");
             System.Environment.Exit(1);
         }
 
@@ -326,38 +326,96 @@ namespace Lafarge_WPF
 
 
 
+
                                 string w1 = "", w2 = "", w3 = "", w4 = "";
                                 string w1_s = "", w2_s = "", w3_s = "", w4_s = "";
-
+                                // this is to indicate which week are we currently in 
+                                int firstTime = 0;
 
 
                                 if (Int32.Parse( s_d.ToString("dd") ) <= 8)
                                 {
                                     w1 = "2";
                                     w1_s = "Unchecked";
+                                    firstTime = 1;
+
                                 }else if (Int32.Parse(s_d.ToString("dd")) <= 16)
                                 {
                                     w2 = "2";
                                     w2_s = "Unchecked";
+                                    firstTime = 2;
+                                    
                                 }
                                 else if (Int32.Parse(s_d.ToString("dd")) <= 23)
                                 {
                                     w3 = "2";
                                     w3_s = "Unchecked";
+                                    firstTime = 3;
                                 }
                                 else if (Int32.Parse(s_d.ToString("dd")) <= 31)
                                 {
                                     w4 = "2";
                                     w4_s = "Unchecked";
+                                    firstTime = 4;
                                 }
 
 
                                 GlobalClass.con.Open();
 
-                                string command_insert_3 = "INSERT INTO monthly_report (vehicle_code, 50hr_w1, w1_status, 50hr_w2, w2_status, 50hr_w3, w3_status, 50hr_w4, w4_status, workingHours, monthly_date ) VALUES " +
-                                    " ('" + v_code.Text + "', '"+w1+"', '"+ w1_s + "',  '" + w2 + "', '" + w2_s + "', '" + w3 + "', '" + w3_s + "', '" + w4 + "', '" + w4_s + "', "+working_hours.Text+", '"+s_d.ToString("yyyy-MM-dd HH:mm:ss") +"' );";
-                                MySqlCommand sql_cmd_3 = new MySqlCommand(command_insert_3, GlobalClass.con);
-                                GlobalClass.sql_dr = sql_cmd_3.ExecuteReader();
+                                int currentDays = Convert.ToInt32(s_d.ToString("dd"));
+
+                                DateTime tempDate = s_d;
+
+                                DateTime monthStart = tempDate.AddDays(currentDays);
+
+                                MySqlCommand checkMonthly = new MySqlCommand("  select count(*) from monthly_report where vehicle_code = '"+ v_code.Text + "' " +
+                                    " and monthly_date >= '"+ monthStart.ToString("yyyy-MM-dd") +"';   ", GlobalClass.con);
+
+                                GlobalClass.sql_dr = checkMonthly.ExecuteReader();
+                                int isThereData = 0;
+                                if (GlobalClass.sql_dr.HasRows)
+                                {
+                                    isThereData = GlobalClass.sql_dr.GetInt32(0);
+                                }
+                                else
+                                {
+                                    isThereData = 0;
+                                }
+
+                                if (isThereData == 0)
+                                {
+                                    string command_insert_3 = "INSERT INTO monthly_report (vehicle_code, 50hr_w1, w1_status, 50hr_w2, w2_status, 50hr_w3, w3_status, 50hr_w4, w4_status, workingHours, monthly_date ) VALUES " +
+                                        " ('" + v_code.Text + "', '" + w1 + "', '" + w1_s + "',  '" + w2 + "', '" + w2_s + "', '" + w3 + "', '" + w3_s + "', '" + w4 + "', '" + w4_s + "', " + working_hours.Text + ", '" + s_d.ToString("yyyy-MM-dd HH:mm:ss") + "' );";
+
+                                    MySqlCommand sql_cmd_3 = new MySqlCommand(command_insert_3, GlobalClass.con);
+                                    GlobalClass.sql_dr = sql_cmd_3.ExecuteReader();
+                                    GlobalClass.sql_dr.Close();
+                                }else if(isThereData == 1)
+                                {
+                                    string command99 = "";
+                                    if (firstTime == 2)
+                                    {
+                                        command99 = " update monthly_report set 50hr_w2 = '2', w2_status = 'Unchecked' where vehicle_code = '" + v_code.Text + "' " +
+                                            " and monthly_date >= '" + monthStart.ToString("yyyy-MM-dd") + "' ; ";
+
+                                    }else if(firstTime == 3)
+                                    {
+                                        command99 = " update monthly_report set 50hr_w3 = '2', w3_status = 'Unchecked' where vehicle_code = '" + v_code.Text + "' " +
+                                            " and monthly_date >= '" + monthStart.ToString("yyyy-MM-dd") + "' ; ";
+                                    }
+                                    else if (firstTime == 4)
+                                    {
+                                        command99 = " update monthly_report set 50hr_w4 = '2', w4_status = 'Unchecked' where vehicle_code = '" + v_code.Text + "' " +
+                                            " and monthly_date >= '" + monthStart.ToString("yyyy-MM-dd") + "' ; ";
+                                    }
+
+
+                                    MySqlCommand updataW1 = new MySqlCommand(command99, GlobalClass.con);
+                                    updataW1.ExecuteNonQuery();
+
+                                }
+
+
                                 GlobalClass.con.Close();
 
 
