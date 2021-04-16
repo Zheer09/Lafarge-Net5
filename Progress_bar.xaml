@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Lafarge_WPF"
         mc:Ignorable="d"
         AllowsTransparency="True"
+        WindowStyle="None"
         Background="Transparent"
         Title="Progress_bar" Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
         Width="{x:Static SystemParameters.PrimaryScreenWidth}">
@@ -20,7 +21,7 @@
         
         <TextBlock x:Name="ProgressTextblock" FontSize="25" FontWeight="SemiBold" Foreground="White" 
                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 135 0 0" />
-        <Grid Background="WhiteSmoke" Opacity="0.1">
+        <Grid Background="WhiteSmoke" Opacity="0.1" RenderTransformOrigin="0.504,0.5">
             
         </Grid>
         
