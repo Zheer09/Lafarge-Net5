@@ -44,10 +44,14 @@ namespace Lafarge_WPF.UserControls
         public event EventHandler NoButtonChecked;
         private void YesButton_OnChecked(object sender, RoutedEventArgs e)
         {
+            if (YesButton.IsChecked != null && (bool)YesButton.IsChecked)
+                NoButton.IsChecked = false;
             YesButtonChecked?.Invoke(sender, e);
         }
         private void NoButton_OnChecked(object sender, RoutedEventArgs e)
         {
+            if (NoButton.IsChecked != null && (bool)NoButton.IsChecked)
+                YesButton.IsChecked = false;
             NoButtonChecked?.Invoke(sender, e);
         }
     }

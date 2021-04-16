@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,70 +57,6 @@ namespace Lafarge_WPF
 
             s_d = GlobalClass.GetNistTime();
 
-            //P1
-            true_p1.Opacity = 0.15;
-            false_p1.Opacity = 0.15;
-
-            //P2
-            true_p2.Opacity = 0.15;
-            false_p2.Opacity = 0.15;
-
-            //P3
-            true_p3.Opacity = 0.15;
-            false_p3.Opacity = 0.15;
-
-            //P4
-            true_p4.Opacity = 0.15;
-            false_p4.Opacity = 0.15;
-
-            //P5
-            true_p5.Opacity = 0.15;
-            false_p5.Opacity = 0.15;
-
-            //P6
-            true_p6.Opacity = 0.15;
-            false_p6.Opacity = 0.15;
-
-            //P7
-            true_7.Opacity = 0.15;
-            false_p7.Opacity = 0.15;
-
-            //P8
-            true_p8.Opacity = 0.15;
-            false_p8.Opacity = 0.15;
-
-            //P9
-            true_p9.Opacity = 0.15;
-            false_p9.Opacity = 0.15;
-
-            //P10
-            true_p10.Opacity = 0.15;
-            false_p10.Opacity = 0.15;
-
-            //P11
-            true_p11.Opacity = 0.15;
-            false_p11.Opacity = 0.15;
-
-            //P12
-            true_p12.Opacity = 0.15;
-            false_12.Opacity = 0.15;
-
-            //P13
-            true_p13.Opacity = 0.15;
-            false_p13.Opacity = 0.15;
-
-            //P14
-            true_p14.Opacity = 0.15;
-            false_p14.Opacity = 0.15;
-
-            //P15
-            true_p15.Opacity = 0.15;
-            false_15.Opacity = 0.15;
-
-            //P16
-            true_16.Opacity = 0.15;
-            false_p16.Opacity = 0.15;
-
 
         }
 
@@ -136,16 +73,45 @@ namespace Lafarge_WPF
 
 
 
-      /*  private bool addInto_wr_sub()
-        {
+        /*  private bool addInto_wr_sub()
+          {
 
-        }*/
+          }*/
 
 
         // MAIN FUNCTION
         // this is where everything happens man.
+
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Data has been successfully saved for vehicle: " + v_code.Text + ".");
+            System.Environment.Exit(1);
+        }
+
+        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            //Progress_bar.progress.value = e.ProgressPercentage;
+           // Progress_bar.ProgressTextblock.text = (string)e.UserState;
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var worker = sender as BackgroundWorker;
+            worker.ReportProgress(0, String.Format("Processing insert 1."));
+        }
+
+
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
+            Progress_bar progressBar = new Progress_bar();
+            progressBar.ShowDialog();
+
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += worker_DoWork;
+            worker.ProgressChanged += worker_ProgressChanged;
+            worker.RunWorkerAsync();
 
             loader_note[0] = Note_p1.Text;
             loader_note[1] = Note_p2.Text;
@@ -542,296 +508,196 @@ namespace Lafarge_WPF
 
         }
 
-        /*
-       p1
-       */
+      
 
-        private void true_p1btn(object sender, MouseButtonEventArgs e)
+        private void P1_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p1.Opacity = 0.15;
-            true_p1.Opacity = 1;
             loader_check[0] = true;
-
         }
 
-        private void false_p1btn(object sender, MouseButtonEventArgs e)
+        private void P1_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p1.Opacity = 1;
-            true_p1.Opacity =0.15;
             loader_check[0] = false;
         }
 
-        /*
-         p2
-         */
-        private void true_p2btn(object sender, MouseButtonEventArgs e)
-        {
-            false_p2.Opacity = 0.15;
-            true_p2.Opacity = 1;
-            loader_check[1] = true;
-        }
 
-        private void false_p2btn(object sender, MouseButtonEventArgs e)
+
+        private void P2_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p2.Opacity = 1;
-            true_p2.Opacity = 0.15;
             loader_check[1] = false;
         }
 
-        /*
-        p3
-        */
-
-        private void true_p3btn(object sender, MouseButtonEventArgs e)
+        private void P2_YesButtonChecked(object sender, EventArgs e)
         {
-
-            false_p3.Opacity = 0.15;
-            true_p3.Opacity = 1;
-            loader_check[2] = true;
-
+            loader_check[1] = true;
         }
 
-        private void false_p3btn(object sender, MouseButtonEventArgs e)
+
+
+        private void P3_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p3.Opacity = 1;
-            true_p3.Opacity = 0.15;
             loader_check[2] = false;
         }
 
-        /*
-        p4
-        */
-
-        private void true_p4btn(object sender, MouseButtonEventArgs e)
+        private void P3_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p4.Opacity = 0.15;
-            true_p4.Opacity = 1;
+            loader_check[2] = true;
+        }
+
+
+
+        private void P4_YesButtonChecked(object sender, EventArgs e)
+        {
             loader_check[3] = true;
         }
 
-        private void false_p4btn(object sender, MouseButtonEventArgs e)
+        private void P4_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p4.Opacity = 1;
-            true_p4.Opacity = 0.15;
             loader_check[3] = false;
         }
 
-        /*
-       p5
-       */
 
-        private void true_p5btn(object sender, MouseButtonEventArgs e)
+
+        private void P5_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p5.Opacity = 0.15;
-            true_p5.Opacity = 1;
             loader_check[4] = true;
         }
 
-        private void false_p5btn(object sender, MouseButtonEventArgs e)
+        private void P5_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p5.Opacity = 1;
-            true_p5.Opacity = 0.15;
             loader_check[4] = false;
         }
 
-        /*
-            p6
-        */
 
-        private void true_p6btn(object sender, MouseButtonEventArgs e)
+
+        private void P6_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p6.Opacity = 0.15;
-            true_p6.Opacity = 1;
             loader_check[5] = true;
         }
 
-        private void false_p6btn(object sender, MouseButtonEventArgs e)
+        private void P6_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p6.Opacity = 1;
-            true_p6.Opacity = 0.15;
             loader_check[5] = false;
         }
 
-        /*
-            p7
-        */
 
-        private void true_p7btn(object sender, MouseButtonEventArgs e)
+
+        private void P7_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p7.Opacity = 0.15;
-            true_7.Opacity = 1;
             loader_check[6] = true;
         }
 
-        private void false_p7btn(object sender, MouseButtonEventArgs e)
+        private void P7_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p7.Opacity = 1;
-            true_7.Opacity = 0.15;
             loader_check[6] = false;
         }
 
-        /*
-        p8
-        */
 
-        private void true_p8btn(object sender, MouseButtonEventArgs e)
-        {
-            false_p8.Opacity = 0.15;
-            true_p8.Opacity = 1;
-            loader_check[7] = true;
-        }
 
-        private void false_p8btn(object sender, MouseButtonEventArgs e)
+        private void P8_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p8.Opacity = 1;
-            true_p8.Opacity = 0.15;
             loader_check[7] = false;
         }
 
-        /*
-        p9
-        */
-
-        private void true_p9btn(object sender, MouseButtonEventArgs e)
+        private void P8_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p9.Opacity = 0.15;
-            true_p9.Opacity = 1;
+            loader_check[7] = true;
+        }
+
+
+
+        private void P9_YesButtonChecked(object sender, EventArgs e)
+        {
             loader_check[8] = true;
         }
 
-        private void false_p9btn(object sender, MouseButtonEventArgs e)
+        private void P9_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p9.Opacity = 1;
-            true_p9.Opacity = 0.15;
-            loader_check[8] = false;
-        }
-
-        /*
-        p10
-        */
-
-        private void true_p10btn(object sender, MouseButtonEventArgs e)
-        {
-            false_p10.Opacity = 0.15;
-            true_p10.Opacity = 1;
-            loader_check[9] = true;
-        }
-
-        private void false_p10btn(object sender, MouseButtonEventArgs e)
-        {
-            false_p10.Opacity = 1;
-            true_p10.Opacity = 0.15;
             loader_check[9] = false;
         }
 
-        /*
-        p11
-        */
 
-        private void true_p11btn(object sender, MouseButtonEventArgs e)
+
+        private void P10_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p11.Opacity = 0.15;
-            true_p11.Opacity = 1;
+            loader_check[9] = true;
+        }
+
+        private void P10_NoButtonChecked(object sender, EventArgs e)
+        {
+            loader_check[9] = false;
+        }
+
+
+
+        private void P11_YesButtonChecked(object sender, EventArgs e)
+        {
             loader_check[10] = true;
         }
 
-        private void false_p11btn(object sender, MouseButtonEventArgs e)
+        private void P11_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p11.Opacity = 1;
-            true_p11.Opacity = 0.15;
             loader_check[10] = false;
         }
 
-        /*
-        p12
-        */
 
-        private void true_p12btn(object sender, MouseButtonEventArgs e)
+
+        private void P12_YesButtonChecked(object sender, EventArgs e)
         {
-            false_12.Opacity = 0.15;
-            true_p12.Opacity = 1;
             loader_check[11] = true;
         }
 
-        private void false_p12btn(object sender, MouseButtonEventArgs e)
+        private void P12_NoButtonChecked(object sender, EventArgs e)
         {
-            false_12.Opacity = 1;
-            true_p12.Opacity = 0.15;
             loader_check[11] = false;
         }
 
-        /*
-        p13
-        */
 
-        private void true_p13btn(object sender, MouseButtonEventArgs e)
+
+        private void P13_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p13.Opacity = 0.15;
-            true_p13.Opacity = 1;
             loader_check[12] = true;
         }
 
-        private void false_p13btn(object sender, MouseButtonEventArgs e)
+        private void P13_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p13.Opacity = 1;
-            true_p13.Opacity = 0.15;
             loader_check[12] = false;
         }
 
-        /*
-        p14
-        */
 
-        private void true_p14btn(object sender, MouseButtonEventArgs e)
+
+        private void P14_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p14.Opacity = 0.15;
-            true_p14.Opacity = 1;
             loader_check[13] = true;
         }
 
-        private void false_p14btn(object sender, MouseButtonEventArgs e)
+        private void P14_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p14.Opacity = 1;
-            true_p14.Opacity = 0.15;
             loader_check[13] = false;
         }
 
-        /*
-        p15
-        */
 
-        private void true_p15btn(object sender, MouseButtonEventArgs e)
+
+        private void P15_YesButtonChecked(object sender, EventArgs e)
         {
-            false_15.Opacity = 0.15;
-            true_p15.Opacity = 1;
             loader_check[14] = true;
         }
 
-        private void false_p15btn(object sender, MouseButtonEventArgs e)
+        private void P15_NoButtonChecked(object sender, EventArgs e)
         {
-            false_15.Opacity = 1;
-            true_p15.Opacity = 0.15;
             loader_check[14] = false;
         }
 
-        /*
-       p16
-        */
 
-        private void true_16btn(object sender, MouseButtonEventArgs e)
+
+        private void P16_YesButtonChecked(object sender, EventArgs e)
         {
-            false_p16.Opacity = 0.15;
-            true_16.Opacity = 1;
             loader_check[15] = true;
         }
 
-        private void false_p16btn(object sender, MouseButtonEventArgs e)
+        private void P16_NoButtonChecked(object sender, EventArgs e)
         {
-            false_p16.Opacity = 1;
-            true_16.Opacity = 0.15;
             loader_check[15] = false;
         }
-
-
     }
 }

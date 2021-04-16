@@ -6,6 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:Lafarge_WPF"
+      xmlns:local1="clr-namespace:Lafarge_WPF.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="{x:Static SystemParameters.PrimaryScreenHeight}"
       d:DesignWidth="{x:Static SystemParameters.PrimaryScreenWidth}"
@@ -177,19 +178,9 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p1" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="1"
-                                     Margin="38,46,168,0" Height="60" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="true_p1btn" >
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P1" Grid.Column="2" Grid.Row="1" YesButtonChecked="P1_YesButtonChecked" 
+                                        NoButtonChecked="P1_NoButtonChecked" Margin="0,39,0,50" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p1" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="1" Margin="129,46,77,0" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p1btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
                     <!--P2-->
                     <TextBlock Grid.Column="0" Grid.Row="3" FontWeight="SemiBold" Text="Check hydraulic oil level" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
@@ -204,22 +195,10 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p2" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="2"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p2btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P2" Grid.Column="2" Grid.Row="2" YesButtonChecked="P2_YesButtonChecked" 
+                                        NoButtonChecked="P2_NoButtonChecked" Margin="0,48,0,49" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p2" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="3" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p2btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-
-
-                    <!--P4-->
+                    <!--P3-->
                     <TextBlock Grid.Column="0" Grid.Row="4" FontWeight="SemiBold" Text="Check water level" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -233,22 +212,10 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p3" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="3"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p3btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P3" Grid.Column="2" Grid.Row="3" YesButtonChecked="P3_YesButtonChecked" 
+                                        NoButtonChecked="P3_NoButtonChecked" Margin="0,48,0,49" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p3" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="4" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p3btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-
-
-                    <!--P5-->
+                    <!--P4-->
                     <TextBlock Grid.Column="0" Grid.Row="5" FontWeight="SemiBold" Text="Check tires" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8,0,7" Width="375" />
 
@@ -262,21 +229,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p4" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="4"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p4btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P4" Grid.Column="2" Grid.Row="4" YesButtonChecked="P4_YesButtonChecked" 
+                                        NoButtonChecked="P4_NoButtonChecked" Margin="0,48,0,47" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p4" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="5" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p4btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--P6-->
+                    <!--P5-->
                     <TextBlock Grid.Column="0" Grid.Row="6" FontWeight="SemiBold" Text="Check lights" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8,0,7" Width="375" />
 
@@ -290,21 +247,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p5" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="5"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p5btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P5" Grid.Column="2" Grid.Row="5" YesButtonChecked="P5_YesButtonChecked" 
+                                        NoButtonChecked="P5_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p5" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="6" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p5btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--P7-->
+                    <!--P6-->
                     <TextBlock Grid.Column="0" Grid.Row="7" FontWeight="SemiBold" Text="Check seat belt" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8,0,7" Width="375" />
 
@@ -318,21 +265,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p6" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="6"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p6btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P6" Grid.Column="2" Grid.Row="6" YesButtonChecked="P6_YesButtonChecked" 
+                                        NoButtonChecked="P6_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p6" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="7" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p6btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--P8-->
+                    <!--P7-->
                     <TextBlock Grid.Column="0" Grid.Row="8" FontWeight="SemiBold" Text="Check front and back alarms" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -346,21 +283,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_7" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="7"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p7btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P7" Grid.Column="2" Grid.Row="7" YesButtonChecked="P7_YesButtonChecked" 
+                                        NoButtonChecked="P7_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p7" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="8" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p7btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--P9-->
+                    <!--P8-->
                     <TextBlock Grid.Column="0" Grid.Row="9" FontWeight="SemiBold" Text="Check fire extinguisher" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -374,21 +301,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p8" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="8"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p8btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P8" Grid.Column="2" Grid.Row="8" YesButtonChecked="P8_YesButtonChecked" 
+                                        NoButtonChecked="P8_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p8" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="9" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p8btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--P10-->
+                    <!--P9-->
                     <TextBlock Grid.Column="0" Grid.Row="10" FontWeight="SemiBold" Text="Check mirrors" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -402,21 +319,10 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p9" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="9"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p9btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P9" Grid.Column="2" Grid.Row="9" YesButtonChecked="P9_YesButtonChecked" 
+                                        NoButtonChecked="P9_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p9" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="10" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p9btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-
-                    <!--P11-->
+                    <!--P10-->
                     <TextBlock Grid.Column="0" Grid.Row="11" FontWeight="SemiBold" Text="Check windshield and its scrapers" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -430,21 +336,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p10" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="10"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p10btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P10" Grid.Column="2" Grid.Row="10" YesButtonChecked="P10_YesButtonChecked" 
+                                        NoButtonChecked="P10_NoButtonChecked" Margin="0,47,0,47" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p10" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="11" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p10btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--P12-->
+                    <!--P11-->
                     <TextBlock Grid.Column="0" Grid.Row="12" FontWeight="SemiBold" Text="Check brake" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -458,21 +354,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p11" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="11"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p11btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P11" Grid.Column="2" Grid.Row="11" YesButtonChecked="P11_YesButtonChecked" 
+                                        NoButtonChecked="P11_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p11" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="12" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p11btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--P13-->
+                    <!--P12-->
                     <TextBlock Grid.Column="0" Grid.Row="13" FontWeight="SemiBold" Text="Check whole body and bucket" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -486,21 +372,10 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p12" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="12"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p12btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P12" Grid.Column="2" Grid.Row="12" YesButtonChecked="P12_YesButtonChecked" 
+                                        NoButtonChecked="P12_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_12" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="13" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p12btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-
-                    <!--P14-->
+                    <!--P13-->
                     <TextBlock Grid.Column="0" Grid.Row="14" FontWeight="SemiBold" Text="Check all leakages" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -514,21 +389,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p13" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="13"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p13btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P13" Grid.Column="2" Grid.Row="13" YesButtonChecked="P13_YesButtonChecked" 
+                                        NoButtonChecked="P13_NoButtonChecked" Margin="0,46,0,49" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p13" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="14" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p13btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--P15-->
+                    <!--P14-->
                     <TextBlock Grid.Column="0" Grid.Row="15" FontWeight="SemiBold" Text="Check batteries and charging" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -542,21 +407,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p14" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="14"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p14btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P14" Grid.Column="2" Grid.Row="14" YesButtonChecked="P14_YesButtonChecked" 
+                                        NoButtonChecked="P14_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p14" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="15" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p14btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--P16-->
+                    <!--P15-->
                     <TextBlock Grid.Column="0" Grid.Row="16" FontWeight="SemiBold" Text="Check fuel level" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
@@ -570,21 +425,11 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_p15" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="15"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_p15btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P15" Grid.Column="2" Grid.Row="15" YesButtonChecked="P15_YesButtonChecked" 
+                                        NoButtonChecked="P15_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_15" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="16" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p15btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
-                    <!--p18-->
+                    <!--p16-->
 
                     <TextBlock Grid.Column="0" Grid.Row="17" FontWeight="SemiBold" Text="Check bucket cylinder jack" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
@@ -599,19 +444,9 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Ellipse x:Name="true_16" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="16"
-                                     Margin="38,53,168,54" Height="60" Width="60" Grid.RowSpan="3" MouseLeftButtonDown="true_16btn">
-                        <Ellipse.Fill>
-                            <ImageBrush  VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/true.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <local1:YesNoSwitch x:Name="P16" Grid.Column="2" Grid.Row="16" YesButtonChecked="P16_YesButtonChecked" 
+                                        NoButtonChecked="P16_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
-                    <Ellipse x:Name="false_p16" VirtualizingStackPanel.VirtualizationMode="Recycling" 
-                                 Grid.Column="2" Grid.Row="17" Margin="129,2,77,55" Width="60" Grid.RowSpan="2" MouseLeftButtonDown="false_p16btn">
-                        <Ellipse.Fill>
-                            <ImageBrush VirtualizingStackPanel.VirtualizationMode="Recycling" ImageSource="/image/false.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
 
 
                     <Button x:Name="Submit" Grid.Column="4" Grid.Row="18" Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
@@ -631,6 +466,9 @@
                         </Button.Effect>
 
                     </Button>
+
+
+
 
 
                 </Grid>
