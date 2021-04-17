@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace Lafarge_WPF
 {
@@ -26,11 +27,41 @@ namespace Lafarge_WPF
         {
             InitializeComponent();
             vehicle_code = V_Code;
-
+            getVehicleData();
 
 
 
 
         }
+
+
+        void getVehicleData()
+        {
+
+            float workingHour = 0;
+
+            GlobalClass.con.Open();
+
+            MySqlCommand SQLCMD = new MySqlCommand("select working_hour from vehicle_property " +
+            " where vehicle_code = '"+ vehicle_code +"' order by property_date desc limit 1; " , GlobalClass.con);
+
+            GlobalClass.sql_dr = SQLCMD.ExecuteReader();
+
+            GlobalClass.sql_dr.Read();
+            if (GlobalClass.sql_dr.HasRows)
+            {
+                workingHour = GlobalClass.sql_dr.GetFloat(0);
+            }
+
+            workingHoursLabel.Text = workingHour + " Hours";
+            vehiceCodeLabel.Text = vehicle_code;
+
+
+            GlobalClass.sql_dr.Close();
+            GlobalClass.con.Close();
+
+        }
+
+
     }
 }

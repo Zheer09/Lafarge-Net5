@@ -6,5 +6,16 @@
         xmlns:local="clr-namespace:Lafarge_WPF"
         mc:Ignorable="d"
         Title="SearchResult" Height="450" Width="800">
-    <Grid/>
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="27,36,0,0" Text="Vehicle Code: " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="81"/>
+        <TextBlock x:Name="vehiceCodeLabel" HorizontalAlignment="Left" Margin="113,36,0,0" Text="VC " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="81"/>
+        <TextBlock HorizontalAlignment="Left" Margin="209,36,0,0" Text="Working Hours: " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="92"/>
+        <TextBlock x:Name="workingHoursLabel" HorizontalAlignment="Left" Margin="306,36,0,0" Text="WH " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="92"/>
+        <DataGrid Margin="10,87,10,10" 
+                  Background="Transparent" 
+                  ItemsSource="{Binding}" GridLinesVisibility="Horizontal" 
+                  SelectionUnit="FullRow" SelectionMode="Extended" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
+                  />
+    </Grid>
 </Window>
