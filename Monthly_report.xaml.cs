@@ -17,7 +17,7 @@ namespace Lafarge_WPF.Pages
         public static DateTime currentDate;
         DateTime startDate, endDate;
         List<monthlyData> MonthlyStore = new List<monthlyData>();
-        int scrollTracker = 0;
+        public static int scrollTracker = 0;
 
 
         public Monthly_report()
@@ -101,7 +101,104 @@ namespace Lafarge_WPF.Pages
         void nextMonth()
         {
 
-            
+            int startMonth = Convert.ToInt32( currentDate.ToString("MM") );
+            int startYear = Convert.ToInt32( currentDate.ToString("yyyy") );
+
+
+            if(startMonth == 12)
+            {
+                startYear += 1;
+                startMonth = 1;
+            }
+            else
+            {
+                startMonth += 1;
+            }
+            startDate = new DateTime(startYear, startMonth, 1);
+            endDate = new DateTime(startYear, (startMonth + 1), 1);
+
+
+
+            GlobalClass.con.Open();
+
+            MySqlCommand da = new MySqlCommand(" select distinct vehicle_code, 50hr_w1, w1_status,  50hr_w2, w2_status,  50hr_w3, w3_status, " +
+                "  50hr_w4, w4_status, 300hr_m, monthly_status, workingHours from monthly_report where monthly_date >= '" + startDate.ToString("yyyy-MM-dd") +
+                "' and monthly_date < '" + endDate.ToString("yyyy-MM-dd") + "' ; ", GlobalClass.con);
+            GlobalClass.sql_dr = da.ExecuteReader();
+            string vehicle_C = "";
+            string assett = "";
+            string[] monthy_data = new string[10];
+
+            if (GlobalClass.sql_dr.HasRows)
+            {
+                while (GlobalClass.sql_dr.Read())
+                {
+                    vehicle_C = GlobalClass.sql_dr.GetString(0);
+                    if (vehicle_C[0] == 'L')
+                    {
+                        assett = "Loader";
+                    }
+                    else if (vehicle_C[0] == 'M')
+                    {
+                        assett = "Mixer";
+                    }
+                    else if (vehicle_C[0] == 'C')
+                    {
+                        assett = "Concrete Pump";
+                    }
+                    else
+                    {
+                        assett = "Unknown!";
+                    }
+
+                    monthy_data = new string[10];
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        if (!(GlobalClass.sql_dr.IsDBNull(i + 1)))
+                        {
+                            monthy_data[i] = GlobalClass.sql_dr.GetString(i + 1);
+                        }
+                    }
+
+                    MonthlyStore = new List<monthlyData>();
+
+                    MonthlyStore.Add(new monthlyData()
+                    {
+
+                        vehicle_code = GlobalClass.sql_dr.GetString(0),
+                        asset = assett,
+                        hr50_w1 = monthy_data[0],
+                        w1_status = monthy_data[1],
+                        hr50_w2 = monthy_data[2],
+                        w2_status = monthy_data[3],
+                        hr50_w3 = monthy_data[4],
+                        w3_status = monthy_data[5],
+                        hr50_w4 = monthy_data[6],
+                        w4_status = monthy_data[7],
+                        hr300_m = monthy_data[8],
+                        monthly_status = monthy_data[9],
+                        workingHours = GlobalClass.sql_dr.GetFloat(11)
+
+                    });
+                }
+
+                Monthly_report1.ItemsSource = MonthlyStore;
+                monthly_date_text.Text = startDate.ToString("MMMM");
+                currentDate = startDate;
+                GlobalClass.con.Close();
+                scrollTracker += 1;
+            }
+            else
+            {
+                MessageBox.Show("There is no data for next month!");
+            }
+
+            GlobalClass.con.Close();
+
+
+
+
 
         }
 
@@ -184,6 +281,7 @@ namespace Lafarge_WPF.Pages
                 monthly_date_text.Text = startDate.ToString("MMMM");
                 currentDate = startDate;
                 GlobalClass.con.Close();
+                scrollTracker -= 1;
             }
             else
             {
@@ -221,7 +319,7 @@ namespace Lafarge_WPF.Pages
 
         private void next_button_Click(object sender, RoutedEventArgs e)
         {
-
+            nextMonth();
         }
     }
 }
