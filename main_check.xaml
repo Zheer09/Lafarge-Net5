@@ -108,14 +108,6 @@
                 <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
             </Button.Effect>
         </Button>
-
-        <Button Grid.Column="2" x:Name="refresh_btn" Width="90" Height="45"  Content="Refresh" HorizontalAlignment="Center"  
-                Grid.Row="3" VerticalAlignment="Bottom" 
-                Margin="0 0 0 60" Click="Refresh_Button_Click">
-            <Button.Effect>
-                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.50"/>
-            </Button.Effect>
-        </Button>
         <Button Style="{StaticResource MaterialDesignRaisedButton}"
             Grid.Column="2" Content="View Vehicle" x:Name="View_m_vehicle"
             HorizontalAlignment="Center" Grid.Row="3"  

@@ -155,7 +155,10 @@ namespace Lafarge_WPF.Pages
 
                     GlobalClass.con.Close();
 
-                }catch(Exception ex)
+                    refreshData();
+
+                }
+                catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -167,10 +170,7 @@ namespace Lafarge_WPF.Pages
             }
         }
 
-        private void Refresh_Button_Click(object sender, RoutedEventArgs e)
-        {
-            refreshData();
-        }
+     
 
         private void View_done_m_vehicle_Click(object sender, RoutedEventArgs e)
         {
@@ -382,7 +382,7 @@ namespace Lafarge_WPF.Pages
 
                     GlobalClass.con.Close();
 
-
+                    refreshData();
                 }
             }
 

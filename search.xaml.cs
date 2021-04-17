@@ -31,6 +31,11 @@ namespace Lafarge_WPF.Pages
             {
                 e.Handled = true;
             }
+            if (e.Key == Key.OemQuotes)
+            {
+                e.Handled = true;
+            }
+           
             base.OnPreviewKeyDown(e);
         }
 
