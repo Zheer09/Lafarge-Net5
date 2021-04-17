@@ -247,8 +247,8 @@ namespace Lafarge_WPF.Pages
                     ///////////////////////
 
 
-                    MySqlCommand insert_report_cmd = new MySqlCommand(" insert into maintenance_report (check_type, vehicle_status, maintenance_date) " +
-                        " values ( '"+check_t+"', 'Done', '"+dt.ToString("yyyy-MM-dd")+"' ) ", GlobalClass.con);
+                    MySqlCommand insert_report_cmd = new MySqlCommand(" insert into maintenance_report (vehicle_code, check_type, vehicle_status, maintenance_date) " +
+                        " values ( '"+ v_code +"', '"+check_t+"', 'Done', '"+dt.ToString("yyyy-MM-dd")+"' ) ", GlobalClass.con);
 
                     GlobalClass.sql_dr = insert_report_cmd.ExecuteReader();
 

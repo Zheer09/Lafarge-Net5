@@ -19,10 +19,18 @@ namespace Lafarge_WPF
     /// </summary>
     public partial class SearchResult : Window
     {
+
+        string vehicle_code;
+
         public SearchResult(string V_Code)
         {
             InitializeComponent();
-            Testt.Content += V_Code;
+            vehicle_code = V_Code;
+
+
+
+
+
         }
     }
 }

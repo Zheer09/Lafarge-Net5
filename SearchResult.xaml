@@ -6,8 +6,5 @@
         xmlns:local="clr-namespace:Lafarge_WPF"
         mc:Ignorable="d"
         Title="SearchResult" Height="450" Width="800">
-    <Grid>
-        <Label Content="Selected vehicle: " x:Name="Testt" HorizontalAlignment="Left" Margin="123,173,0,0" VerticalAlignment="Top"/>
-
-    </Grid>
+    <Grid/>
 </Window>
