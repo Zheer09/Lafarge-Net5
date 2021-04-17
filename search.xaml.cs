@@ -24,5 +24,39 @@ namespace Lafarge_WPF.Pages
         {
             InitializeComponent();
         }
+
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+            base.OnPreviewKeyDown(e);
+        }
+
+        private void find_search_Click(object sender, RoutedEventArgs e)
+        {
+
+            string keyWord = search_box.Text;
+
+            if (GlobalOperations.doesVehicleExist(keyWord))
+            {
+                MessageBox.Show("Vehicle " + keyWord + " exists.");
+            }
+            else
+            {
+                MessageBox.Show(keyWord + " does not exist!");
+            }
+
+
+
+
+
+        }
+
+        private void OnPreviewKeyDown2(object sender, KeyEventArgs e)
+        {
+            OnPreviewKeyDown(e);
+        }
     }
 }

@@ -49,13 +49,13 @@
                 <TextBox Grid.Column="1" x:Name="search_box" Foreground="Black"
                          Grid.ColumnSpan="3" Margin="0 0 20 0"
                          TextAlignment="Left" VerticalAlignment="Center" 
-                         materialDesign:HintAssist.Hint="Search"  BorderBrush="{x:Null}"/>
+                         materialDesign:HintAssist.Hint="Search"  BorderBrush="{x:Null}" KeyDown="OnPreviewKeyDown2"/>
             </Grid>
         </Border>
 
         <Button x:Name="find_search" BorderThickness="0" Background="#00955E" HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center" 
-                Content="Find" Grid.Column="1" Grid.Row="0" Height="35" Margin="40 0 40 0"
+                Content="Find" Grid.Column="1" Grid.Row="0" Height="35" Margin="40 0 40 0" Click="find_search_Click"
                 Style="{StaticResource {x:Type Button}}">
             <Button.Resources>
                 <Style TargetType="Border">
