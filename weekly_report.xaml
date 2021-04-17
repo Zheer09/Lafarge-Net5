@@ -21,7 +21,7 @@
             <DataGrid 
           x:Name="weekly_report1"
           ItemsSource="{Binding}"
-          
+          IsReadOnly="True"
           CanUserAddRows="False"
           SelectionUnit="Cell"
           SelectionMode="Extended"
