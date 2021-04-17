@@ -66,7 +66,11 @@
 
         </Button>
 
-        <DataGrid x:Name="search_grid" Grid.Row="1" Background="Transparent" Margin="15" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+        <DataGrid x:Name="search_grid" Grid.Row="1" Background="LightGray" 
+                  ItemsSource="{Binding}" GridLinesVisibility="Horizontal"
+                  SelectionUnit="FullRow" SelectionMode="Extended" Margin="20"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
+                  MouseDoubleClick="doubleClickRow" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vehicle Code" Binding="{Binding vehicle_code}"/>
                 <DataGridTextColumn Header="Vehicle Type" Binding="{Binding vehicle_type}"/>

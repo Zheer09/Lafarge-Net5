@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Lafarge_WPF.Pages
 {
@@ -17,11 +18,13 @@ namespace Lafarge_WPF.Pages
 
 
         List<SelectVehicle> myVehicle = new();
+        public static string selectedVehicle;
 
 
         public search()
         {
             InitializeComponent();
+            selectedVehicle = "";
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
@@ -123,6 +126,29 @@ namespace Lafarge_WPF.Pages
                 }
         }
 
+        private void doubleClickRow(object sender, MouseButtonEventArgs e)
+        {
+            if (search_grid.SelectedItem == null)
+                return;
+
+             selectedVehicle = ((dynamic)search_grid.SelectedItem).vehicle_code;
+            
+
+            
+
+            if (selectedVehicle == "")
+            {
+                MessageBox.Show("You haven't selected any Vehicle!");
+            }
+            else
+            {
+                SearchResult sr = new SearchResult(selectedVehicle);
+                sr.ShowDialog();
+            }
+        }
+
         
+
+       
     }
 }
