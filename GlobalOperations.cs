@@ -198,6 +198,7 @@ namespace Lafarge_WPF
                 myVehicle.batch_plant = GlobalClass.sql_dr.GetString(2);
 
             }
+            GlobalClass.con.Close();
 
             return myVehicle;
         }

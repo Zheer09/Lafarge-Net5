@@ -17,9 +17,9 @@ namespace Lafarge_WPF
 
     class SelectVehicle
     {
-        public string vehicle_code;
-        public string vehicle_type;
-        public string batch_plant;
+        public string vehicle_code { get; set; }
+        public string vehicle_type { get; set; }
+        public string batch_plant { get; set; }
 
     }
 

@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace Lafarge_WPF.Pages
 {
@@ -20,6 +14,11 @@ namespace Lafarge_WPF.Pages
     /// </summary>
     public partial class search : Page
     {
+
+
+        List<SelectVehicle> myVehicle = new();
+
+
         public search()
         {
             InitializeComponent();
@@ -43,10 +42,66 @@ namespace Lafarge_WPF.Pages
         {
 
             string keyWord = search_box.Text;
+            keyWord = keyWord.ToUpper();
 
-            if (GlobalOperations.doesVehicleExist(keyWord))
+            if(keyWord == "ALL")
             {
-                MessageBox.Show("Vehicle " + keyWord + " exists.");
+
+                myVehicle = new();
+                GlobalClass.con.Open();
+                string command_select = "SELECT * FROM vehicle;";
+                MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+                GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+
+                while (GlobalClass.sql_dr.Read())
+                {
+
+                    myVehicle.Add(new SelectVehicle()
+                    {
+
+                        vehicle_code = GlobalClass.sql_dr.GetString(0),
+                        vehicle_type = GlobalClass.sql_dr.GetString(1),
+                        batch_plant = GlobalClass.sql_dr.GetString(2)
+
+                    });
+
+                }
+
+
+                search_grid.ItemsSource = myVehicle;
+
+
+                GlobalClass.con.Close();
+
+            }
+            else if (GlobalOperations.doesVehicleExist(keyWord))
+            {
+                myVehicle = new();
+                GlobalClass.con.Open();
+                string command_select = "SELECT vehicle_code, vehicle_type, batch_plant FROM vehicle where vehicle_code = '" + keyWord + "';";
+                MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
+                GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+
+                while (GlobalClass.sql_dr.Read())
+                {
+
+                    myVehicle.Add(new SelectVehicle()
+                    {
+
+                        vehicle_code = GlobalClass.sql_dr.GetString(0),
+                        vehicle_type = GlobalClass.sql_dr.GetString(1),
+                        batch_plant = GlobalClass.sql_dr.GetString(2)
+
+                    });
+
+                }
+
+                
+                search_grid.ItemsSource = myVehicle;
+               
+
+                GlobalClass.con.Close();
+
             }
             else
             {
@@ -62,6 +117,12 @@ namespace Lafarge_WPF.Pages
         private void OnPreviewKeyDown2(object sender, KeyEventArgs e)
         {
             OnPreviewKeyDown(e);
+            if (e.Key == Key.Return)
+                {
+                find_search_Click(sender, e);
+                }
         }
+
+        
     }
 }
