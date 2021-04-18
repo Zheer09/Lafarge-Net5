@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,11 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Lafarge_WPF.Pages;
 using MySql.Data.MySqlClient;
+
 
 namespace Lafarge_WPF
 {
@@ -23,14 +27,19 @@ namespace Lafarge_WPF
 
         string vehicle_code;
         List<MaintenanceReportData> tempData = new();
+        int Vehicle_report_id;
+        int ReportIDMan = 0;
+
+        
 
         public SearchResult(string V_Code)
         {
             InitializeComponent();
             vehicle_code = V_Code;
             getVehicleData();
-
-
+            Vehicle_report_id = 0;
+            
+            
 
 
         }
@@ -60,7 +69,7 @@ namespace Lafarge_WPF
 
             GlobalClass.sql_dr.Close();
 
-
+            
             /*SELECT * FROM lafarge.maintenance_report;*/
             bool isThereData = false;
             tempData = new();
@@ -82,6 +91,8 @@ namespace Lafarge_WPF
                     }
                     
                         );
+
+                    ReportIDMan = GlobalClass.sql_dr.GetInt32(0);
                     isThereData = true;
                 }
             }
@@ -96,9 +107,36 @@ namespace Lafarge_WPF
 
         }
 
-        private void resultMaintenance_grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void Main_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
 
+        }
+
+        public void doubleClickRow(object sender, MouseButtonEventArgs e)
+        {
+            if (resultMaintenance_grid.SelectedItem == null)
+                return;
+
+            Vehicle_report_id = ((dynamic)resultMaintenance_grid.SelectedItem).report_id;
+
+
+
+
+            if (Vehicle_report_id == 0)
+            {
+                MessageBox.Show("You haven't selected any row!");
+            }
+            else 
+            {
+
+
+                SearchResultWindowSub hama = new SearchResultWindowSub(ReportIDMan);
+                hama.ShowDialog();
+                
+                
+
+            }
         }
     }
 }

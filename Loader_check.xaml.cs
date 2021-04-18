@@ -375,6 +375,7 @@ namespace Lafarge_WPF
                                 int isThereData = 0;
                                 if (GlobalClass.sql_dr.HasRows)
                                 {
+                                    GlobalClass.sql_dr.Read();
                                     isThereData = GlobalClass.sql_dr.GetInt32(0);
                                 }
                                 else
@@ -386,7 +387,7 @@ namespace Lafarge_WPF
                                 {
                                     string command_insert_3 = "INSERT INTO monthly_report (vehicle_code, 50hr_w1, w1_status, 50hr_w2, w2_status, 50hr_w3, w3_status, 50hr_w4, w4_status, workingHours, monthly_date ) VALUES " +
                                         " ('" + v_code.Text + "', '" + w1 + "', '" + w1_s + "',  '" + w2 + "', '" + w2_s + "', '" + w3 + "', '" + w3_s + "', '" + w4 + "', '" + w4_s + "', " + working_hours.Text + ", '" + s_d.ToString("yyyy-MM-dd HH:mm:ss") + "' );";
-
+                                    GlobalClass.sql_dr.Close();
                                     MySqlCommand sql_cmd_3 = new MySqlCommand(command_insert_3, GlobalClass.con);
                                     GlobalClass.sql_dr = sql_cmd_3.ExecuteReader();
                                     GlobalClass.sql_dr.Close();

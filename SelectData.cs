@@ -169,4 +169,10 @@ namespace Lafarge_WPF
 
     }
 
+    class MaintenanceFalseCheck
+    {
+        public string checkName { get; set; }
+        public int falseCheckIntRep { get; set; }
+    }
+
 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lafarge_WPF"
         mc:Ignorable="d"
+        x:Name="thisPage2"
         Title="SearchResult" Height="450" Width="800">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="27,36,0,0" Text="Vehicle Code: " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="81"/>
@@ -15,7 +16,7 @@
                   Background="Transparent" x:Name="resultMaintenance_grid"
                   ItemsSource="{Binding}" GridLinesVisibility="Horizontal" 
                   SelectionUnit="FullRow" SelectionMode="Extended" 
-                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"  SelectionChanged="resultMaintenance_grid_SelectionChanged"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" MouseDoubleClick="doubleClickRow"
                   
                   >
             <DataGrid.Columns>
@@ -33,7 +34,11 @@
                                           ShadowDepth="4" Opacity="0.3"/>
             </DataGrid.Effect>
         </DataGrid>
-
+        <Frame x:Name="Main"  Grid.Column="1" Margin="15" NavigationUIVisibility="Hidden" Navigated="Main_Navigated"/>
         
     </Grid>
+
+    
+
+
 </Window>
