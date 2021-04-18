@@ -158,19 +158,15 @@ namespace Lafarge_WPF
 
     }
 
-    /*monthly_id int primary key not null auto_increment,
-        vehicle_code varchar(10) references vehicle(vehicle_code),
-        50hr_w1 varchar(1),
-        w1_status varchar(30),
-        50hr_w2 varchar(1),
-        w2_status varchar(30),
-        50hr_w3 varchar(1),
-        w3_status varchar(30),
-        50hr_w4 varchar(1),
-        w4_status varchar(30),
-        300hr_m varchar(1),
-        monthly_status varchar(30),
-        workingHours float,
-        monthly_date timestamp*/
+    class MaintenanceReportData
+    {
+
+        public int report_id { get; set; }
+        public string check_type { get; set; }
+        public string vehicle_status { get; set; }
+        public string maintenance_date { get; set; }
+        public string vehicle_code { get; set; }
+
+    }
 
 }
