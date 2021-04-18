@@ -22,6 +22,7 @@ namespace Lafarge_WPF
     {
 
         string vehicle_code;
+        List<MaintenanceReportData> tempData = new();
 
         public SearchResult(string V_Code)
         {
@@ -58,6 +59,39 @@ namespace Lafarge_WPF
 
 
             GlobalClass.sql_dr.Close();
+
+
+            /*SELECT * FROM lafarge.maintenance_report;*/
+            bool isThereData = false;
+            tempData = new();
+
+            MySqlCommand SQLCMD2 = new MySqlCommand("SELECT * FROM maintenance_report where vehicle_code = '" + vehicle_code + "' ;", GlobalClass.con);
+
+            GlobalClass.sql_dr = SQLCMD2.ExecuteReader();
+
+            while (GlobalClass.sql_dr.Read())
+            {
+                if (GlobalClass.sql_dr.HasRows) {
+                    tempData.Add(new MaintenanceReportData
+                    {
+                        report_id = GlobalClass.sql_dr.GetInt32(0),
+                        check_type = GlobalClass.sql_dr.GetString(1),
+                        vehicle_status = GlobalClass.sql_dr.GetString(2),
+                        maintenance_date = GlobalClass.sql_dr.GetString(3),
+                        vehicle_code = GlobalClass.sql_dr.GetString(4)
+                    }
+                    
+                        );
+                    isThereData = true;
+                }
+            }
+
+            resultMaintenance_grid.ItemsSource = tempData;
+            if (!isThereData)
+            {
+                resultMaintenance_grid.Visibility = Visibility.Hidden;
+            }
+
             GlobalClass.con.Close();
 
         }

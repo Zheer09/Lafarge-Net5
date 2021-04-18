@@ -12,10 +12,28 @@
         <TextBlock HorizontalAlignment="Left" Margin="209,36,0,0" Text="Working Hours: " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="92"/>
         <TextBlock x:Name="workingHoursLabel" HorizontalAlignment="Left" Margin="306,36,0,0" Text="WH " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="92"/>
         <DataGrid Margin="10,87,10,10" 
-                  Background="Transparent" 
+                  Background="Transparent" x:Name="resultMaintenance_grid"
                   ItemsSource="{Binding}" GridLinesVisibility="Horizontal" 
                   SelectionUnit="FullRow" SelectionMode="Extended" 
                   AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
-                  />
+                  
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding report_id}"/>
+                <DataGridTextColumn Header="Vehicle Code" Binding="{Binding vehicle_code}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding vehicle_status}"/>
+                <DataGridTextColumn Header="Check Type" Binding="{Binding check_type}"/>
+                <DataGridTextColumn Header="Maintenance Date" Binding="{Binding maintenance_date}"/>
+
+
+            </DataGrid.Columns>
+            <DataGrid.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                                          RenderingBias="Quality" 
+                                          ShadowDepth="4" Opacity="0.3"/>
+            </DataGrid.Effect>
+        </DataGrid>
+
+        
     </Grid>
 </Window>
