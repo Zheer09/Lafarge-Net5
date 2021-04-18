@@ -45,7 +45,14 @@ namespace Lafarge_WPF
             MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
             DateTime_lable.Text = GlobalClass.GetNistTime().ToString("yyyy-MM-dd HH:mm");
 
-           
+            for (int i = 0; i < 16; i++)
+            {
+                pump_check[i] = true;
+            }
+
+            s_d = GlobalClass.GetNistTime();
+
+
         }
 
         private bool validateSubmit()
