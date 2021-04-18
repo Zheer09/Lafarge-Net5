@@ -306,8 +306,13 @@ namespace Lafarge_WPF
                     {
 
 
+                        MessageBox.Show("Here 1");
+
+
                         SelectVehicleProperty my_v_p = new SelectVehicleProperty();
                         my_v_p = GlobalOperations.getVehicleProperty(v_code.Text);
+
+                        MessageBox.Show("Here 2");
 
                         last_wh = my_v_p.working_hour;
                         wh_50 = my_v_p.wh_50h;
@@ -351,15 +356,20 @@ namespace Lafarge_WPF
 
                             GlobalOperations.Insert_into_vehicle_property(v_code.Text, double.Parse(working_hours.Text), wh_50, wh_300, s_d);
 
+                            MessageBox.Show("Here 3");
+
 
                             num_of_index_w_r = GlobalOperations.GetIndexNumber_w_r();
                             GlobalOperations.Insert_into_weekly_reports((1 + num_of_index_w_r), v_code.Text, " ", s_d);
 
+                            MessageBox.Show("Here 4");
 
                             string format = "yyyy-MM-dd HH:mm:ss";    // modify the format depending upon input required in the column in database 
                             string concatString = " ";
 
                             num_of_index_v_ch = GlobalOperations.GetIndexNumber_v_ch();
+
+                            MessageBox.Show("Here 5");
 
                             for (int i = 1; i < 17; i++)
                             {
@@ -388,7 +398,10 @@ namespace Lafarge_WPF
 
                             MySqlCommand sql_cmd = new MySqlCommand(command_insert, GlobalClass.con);
                             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
+
                             GlobalClass.con.Close();
+
+                            MessageBox.Show("Here 6");
 
                             int last_week_index = GlobalOperations.getLastWeeklyIndex(v_code.Text, (num_of_index_w_r + 1));
 
@@ -412,6 +425,8 @@ namespace Lafarge_WPF
                                 myIndex += 1;
                             }
                             myIndex = 0;
+
+                            MessageBox.Show("Here 7");
 
                             GlobalClass.con.Close();
 
@@ -465,6 +480,8 @@ namespace Lafarge_WPF
                             GlobalClass.con.Close();
 
 
+                            MessageBox.Show("Here 8");
+
 
 
                             if (h50_condition)
@@ -472,7 +489,7 @@ namespace Lafarge_WPF
                                 // insert into maintenance vehicle page
                                 GlobalOperations.insert_maintenance_vehicle(v_code.Text, (1 + num_of_index_w_r), "50 Hour Check", "Unchecked", s_d);
 
-
+                                MessageBox.Show("Here 9");
 
 
                                 string w1 = "", w2 = "", w3 = "", w4 = "";
@@ -524,8 +541,11 @@ namespace Lafarge_WPF
                                 int isThereData = 0;
                                 if (GlobalClass.sql_dr.HasRows)
                                 {
-                                    GlobalClass.sql_dr.Close();
+                                    GlobalClass.sql_dr.Read();
                                     isThereData = GlobalClass.sql_dr.GetInt32(0);
+
+                                    MessageBox.Show("Here 10");
+
                                 }
                                 else
                                 {
@@ -540,6 +560,9 @@ namespace Lafarge_WPF
                                     MySqlCommand sql_cmd_3 = new MySqlCommand(command_insert_3, GlobalClass.con);
                                     GlobalClass.sql_dr = sql_cmd_3.ExecuteReader();
                                     GlobalClass.sql_dr.Close();
+
+                                    MessageBox.Show("Here 11");
+
                                 }
                                 else if (isThereData == 1)
                                 {

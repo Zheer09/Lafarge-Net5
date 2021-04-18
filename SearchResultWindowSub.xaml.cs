@@ -57,7 +57,7 @@ namespace Lafarge_WPF
 
                 while (GlobalClass.sql_dr.Read())
                 {
-
+                    if(GlobalClass.sql_dr.GetInt32(0) >= 5)
                     tempData.Add(
                         new MaintenanceFalseCheck
                         {
