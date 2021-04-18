@@ -16,7 +16,7 @@ namespace Lafarge_WPF.Pages
 
         public static DateTime currentDate;
         DateTime startDate, endDate;
-        List<monthlyData> MonthlyStore = new List<monthlyData>();
+        List<monthlyData> MonthlyStore = new();
         public static int scrollTracker = 0;
 
 
@@ -161,7 +161,6 @@ namespace Lafarge_WPF.Pages
                         }
                     }
 
-                    
 
                     MonthlyStore.Add(new monthlyData()
                     {
@@ -196,10 +195,6 @@ namespace Lafarge_WPF.Pages
             }
 
             GlobalClass.con.Close();
-
-
-
-
 
         }
 
@@ -258,7 +253,6 @@ namespace Lafarge_WPF.Pages
                         }
                     }
 
-                   
 
                     MonthlyStore.Add(new monthlyData()
                     {

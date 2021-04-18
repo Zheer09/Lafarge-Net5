@@ -96,6 +96,9 @@ namespace Lafarge_WPF
 
         }
 
+        private void resultMaintenance_grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }

@@ -15,7 +15,7 @@
                   Background="Transparent" x:Name="resultMaintenance_grid"
                   ItemsSource="{Binding}" GridLinesVisibility="Horizontal" 
                   SelectionUnit="FullRow" SelectionMode="Extended" 
-                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"  SelectionChanged="resultMaintenance_grid_SelectionChanged"
                   
                   >
             <DataGrid.Columns>
