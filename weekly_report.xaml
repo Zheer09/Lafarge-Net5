@@ -29,7 +29,7 @@
           AutoGenerateColumns="False" CanUserDeleteRows="False" 
           HorizontalScrollBarVisibility="Auto"
           VerticalScrollBarVisibility="Auto"
-          HorizontalAlignment="Stretch"
+          HorizontalAlignment="Center"
           VerticalAlignment="Stretch" GridLinesVisibility="Horizontal"
           ScrollViewer.CanContentScroll="True" 
           ScrollViewer.HorizontalScrollBarVisibility="Visible" Foreground="Black">
