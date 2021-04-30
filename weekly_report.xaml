@@ -35,22 +35,22 @@
           ScrollViewer.HorizontalScrollBarVisibility="Visible" Foreground="Black">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Vehicle Code" Binding="{Binding v_codee}"/>
-                    <DataGridTextColumn Header="P1" Binding="{Binding P1}"/>
-                    <DataGridTextColumn Header="P2" Binding="{Binding P2}"/>
-                    <DataGridTextColumn Header="P3" Binding="{Binding P3}"/>
-                    <DataGridTextColumn Header="P4" Binding="{Binding P4}"/>
-                    <DataGridTextColumn Header="P5" Binding="{Binding P5}"/>
-                    <DataGridTextColumn Header="P6" Binding="{Binding P6}"/>
-                    <DataGridTextColumn Header="P7" Binding="{Binding P7}"/>
-                    <DataGridTextColumn Header="P8" Binding="{Binding P8}"/>
-                    <DataGridTextColumn Header="P9" Binding="{Binding P9}"/>
-                    <DataGridTextColumn Header="P10" Binding="{Binding P10}"/>
-                    <DataGridTextColumn Header="P11" Binding="{Binding P11}"/>
-                    <DataGridTextColumn Header="P12" Binding="{Binding P12}"/>
-                    <DataGridTextColumn Header="P13" Binding="{Binding P13}"/>
-                    <DataGridTextColumn Header="P14" Binding="{Binding P14}"/>
-                    <DataGridTextColumn Header="P15" Binding="{Binding P15}"/>
-                    <DataGridTextColumn Header="P16" Binding="{Binding P16}"/>
+                    <DataGridTextColumn Header="Engine oil level" Binding="{Binding P1}"/>
+                    <DataGridTextColumn Header="Hydraulic oil level" Binding="{Binding P2}"/>
+                    <DataGridTextColumn Header="Water level" Binding="{Binding P3}"/>
+                    <DataGridTextColumn Header="Tires" Binding="{Binding P4}"/>
+                    <DataGridTextColumn Header="Lights" Binding="{Binding P5}"/>
+                    <DataGridTextColumn Header="Seat belt" Binding="{Binding P6}"/>
+                    <DataGridTextColumn Header="Front and back alarms" Binding="{Binding P7}"/>
+                    <DataGridTextColumn Header="Fire extinguisher" Binding="{Binding P8}"/>
+                    <DataGridTextColumn Header="Mirrors" Binding="{Binding P9}"/>
+                    <DataGridTextColumn Header="Windshield and its scrapers" Binding="{Binding P10}"/>
+                    <DataGridTextColumn Header="Brake" Binding="{Binding P11}"/>
+                    <DataGridTextColumn Header="Legs movement" Binding="{Binding P12}"/>
+                    <DataGridTextColumn Header="All leakages" Binding="{Binding P13}"/>
+                    <DataGridTextColumn Header="Batteries and charging" Binding="{Binding P14}"/>
+                    <DataGridTextColumn Header="Fuel level" Binding="{Binding P15}"/>
+                    <DataGridTextColumn Header="All booms movement , Bucket cylinder jack , Water tank" Binding="{Binding P16}"/>
                     <DataGridTextColumn Header="Note" Binding="{Binding weeklyNote}">
                         
                     </DataGridTextColumn>
