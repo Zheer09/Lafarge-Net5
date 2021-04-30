@@ -29,10 +29,10 @@
             </Style>
         </ResourceDictionary>
     </Page.Resources>
-    <Viewbox>
-        <Canvas Width="1920" Height="1080">
+    <Viewbox Margin="0,-81,0,-39">
+        
             <Grid Width="1920" Height="1080">
-                <Grid>
+            <Grid Margin="0,0,0,-102">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="158"/>
                         <RowDefinition Height="40*"/>
@@ -472,6 +472,6 @@
 
                 </Grid>
             </Grid>
-        </Canvas>
+       
     </Viewbox>
 </Page>

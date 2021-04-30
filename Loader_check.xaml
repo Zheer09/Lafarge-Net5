@@ -8,7 +8,7 @@
       xmlns:local="clr-namespace:Lafarge_WPF"
       xmlns:local1="clr-namespace:Lafarge_WPF.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="{x:Static SystemParameters.PrimaryScreenHeight}"
+      d:DesignHeight="849"
       d:DesignWidth="{x:Static SystemParameters.PrimaryScreenWidth}"
       
       Title="Loader_check">
@@ -30,449 +30,448 @@
             </Style>
         </ResourceDictionary>
     </Page.Resources>
-    <Viewbox>
-        <Canvas Width="1920" Height="1080">
-            <Grid Width="1920" Height="1080">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="158"/>
-                        <RowDefinition Height="40*"/>
-                        <RowDefinition Height="48*"/>
-                        <RowDefinition Height="48*"/>
-                        <RowDefinition Height="48*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                        <RowDefinition Height="47*"/>
-                    </Grid.RowDefinitions>
+    <Viewbox Margin="0,-81,0,-39" >
+        <Grid Width="1920" Height="1080">
+            <Grid Margin="0,0,0,-102">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="158"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="48*"/>
+                    <RowDefinition Height="48*"/>
+                    <RowDefinition Height="48*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="375*"/>
-                        <ColumnDefinition Width="182*"/>
-                        <ColumnDefinition Width="208*"/>
-                        <ColumnDefinition Width="735*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="375*"/>
+                    <ColumnDefinition Width="182*"/>
+                    <ColumnDefinition Width="208*"/>
+                    <ColumnDefinition Width="735*"/>
+                </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.ColumnSpan="4">
+                <StackPanel Grid.ColumnSpan="4">
 
-                        <Grid Margin="0,0,0,-2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                    <Grid Margin="0,0,0,-2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="170"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
 
-                            </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="16*"/>
-                                <RowDefinition Height="11*"/>
-                                <RowDefinition Height="12*"/>
-                                <RowDefinition Height="11*"/>
-                            </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16*"/>
+                            <RowDefinition Height="11*"/>
+                            <RowDefinition Height="12*"/>
+                            <RowDefinition Height="11*"/>
+                        </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Column="0" Foreground="Green" FontSize="35" FontWeight="SemiBold" 
+                        <TextBlock Grid.Column="0" Foreground="Green" FontSize="35" FontWeight="SemiBold" 
                       HorizontalAlignment="Left" Text="Ready Mix" Width="165"/>
 
-                            <TextBlock Grid.Column="1"  Foreground="Black" FontSize="35" FontWeight="SemiBold" 
+                        <TextBlock Grid.Column="1"  Foreground="Black" FontSize="35" FontWeight="SemiBold" 
                        VerticalAlignment="Top" HorizontalAlignment="Right"  Text="First Level Inspection" Height="47" Margin="0,0,10,0" Width="333"/>
 
-                            <TextBlock Grid.Row="1" Foreground="Black" FontSize="25" FontWeight="SemiBold" 
+                        <TextBlock Grid.Row="1" Foreground="Black" FontSize="25" FontWeight="SemiBold" 
                       HorizontalAlignment="Left" Text="Batch Plant:" Width="134" Margin="31,0,0,0">
-                                <TextBlock.Effect>
-                                    <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                                </TextBlock.Effect>
-                            </TextBlock>
+                            </TextBlock.Effect>
+                        </TextBlock>
 
-                            <TextBlock Grid.Row="2" Foreground="Black" FontSize="25" FontWeight="SemiBold" 
+                        <TextBlock Grid.Row="2" Foreground="Black" FontSize="25" FontWeight="SemiBold" 
                       HorizontalAlignment="Left" Text="Code:" Width="65" Margin="100,0,0,0">
-                                <TextBlock.Effect>
-                                    <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                                </TextBlock.Effect>
-                            </TextBlock>
+                            </TextBlock.Effect>
+                        </TextBlock>
 
-                            <TextBlock  Grid.Row="3" Foreground="Black" FontSize="20" FontWeight="SemiBold" 
+                        <TextBlock  Grid.Row="3" Foreground="Black" FontSize="20" FontWeight="SemiBold" 
                       HorizontalAlignment="Left" Text="Working Hours: " Width="150" Margin="20,0,0,0">
-                                <TextBlock.Effect>
-                                    <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                                </TextBlock.Effect>
-                            </TextBlock>
+                            </TextBlock.Effect>
+                        </TextBlock>
 
-                            <TextBlock Grid.Column="2"  Grid.Row="2" Foreground="Black" FontSize="25" FontWeight="SemiBold" 
+                        <TextBlock Grid.Column="2"  Grid.Row="2" Foreground="Black" FontSize="25" FontWeight="SemiBold" 
                       HorizontalAlignment="Center" Text="     Date:  " Width="126" Margin="225,2,312,1" RenderTransformOrigin="0.5,0.5"/>
 
-                            <TextBlock x:Name="DateTime_lable" Grid.Column="2" Grid.Row="2" Text="DateTime_Text" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="437,0,0,0"/>
+                        <TextBlock x:Name="DateTime_lable" Grid.Column="2" Grid.Row="2" Text="DateTime_Text" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="437,0,0,0"/>
 
 
-                            <Image Height="60" Grid.Column="3" Source="/image/lafarge_icone.png"/>
+                        <Image Height="60" Grid.Column="3" Source="/image/lafarge_icone.png"/>
 
-                            <TextBox Foreground="Black" Grid.Row="1" Grid.Column="1" x:Name="batch_plant" Background="White"
+                        <TextBox Foreground="Black" Grid.Row="1" Grid.Column="1" x:Name="batch_plant" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="batch Plant"  BorderBrush="{x:Null}" Margin="0,0,332,4" Height="29">
-                                <TextBox.Effect>
-                                    <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                            <TextBox.Effect>
+                                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                                </TextBox.Effect>
-                            </TextBox>
+                            </TextBox.Effect>
+                        </TextBox>
 
-                            <TextBox Foreground="Black" Grid.Row="2" Grid.Column="1" x:Name="v_code" Background="White"
+                        <TextBox Foreground="Black" Grid.Row="2" Grid.Column="1" x:Name="v_code" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Code"  BorderBrush="{x:Null}" Margin="0,1,332,5" Height="30">
-                                <TextBox.Effect>
-                                    <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                            <TextBox.Effect>
+                                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                                </TextBox.Effect>
-                            </TextBox>
+                            </TextBox.Effect>
+                        </TextBox>
 
-                            <TextBox Foreground="Black" Grid.Row="3" Grid.Column="1" x:Name="working_hours" Background="White"
+                        <TextBox Foreground="Black" Grid.Row="3" Grid.Column="1" x:Name="working_hours" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Counter"  BorderBrush="{x:Null}" Margin="0,1,332,5" Height="28">
-                                <TextBox.Effect>
-                                    <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                            <TextBox.Effect>
+                                <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                                </TextBox.Effect>
-                            </TextBox>
+                            </TextBox.Effect>
+                        </TextBox>
 
-                        </Grid>
+                    </Grid>
 
-                    </StackPanel>
+                </StackPanel>
 
-                    <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Row="1" Text="    Checks" VerticalAlignment="Center"
+                <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Row="1" Text="    Checks" VerticalAlignment="Center"
                        HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="25" Height="36" Margin="131,8,93,50" Width="151" Grid.RowSpan="2"/>
 
-                    <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="1" FontWeight="SemiBold" Text="     Result" VerticalAlignment="Center"
+                <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="2" Grid.Row="1" FontWeight="SemiBold" Text="     Result" VerticalAlignment="Center"
                        HorizontalAlignment="Center" FontSize="25" Height="34" Margin="30,2,49,7" Width="129" />
 
-                    <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="3" Grid.Row="1" FontWeight="SemiBold" Text="       Note" VerticalAlignment="Center"
+                <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="3" Grid.Row="1" FontWeight="SemiBold" Text="       Note" VerticalAlignment="Center"
                        HorizontalAlignment="Center" FontSize="25" Height="34" Margin="284,2,293,7" Width="158" />
 
-                    <!-- P1-->
-                    <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="0" Grid.Row="2" FontWeight="SemiBold" Text="Check engine oil level " VerticalAlignment="Center"
+                <!-- P1-->
+                <TextBlock VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.Column="0" Grid.Row="2" FontWeight="SemiBold" Text="Check engine oil level " VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox  VirtualizingStackPanel.VirtualizationMode="Recycling" Foreground="Black" Grid.Row="2" Grid.Column="3" x:Name="Note_p1" Background="White"
+                <TextBox  VirtualizingStackPanel.VirtualizationMode="Recycling" Foreground="Black" Grid.Row="2" Grid.Column="3" x:Name="Note_p1" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P1" Grid.Column="2" Grid.Row="1" YesButtonChecked="P1_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P1" Grid.Column="2" Grid.Row="1" YesButtonChecked="P1_YesButtonChecked" 
                                         NoButtonChecked="P1_NoButtonChecked" Margin="0,39,0,50" Grid.RowSpan="3" />
 
-                    <!--P2-->
-                    <TextBlock Grid.Column="0" Grid.Row="3" FontWeight="SemiBold" Text="Check hydraulic oil level" VerticalAlignment="Center"
+                <!--P2-->
+                <TextBlock Grid.Column="0" Grid.Row="3" FontWeight="SemiBold" Text="Check hydraulic oil level" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="3" Grid.Column="3" x:Name="Note_p2" Background="White"
+                <TextBox Foreground="Black" Grid.Row="3" Grid.Column="3" x:Name="Note_p2" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P2" Grid.Column="2" Grid.Row="2" YesButtonChecked="P2_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P2" Grid.Column="2" Grid.Row="2" YesButtonChecked="P2_YesButtonChecked" 
                                         NoButtonChecked="P2_NoButtonChecked" Margin="0,48,0,49" Grid.RowSpan="3" />
 
-                    <!--P3-->
-                    <TextBlock Grid.Column="0" Grid.Row="4" FontWeight="SemiBold" Text="Check water level" VerticalAlignment="Center"
+                <!--P3-->
+                <TextBlock Grid.Column="0" Grid.Row="4" FontWeight="SemiBold" Text="Check water level" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="4" Grid.Column="3" x:Name="Note_p3" Background="White"
+                <TextBox Foreground="Black" Grid.Row="4" Grid.Column="3" x:Name="Note_p3" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P3" Grid.Column="2" Grid.Row="3" YesButtonChecked="P3_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P3" Grid.Column="2" Grid.Row="3" YesButtonChecked="P3_YesButtonChecked" 
                                         NoButtonChecked="P3_NoButtonChecked" Margin="0,48,0,49" Grid.RowSpan="3" />
 
-                    <!--P4-->
-                    <TextBlock Grid.Column="0" Grid.Row="5" FontWeight="SemiBold" Text="Check tires" VerticalAlignment="Center"
+                <!--P4-->
+                <TextBlock Grid.Column="0" Grid.Row="5" FontWeight="SemiBold" Text="Check tires" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8,0,7" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="5" Grid.Column="3" x:Name="Note_p4" Background="White"
+                <TextBox Foreground="Black" Grid.Row="5" Grid.Column="3" x:Name="Note_p4" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P4" Grid.Column="2" Grid.Row="4" YesButtonChecked="P4_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P4" Grid.Column="2" Grid.Row="4" YesButtonChecked="P4_YesButtonChecked" 
                                         NoButtonChecked="P4_NoButtonChecked" Margin="0,48,0,47" Grid.RowSpan="3" />
 
 
-                    <!--P5-->
-                    <TextBlock Grid.Column="0" Grid.Row="6" FontWeight="SemiBold" Text="Check lights" VerticalAlignment="Center"
+                <!--P5-->
+                <TextBlock Grid.Column="0" Grid.Row="6" FontWeight="SemiBold" Text="Check lights" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8,0,7" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="6" Grid.Column="3" x:Name="Note_p5" Background="White"
+                <TextBox Foreground="Black" Grid.Row="6" Grid.Column="3" x:Name="Note_p5" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P5" Grid.Column="2" Grid.Row="5" YesButtonChecked="P5_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P5" Grid.Column="2" Grid.Row="5" YesButtonChecked="P5_YesButtonChecked" 
                                         NoButtonChecked="P5_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
 
-                    <!--P6-->
-                    <TextBlock Grid.Column="0" Grid.Row="7" FontWeight="SemiBold" Text="Check seat belt" VerticalAlignment="Center"
+                <!--P6-->
+                <TextBlock Grid.Column="0" Grid.Row="7" FontWeight="SemiBold" Text="Check seat belt" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8,0,7" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="7" Grid.Column="3" x:Name="Note_p6" Background="White"
+                <TextBox Foreground="Black" Grid.Row="7" Grid.Column="3" x:Name="Note_p6" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P6" Grid.Column="2" Grid.Row="6" YesButtonChecked="P6_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P6" Grid.Column="2" Grid.Row="6" YesButtonChecked="P6_YesButtonChecked" 
                                         NoButtonChecked="P6_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
 
-                    <!--P7-->
-                    <TextBlock Grid.Column="0" Grid.Row="8" FontWeight="SemiBold" Text="Check front and back alarms" VerticalAlignment="Center"
+                <!--P7-->
+                <TextBlock Grid.Column="0" Grid.Row="8" FontWeight="SemiBold" Text="Check front and back alarms" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="8" Grid.Column="3" x:Name="Note_p7" Background="White"
+                <TextBox Foreground="Black" Grid.Row="8" Grid.Column="3" x:Name="Note_p7" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P7" Grid.Column="2" Grid.Row="7" YesButtonChecked="P7_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P7" Grid.Column="2" Grid.Row="7" YesButtonChecked="P7_YesButtonChecked" 
                                         NoButtonChecked="P7_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
 
-                    <!--P8-->
-                    <TextBlock Grid.Column="0" Grid.Row="9" FontWeight="SemiBold" Text="Check fire extinguisher" VerticalAlignment="Center"
+                <!--P8-->
+                <TextBlock Grid.Column="0" Grid.Row="9" FontWeight="SemiBold" Text="Check fire extinguisher" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="9" Grid.Column="3" x:Name="Note_p8" Background="White"
+                <TextBox Foreground="Black" Grid.Row="9" Grid.Column="3" x:Name="Note_p8" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P8" Grid.Column="2" Grid.Row="8" YesButtonChecked="P8_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P8" Grid.Column="2" Grid.Row="8" YesButtonChecked="P8_YesButtonChecked" 
                                         NoButtonChecked="P8_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
 
-                    <!--P9-->
-                    <TextBlock Grid.Column="0" Grid.Row="10" FontWeight="SemiBold" Text="Check mirrors" VerticalAlignment="Center"
+                <!--P9-->
+                <TextBlock Grid.Column="0" Grid.Row="10" FontWeight="SemiBold" Text="Check mirrors" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="10" Grid.Column="3" x:Name="Note_p9" Background="White"
+                <TextBox Foreground="Black" Grid.Row="10" Grid.Column="3" x:Name="Note_p9" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P9" Grid.Column="2" Grid.Row="9" YesButtonChecked="P9_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P9" Grid.Column="2" Grid.Row="9" YesButtonChecked="P9_YesButtonChecked" 
                                         NoButtonChecked="P9_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
-                    <!--P10-->
-                    <TextBlock Grid.Column="0" Grid.Row="11" FontWeight="SemiBold" Text="Check windshield and its scrapers" VerticalAlignment="Center"
+                <!--P10-->
+                <TextBlock Grid.Column="0" Grid.Row="11" FontWeight="SemiBold" Text="Check windshield and its scrapers" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="11" Grid.Column="3" x:Name="Note_p10" Background="White"
+                <TextBox Foreground="Black" Grid.Row="11" Grid.Column="3" x:Name="Note_p10" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P10" Grid.Column="2" Grid.Row="10" YesButtonChecked="P10_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P10" Grid.Column="2" Grid.Row="10" YesButtonChecked="P10_YesButtonChecked" 
                                         NoButtonChecked="P10_NoButtonChecked" Margin="0,47,0,47" Grid.RowSpan="3" />
 
 
-                    <!--P11-->
-                    <TextBlock Grid.Column="0" Grid.Row="12" FontWeight="SemiBold" Text="Check brake" VerticalAlignment="Center"
+                <!--P11-->
+                <TextBlock Grid.Column="0" Grid.Row="12" FontWeight="SemiBold" Text="Check brake" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="12" Grid.Column="3" x:Name="Note_p11" Background="White"
+                <TextBox Foreground="Black" Grid.Row="12" Grid.Column="3" x:Name="Note_p11" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P11" Grid.Column="2" Grid.Row="11" YesButtonChecked="P11_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P11" Grid.Column="2" Grid.Row="11" YesButtonChecked="P11_YesButtonChecked" 
                                         NoButtonChecked="P11_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
 
-                    <!--P12-->
-                    <TextBlock Grid.Column="0" Grid.Row="13" FontWeight="SemiBold" Text="Check whole body and bucket" VerticalAlignment="Center"
+                <!--P12-->
+                <TextBlock Grid.Column="0" Grid.Row="13" FontWeight="SemiBold" Text="Check whole body and bucket" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="13" Grid.Column="3" x:Name="Note_p12" Background="White"
+                <TextBox Foreground="Black" Grid.Row="13" Grid.Column="3" x:Name="Note_p12" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P12" Grid.Column="2" Grid.Row="12" YesButtonChecked="P12_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P12" Grid.Column="2" Grid.Row="12" YesButtonChecked="P12_YesButtonChecked" 
                                         NoButtonChecked="P12_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
-                    <!--P13-->
-                    <TextBlock Grid.Column="0" Grid.Row="14" FontWeight="SemiBold" Text="Check all leakages" VerticalAlignment="Center"
+                <!--P13-->
+                <TextBlock Grid.Column="0" Grid.Row="14" FontWeight="SemiBold" Text="Check all leakages" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="14" Grid.Column="3" x:Name="Note_p13" Background="White"
+                <TextBox Foreground="Black" Grid.Row="14" Grid.Column="3" x:Name="Note_p13" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P13" Grid.Column="2" Grid.Row="13" YesButtonChecked="P13_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P13" Grid.Column="2" Grid.Row="13" YesButtonChecked="P13_YesButtonChecked" 
                                         NoButtonChecked="P13_NoButtonChecked" Margin="0,46,0,49" Grid.RowSpan="3" />
 
 
-                    <!--P14-->
-                    <TextBlock Grid.Column="0" Grid.Row="15" FontWeight="SemiBold" Text="Check batteries and charging" VerticalAlignment="Center"
+                <!--P14-->
+                <TextBlock Grid.Column="0" Grid.Row="15" FontWeight="SemiBold" Text="Check batteries and charging" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="15" Grid.Column="3" x:Name="Note_p14" Background="White"
+                <TextBox Foreground="Black" Grid.Row="15" Grid.Column="3" x:Name="Note_p14" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P14" Grid.Column="2" Grid.Row="14" YesButtonChecked="P14_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P14" Grid.Column="2" Grid.Row="14" YesButtonChecked="P14_YesButtonChecked" 
                                         NoButtonChecked="P14_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
 
-                    <!--P15-->
-                    <TextBlock Grid.Column="0" Grid.Row="16" FontWeight="SemiBold" Text="Check fuel level" VerticalAlignment="Center"
+                <!--P15-->
+                <TextBlock Grid.Column="0" Grid.Row="16" FontWeight="SemiBold" Text="Check fuel level" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="16" Grid.Column="3" x:Name="Note_p15" Background="White"
+                <TextBox Foreground="Black" Grid.Row="16" Grid.Column="3" x:Name="Note_p15" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P15" Grid.Column="2" Grid.Row="15" YesButtonChecked="P15_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P15" Grid.Column="2" Grid.Row="15" YesButtonChecked="P15_YesButtonChecked" 
                                         NoButtonChecked="P15_NoButtonChecked" Margin="0,47,0,48" Grid.RowSpan="3" />
 
 
-                    <!--p16-->
+                <!--p16-->
 
-                    <TextBlock Grid.Column="0" Grid.Row="17" FontWeight="SemiBold" Text="Check bucket cylinder jack" VerticalAlignment="Center"
+                <TextBlock Grid.Column="0" Grid.Row="17" FontWeight="SemiBold" Text="Check bucket cylinder jack" VerticalAlignment="Center"
                        HorizontalAlignment="Left" FontSize="25" Height="32" Margin="0,8" Width="375" />
 
-                    <TextBox Foreground="Black" Grid.Row="17" Grid.Column="3" x:Name="Note_p16" Background="White"
+                <TextBox Foreground="Black" Grid.Row="17" Grid.Column="3" x:Name="Note_p16" Background="White"
                          TextAlignment="Left" VerticalAlignment="Center" 
                          materialDesign:HintAssist.Hint="Note"  BorderBrush="{x:Null}" Margin="10,6,23,8" Height="34">
-                        <TextBox.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" 
                                           RenderingBias="Quality" 
                                           ShadowDepth="4" Opacity="0.2"/>
-                        </TextBox.Effect>
-                    </TextBox>
+                    </TextBox.Effect>
+                </TextBox>
 
-                    <local1:YesNoSwitch x:Name="P16" Grid.Column="2" Grid.Row="16" YesButtonChecked="P16_YesButtonChecked" 
+                <local1:YesNoSwitch x:Name="P16" Grid.Column="2" Grid.Row="16" YesButtonChecked="P16_YesButtonChecked" 
                                         NoButtonChecked="P16_NoButtonChecked" Margin="0,46,0,48" Grid.RowSpan="3" />
 
 
 
-                    <Button x:Name="Submit" Grid.Column="4" Grid.Row="18" Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
+                <Button x:Name="Submit" Grid.Column="4" Grid.Row="18" Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
                             materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="20" BorderBrush="#00955E"
                             Click="Submit_Click" Content="Submit" >
-                        <Button.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.30"/>
-                        </Button.Effect>
+                    <Button.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.30"/>
+                    </Button.Effect>
 
-                    </Button>
+                </Button>
 
-                    <Button x:Name="Goback" Grid.Column="0" Grid.Row="18" Width="80" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
+                <Button x:Name="Goback" Grid.Column="0" Grid.Row="18" Width="80" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
                             materialDesign:ButtonAssist.CornerRadius="5" BorderThickness="20" BorderBrush="#00955E"
                             Click="Goback_click" Content="Goback" >
-                        <Button.Effect>
-                            <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.30"/>
-                        </Button.Effect>
+                    <Button.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="3" Opacity="0.30"/>
+                    </Button.Effect>
 
-                    </Button>
-
-
+                </Button>
 
 
 
-                </Grid>
+
+
             </Grid>
-        </Canvas>
+        </Grid>
     </Viewbox>
+
 </Page>
