@@ -102,6 +102,7 @@ namespace Lafarge_WPF
         private void Account_btn_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new Pages.Account_info_Page();
+            // delete some unnecessary stuff;
 
         }
 

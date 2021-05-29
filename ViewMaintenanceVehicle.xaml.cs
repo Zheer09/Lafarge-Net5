@@ -13,16 +13,30 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 
+
+
+
+
+
 namespace Lafarge_WPF
 {
     /// <summary>
     /// Interaction logic for ViewMaintenanceVehicle.xaml
     /// </summary>
+    /// 
+
+
+
+
     public partial class ViewMaintenanceVehicle : Window
     {
 
         SelectMaintenanceVehicle mv = new SelectMaintenanceVehicle();
         List<WeeklyData> VData = new List<WeeklyData>();
+
+        public static int[] AllFalseCheck = new int[16];
+
+        
 
 
         public ViewMaintenanceVehicle(string maintenanceVehicleIndex, string weekly_id)
@@ -30,14 +44,14 @@ namespace Lafarge_WPF
             InitializeComponent();
 
             GlobalClass.con.Open();
- 
-                string command_select = "select mv.maintenance_id, mv.weekly_index, mv.vehicle_code,  " +
-          " mv.vehicle_status , mv.Check_type, " +
-          " mv.maintenance_date " +
-         
-            " from maintenance_vehicle as mv " +
-            " join vehicle as lv on mv.vehicle_code = lv.vehicle_code " +
-            "  where mv.maintenance_id = "+ maintenanceVehicleIndex +" ; ";
+
+            string command_select = "select mv.maintenance_id, mv.weekly_index, mv.vehicle_code,  " +
+      " mv.vehicle_status , mv.Check_type, " +
+      " mv.maintenance_date " +
+
+        " from maintenance_vehicle as mv " +
+        " join vehicle as lv on mv.vehicle_code = lv.vehicle_code " +
+        "  where mv.maintenance_id = " + maintenanceVehicleIndex + " ; ";
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
 
@@ -48,11 +62,11 @@ namespace Lafarge_WPF
                 mv.vehicle_code = GlobalClass.sql_dr.GetString(2);
                 mv.vehicle_status = GlobalClass.sql_dr.GetString(3);
                 mv.Check_type = GlobalClass.sql_dr.GetString(4);
-                mv.maintenance_date = GlobalClass.sql_dr.GetDateTime(5) ;
+                mv.maintenance_date = GlobalClass.sql_dr.GetDateTime(5);
 
             }
 
-            
+
 
             //m_iid.Content = mv.maintenance_id;
             v_cc.Content = mv.vehicle_code;
@@ -64,7 +78,7 @@ namespace Lafarge_WPF
 
             GlobalClass.sql_dr.Close();
 
-            int[] AllFalseCheck = new int[16];
+            //int[] AllFalseCheck = new int[16];
             int ii = 0;
 
             /*
@@ -95,26 +109,26 @@ namespace Lafarge_WPF
             GlobalClass.con.Close();
 
             VData.Add(new WeeklyData()
-                        {
-                            v_codee = mv.vehicle_code,
-                            P1 = AllFalseCheck[0],
-                            P2 = AllFalseCheck[1],
-                            P3 = AllFalseCheck[ 2],
-                            P4 = AllFalseCheck[3],
-                            P5 = AllFalseCheck[ 4],
-                            P6 = AllFalseCheck[ 5],
-                            P7 = AllFalseCheck[ 6],
-                            P8 = AllFalseCheck[ 7],
-                            P9 = AllFalseCheck[ 8],
-                            P10 = AllFalseCheck[ 9],
-                            P11 = AllFalseCheck[ 10],
-                            P12 = AllFalseCheck[ 11],
-                            P13 = AllFalseCheck[ 12],
-                            P14 = AllFalseCheck[ 13],
-                            P15 = AllFalseCheck[ 14],
-                            P16 = AllFalseCheck[ 15],
-                            weeklyNote = ""
-                        });
+            {
+                v_codee = mv.vehicle_code,
+                P1 = AllFalseCheck[0],
+                P2 = AllFalseCheck[1],
+                P3 = AllFalseCheck[2],
+                P4 = AllFalseCheck[3],
+                P5 = AllFalseCheck[4],
+                P6 = AllFalseCheck[5],
+                P7 = AllFalseCheck[6],
+                P8 = AllFalseCheck[7],
+                P9 = AllFalseCheck[8],
+                P10 = AllFalseCheck[9],
+                P11 = AllFalseCheck[10],
+                P12 = AllFalseCheck[11],
+                P13 = AllFalseCheck[12],
+                P14 = AllFalseCheck[13],
+                P15 = AllFalseCheck[14],
+                P16 = AllFalseCheck[15],
+                weeklyNote = ""
+            });
 
             m_v_grid.ItemsSource = VData;
 
@@ -127,13 +141,43 @@ namespace Lafarge_WPF
             }
         }
 
-
-      /*  void fillGrid()
+        private void view_notes_click(object sender, RoutedEventArgs e)
         {
-            //WeeklyData VData = new WeeklyData();
 
-        }*/
+            List<int> checksData = new List<int>();
+
+               for (int i = 0; i < 16; i++)
+               {
+
+                   if ( AllFalseCheck[i] >= 5 )
+                   {
+
+                    // not sure about this - 
+                    checksData.Add(i+1);
+
+                   }
+
+               }
 
 
+            ShowNotes vmv = new ShowNotes(mv.vehicle_code, mv.maintenance_date, checksData);
+
+            vmv.ShowDialog();
+
+
+
+
+        } 
+
+            /*  void fillGrid()
+              {
+                  //WeeklyData VData = new WeeklyData();
+
+              }*/
+
+
+        }
     }
-}
+
+
+

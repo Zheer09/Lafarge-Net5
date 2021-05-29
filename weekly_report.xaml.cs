@@ -67,27 +67,31 @@ namespace Lafarge_WPF.Pages
             GlobalClass.sql_dr.Close();
 
             //MessageBox.Show("got here 2");
-
-            if (dayNum == 6 || dayNum == 7)
+            DateTime lastWeek;
+            int lastFriday = 0;
+            if ( dayNum == 7)
             {
-                MessageBox.Show("Today is not a working day!");
-                GlobalClass.con.Close();
+                dayNum = 7;
+                lastFriday = 6;
+
             }
             else
             {
+                dayNum += 7;
+                lastFriday = dayNum + 1;
+            }
 
-                DateTime lastWeek = currentDate.AddDays(-(dayNum + 2));
+            DateTime temp = currentDate;
+                lastWeek = temp.AddDays(-dayNum);
 
 
                 //numOfV = GlobalOperations.num_of_vehicles();
-                /////
-                //GlobalClass.con.Open();
-                //SELECT COUNT(*) FROM cities;
-                DateTime tempdate = lastWeek.AddDays(-5);
-                string command_select = "SELECT COUNT(*) FROM vehicle as a " +
+               
+                DateTime tempdate = lastWeek.AddDays(6);
+                string command_select = "SELECT COUNT(distinct a.vehicle_code) FROM vehicle as a" +
                     " inner join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
-                    " where b.weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
-                    " and b.weekly_Date >= '"+ tempdate.ToString("yyyy-MM-dd") +"' ;";
+                    " where b.weekly_Date >= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                    " and b.weekly_Date <= '"+ tempdate.ToString("yyyy-MM-dd") +"' ;";
                 MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
                 GlobalClass.sql_dr = sql_cmd.ExecuteReader();
                 GlobalClass.sql_dr.Read();
@@ -95,13 +99,15 @@ namespace Lafarge_WPF.Pages
                 numOfV = GlobalClass.sql_dr.GetInt16(0);
                 //GlobalClass.con.Close();
                 GlobalClass.sql_dr.Close();
-                ///////////////
-                ///
+            ///////////////
+            ///
 
-                //MessageBox.Show("got here 3");
+            //MessageBox.Show("got here 3");
+            List<WeeklyData> PrevWData = new List<WeeklyData>();
 
-                if (numOfV > 0)
-                {
+
+            if (numOfV > 0)
+            {
 
 
 
@@ -118,10 +124,10 @@ namespace Lafarge_WPF.Pages
 
 
                     //GlobalClass.con.Open();
-                    string cmdtxtt = " select a.vehicle_code from vehicle as a" +
+                    string cmdtxtt = "SELECT distinct a.vehicle_code FROM vehicle as a " +
                         " join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
-                         " where b.weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
-                    " and b.weekly_Date >= '" + tempdate.ToString("yyyy-MM-dd") + "' ;";
+                         " where b.weekly_Date >= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                    " and b.weekly_Date <= '" + tempdate.ToString("yyyy-MM-dd") + "' ;";
                     MySqlCommand cmdd = new MySqlCommand(cmdtxtt, GlobalClass.con);
                     GlobalClass.sql_dr = cmdd.ExecuteReader();
                     while (GlobalClass.sql_dr.Read())
@@ -140,7 +146,7 @@ namespace Lafarge_WPF.Pages
 
                     //currentDate = lastWeek;
 
-                    List<WeeklyData> PrevWData = new List<WeeklyData>();
+                    
 
                     for (int i = 0; i < numOfV; i++)
                     {
@@ -149,8 +155,8 @@ namespace Lafarge_WPF.Pages
                         /////////////////////
                         //GlobalClass.con.Open();
                         string command_select_w_i = " SELECT a.weekly_index FROM weekly_reports as a where a.vehicle_code = '" + allVehicles[i] + "' " +
-                             " and a.weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
-                    " and a.weekly_Date >= '" + tempdate.ToString("yyyy-MM-dd") + "' "+
+                             " and a.weekly_Date >= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                    " and a.weekly_Date <= '" + tempdate.ToString("yyyy-MM-dd") + "' "+
                         " order by a.weekly_index desc limit 1; ";
 
                         MySqlCommand sql_cmd_w_i = new MySqlCommand(command_select_w_i, GlobalClass.con);
@@ -253,10 +259,16 @@ namespace Lafarge_WPF.Pages
                 }
                 else
                 {
+
                     MessageBox.Show("There is no data for Previous week");
+                    weekly_report1.ItemsSource = null;
+                    currentDate = lastWeek;
+                    Weekly_date_date.Text = currentDate.ToString("yyyy-MM-dd");
+                    ScrollThroughWeeks -= 1;
+                   
                     GlobalClass.con.Close();
                 }
-            }
+            
 
         }
 
@@ -285,18 +297,20 @@ namespace Lafarge_WPF.Pages
 
             //MessageBox.Show("got here 2");
 
+            // start saturday
             DateTime lastWeek = currentDate.AddDays(7);
-            DateTime tempDate = lastWeek.AddDays(-5);
-
+            // end friday
+            DateTime tempDate = lastWeek.AddDays(6);
+            
 
             //numOfV = GlobalOperations.num_of_vehicles();
             /////
             //GlobalClass.con.Open();
             //SELECT COUNT(*) FROM cities;
-            string command_select = "SELECT COUNT(*) FROM vehicle as a " +
+            string command_select = "SELECT COUNT(distinct a.vehicle_code) FROM vehicle as a " +
                 " inner join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
-                " where b.weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
-                "and b.weekly_Date >=  '"+ tempDate.ToString("yyyy-MM-dd") +"' ;";
+                " where b.weekly_Date >= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                "and b.weekly_Date <=  '"+ tempDate.ToString("yyyy-MM-dd") +"' ;";
             MySqlCommand sql_cmd = new MySqlCommand(command_select, GlobalClass.con);
             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
             GlobalClass.sql_dr.Read();
@@ -308,6 +322,7 @@ namespace Lafarge_WPF.Pages
             ///
 
             //MessageBox.Show("got here 3");
+            List<WeeklyData> PrevWData = new List<WeeklyData>();
 
             if (numOfV > 0)
             {
@@ -328,10 +343,10 @@ namespace Lafarge_WPF.Pages
 
                 //GlobalClass.con.Open();
 
-                MySqlCommand cmdd = new MySqlCommand(" select a.vehicle_code from vehicle as a" +
+                MySqlCommand cmdd = new MySqlCommand("SELECT distinct a.vehicle_code FROM vehicle as a " +
                     " join weekly_reports as b on a.vehicle_code = b.vehicle_code " +
-                    " where weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
-                    "and weekly_Date >=  '"+ tempDate.ToString("yyyy-MM-dd") +"'  ;", GlobalClass.con);
+                    " where weekly_Date >= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                    "and weekly_Date <=  '"+ tempDate.ToString("yyyy-MM-dd") +"'  ;", GlobalClass.con);
                 GlobalClass.sql_dr = cmdd.ExecuteReader();
                 while (GlobalClass.sql_dr.Read())
                 {
@@ -349,7 +364,7 @@ namespace Lafarge_WPF.Pages
 
                 //currentDate = lastWeek;
 
-                List<WeeklyData> PrevWData = new List<WeeklyData>();
+                
 
                 for (int i = 0; i < numOfV; i++)
                 {
@@ -358,8 +373,8 @@ namespace Lafarge_WPF.Pages
                     /////////////////////
                     //GlobalClass.con.Open();
                     string command_select_w_i = " SELECT a.weekly_index FROM weekly_reports as a where a.vehicle_code = '" + allVehicles[i] + "' " +
-                        " and weekly_Date <= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
-                        "and weekly_Date >=  '"+ tempDate.ToString("yyyy-MM-dd") +"'  " +
+                        " and weekly_Date >= '" + lastWeek.ToString("yyyy-MM-dd") + "' " +
+                        "and weekly_Date <=  '"+ tempDate.ToString("yyyy-MM-dd") +"'  " +
                                             " order by weekly_index desc limit 1; ";
 
                     MySqlCommand sql_cmd_w_i = new MySqlCommand(command_select_w_i, GlobalClass.con);
@@ -465,6 +480,14 @@ namespace Lafarge_WPF.Pages
             else
             {
                 MessageBox.Show("There is no data for next week");
+                weekly_report1.ItemsSource = null;
+                weekly_report1.ItemsSource = PrevWData;
+                DataContext = PrevWData;
+                currentDate = lastWeek;
+                Weekly_date_date.Text = currentDate.ToString("yyyy-MM-dd");
+
+                wData = PrevWData;
+                ScrollThroughWeeks += 1;
                 GlobalClass.con.Close();
             }
 
@@ -719,7 +742,8 @@ namespace Lafarge_WPF.Pages
                 worKsheeT.Name = "Weekly Report";
 
                 worKsheeT.Range[worKsheeT.Cells[1, 1], worKsheeT.Cells[1, 18]].Merge();
-                worKsheeT.Cells[1, 1] = "Weekly Report, " + currentDate.ToString("yyyy-MM-dd");
+                DateTime tempDate = currentDate.AddDays(6);
+                worKsheeT.Cells[1, 1] = "Weekly Report, " + currentDate.ToString("yyyy-MM-dd") + " - " + tempDate.ToString("yyyy-MM-dd");
                 worKsheeT.Cells.Font.Size = 15;
 
 
@@ -786,11 +810,14 @@ namespace Lafarge_WPF.Pages
                 //"C:\\Users\\Unimaginable\\Documents\\excell\\outputt.xls"
                 worKbooK.Close();
                 excel.Quit();
+                if (dlg.FileName != "")
+                    MessageBox.Show("Successfully Created the file!");
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show("There was a problem during the creation of Excel file!");
 
             }
             finally

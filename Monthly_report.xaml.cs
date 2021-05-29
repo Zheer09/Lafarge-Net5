@@ -15,7 +15,7 @@ namespace Lafarge_WPF.Pages
     {
 
         public static DateTime currentDate;
-        DateTime startDate, endDate;
+        public static DateTime startDate, endDate;
         List<monthlyData> MonthlyStore = new();
         public static int scrollTracker = 0;
 
@@ -191,7 +191,11 @@ namespace Lafarge_WPF.Pages
             }
             else
             {
+                Monthly_report1.ItemsSource = null;
                 MessageBox.Show("There is no data for next month!");
+                monthly_date_text.Text = startDate.ToString("MMMM");
+                currentDate = startDate;
+                scrollTracker -= 1;
             }
 
             GlobalClass.con.Close();
@@ -218,7 +222,6 @@ namespace Lafarge_WPF.Pages
                 "' and monthly_date <= '"+ endDate.ToString("yyyy-MM-dd") +"' ; ", GlobalClass.con);
             GlobalClass.sql_dr = da.ExecuteReader();
             string vehicle_C = "";
-            string assett = "";
             string[] monthy_data = new string[10];
 
             if (GlobalClass.sql_dr.HasRows)
@@ -226,6 +229,7 @@ namespace Lafarge_WPF.Pages
                  while (GlobalClass.sql_dr.Read())
                 {
                     vehicle_C = GlobalClass.sql_dr.GetString(0);
+                    string assett;
                     if (vehicle_C[0] == 'L')
                     {
                         assett = "Loader";
@@ -283,6 +287,10 @@ namespace Lafarge_WPF.Pages
             else
             {
                 MessageBox.Show("There is no data for previous month!");
+                monthly_date_text.Text = startDate.ToString("MMMM");
+                currentDate = startDate;
+                scrollTracker -= 1;
+                Monthly_report1.ItemsSource = null;
             }
 
             GlobalClass.con.Close();
@@ -385,10 +393,17 @@ namespace Lafarge_WPF.Pages
                 worKbooK.Close();
                 excel.Quit();
 
+                if(dlg.FileName != "")
+                {
+                    MessageBox.Show("Successfully created the Excel file!");
+                }
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show("There was a problem during the creation of Excel file!");
 
             }
             finally

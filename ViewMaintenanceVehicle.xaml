@@ -16,7 +16,7 @@
             <RowDefinition Height="209*"/>
             <RowDefinition Height="225*"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Row="0" Grid.Column="0">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -35,7 +35,7 @@
                            HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15"/>
                 <Label Grid.Row="0" Grid.Column="1" x:Name="v_cc" Content="Vehicle_code" 
                        HorizontalAlignment="Left"  VerticalAlignment="Center" />
-                
+
                 <TextBlock Text="Vehicle Status: " FontWeight="SemiBold" Grid.Column="0" Grid.Row="1"
                            HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15"/>
                 <Label Grid.Row="1" x:Name="v_ss" Grid.Column="1"
@@ -78,6 +78,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="View all notes" Grid.Column="1" HorizontalAlignment="Left" Margin="321,0,0,0" VerticalAlignment="Center" Height="44" Width="145" Click="view_notes_click"/>
     </Grid>
 
 </Window>

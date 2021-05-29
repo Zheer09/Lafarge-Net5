@@ -175,4 +175,13 @@ namespace Lafarge_WPF
         public int falseCheckIntRep { get; set; }
     }
 
+    class NotesData
+    {
+        public string checkName { get; set; }
+        public string noteContent { get; set; }
+        
+        public string noteDate { get; set; }
+
+    }
+
 }

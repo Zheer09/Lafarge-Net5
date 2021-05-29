@@ -17,6 +17,19 @@ using Lafarge_WPF.Pages;
 using MySql.Data.MySqlClient;
 
 
+/*
+ 
+select * from vehicle_check as a
+    where a.vehicle_code = 'L99' and a.check_index = 4 and a.submit_date >= 
+    (select b.check_rep_date from weekly_checks_sub as b  where b.vehicle_code = 'L99' and b.check_rep_index = 4 and b.false_check_rep = 1   )
+    and a.submit_date <= '2021-05-28'
+    ;
+    
+
+ */
+
+
+
 namespace Lafarge_WPF
 {
     /// <summary>
@@ -103,8 +116,8 @@ namespace Lafarge_WPF
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-           // Progress_bar progressBar = new Progress_bar();
-           // progressBar.ShowDialog();
+            // Progress_bar progressBar = new Progress_bar();
+            // progressBar.ShowDialog();
 
             //BackgroundWorker worker = new BackgroundWorker();
             //worker.RunWorkerCompleted += worker_RunWorkerCompleted;
@@ -112,6 +125,9 @@ namespace Lafarge_WPF
             //worker.DoWork += worker_DoWork;
             //worker.ProgressChanged += worker_ProgressChanged;
             //worker.RunWorkerAsync();
+
+          
+
 
             loader_note[0] = Note_p1.Text;
             loader_note[1] = Note_p2.Text;
@@ -150,9 +166,14 @@ namespace Lafarge_WPF
             else
             {
 
+                if (MessageBox.Show("Do you want to Save?", "Confirm",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+
+                
 
                 try
-                {
+                    {
 
                     if (GlobalOperations.doesVehicleExist(v_code.Text))
                     {
@@ -242,6 +263,18 @@ namespace Lafarge_WPF
                             GlobalClass.sql_dr = sql_cmd.ExecuteReader();
                             GlobalClass.con.Close();
 
+
+
+
+
+
+                            ////// you should do the "All-Note" part here!
+                            // you should get the last notesID and insert the notes based on their particular note id
+
+
+
+
+
                             int last_week_index = GlobalOperations.getLastWeeklyIndex(v_code.Text, (num_of_index_w_r + 1));
 
 
@@ -304,7 +337,9 @@ namespace Lafarge_WPF
                                         con_strrr_append += " ( '" + v_code.Text + "', " + (i + 1) + ", " + (1 + num_of_index_w_r) + ", " + lastRep[i] + ",  '" + s_d.ToString(format) + "' );";
                                     }
                                 }
-
+                                    ////
+                                    ///
+                                    int test = 0;
                             }
 
                             string command_insert_2 = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES" + con_strrr_append;
@@ -562,8 +597,14 @@ namespace Lafarge_WPF
                 {
                     MessageBox.Show("An error has occurred! The data was not fully Saved.");
                 }
-
+                }
+            else
+                {
+                    // Cancel code here  
+                }
             }
+
+           
 
         }
 
@@ -672,7 +713,7 @@ namespace Lafarge_WPF
 
         private void P9_NoButtonChecked(object sender, EventArgs e)
         {
-            loader_check[9] = false;
+            loader_check[8] = false;
         }
 
 
@@ -757,6 +798,14 @@ namespace Lafarge_WPF
         private void P16_NoButtonChecked(object sender, EventArgs e)
         {
             loader_check[15] = false;
+        }
+
+        private void DatePicker_selectedDate_changed(object sender, SelectionChangedEventArgs e)
+        {
+
+            s_d = (DateTime)(((DatePicker)sender).SelectedDate);
+            DateTime_lable.Text = s_d.ToString("yyyy-MM-dd");
+
         }
     }
 }

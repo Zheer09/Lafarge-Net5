@@ -8,6 +8,10 @@
         x:Name="thisPage2"
         Title="SearchResult" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="87*"/>
+            <RowDefinition Height="347*"/>
+        </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Left" Margin="27,36,0,0" Text="Vehicle Code: " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="81"/>
         <TextBlock x:Name="vehiceCodeLabel" HorizontalAlignment="Left" Margin="113,36,0,0" Text="VC " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="81"/>
         <TextBlock HorizontalAlignment="Left" Margin="209,36,0,0" Text="Working Hours: " TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="92"/>
@@ -16,7 +20,7 @@
                   Background="Transparent" x:Name="resultMaintenance_grid"
                   ItemsSource="{Binding}" GridLinesVisibility="Horizontal" 
                   SelectionUnit="FullRow" SelectionMode="Extended" 
-                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" MouseDoubleClick="doubleClickRow"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" MouseDoubleClick="doubleClickRow" Grid.RowSpan="2"
                   
                   >
             <DataGrid.Columns>
@@ -34,11 +38,12 @@
                                           ShadowDepth="4" Opacity="0.3"/>
             </DataGrid.Effect>
         </DataGrid>
-        <Frame x:Name="Main"  Grid.Column="1" Margin="15" NavigationUIVisibility="Hidden" Navigated="Main_Navigated"/>
-        
+        <TextBlock x:Name="workingHoursLabel_Copy" HorizontalAlignment="Left" Margin="487,37,0,0" Text="*Double click on the records to see more..." Foreground="LightGray" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="259"/>
+        <!-- Cool comment  <Frame x:Name="Main" Margin="15,15,15,15" NavigationUIVisibility="Hidden" Navigated="Main_Navigated" Grid.RowSpan="2"/> -->
+
     </Grid>
 
-    
+
 
 
 </Window>
