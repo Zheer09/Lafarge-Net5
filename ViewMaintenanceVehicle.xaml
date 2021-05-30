@@ -54,19 +54,19 @@
 
             </Grid>
         </StackPanel>
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="3"  x:Name="m_v_grid" 
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="3"  x:Name="m_v_grid"  AutoGenerateColumns="False" 
                   IsReadOnly="True"
           CanUserAddRows="False"
           SelectionUnit="Cell"
           SelectionMode="Extended"
           Margin="5" 
-          AutoGenerateColumns="False" CanUserDeleteRows="False" 
+           CanUserDeleteRows="False" 
           HorizontalScrollBarVisibility="Auto"
           VerticalScrollBarVisibility="Auto"
           HorizontalAlignment="Center"
           VerticalAlignment="Stretch" GridLinesVisibility="Horizontal"
           ScrollViewer.CanContentScroll="True" 
-          ScrollViewer.HorizontalScrollBarVisibility="Visible" Foreground="Black">>
+          ScrollViewer.HorizontalScrollBarVisibility="Visible" Foreground="Black">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vehicle Code" Binding="{Binding v_codee}"/>
                 <DataGridTextColumn Header="Check engine oil level" Binding="{Binding P1}"/>
@@ -80,7 +80,7 @@
                 <DataGridTextColumn Header="Check mirrors" Binding="{Binding P9}"/>
                 <DataGridTextColumn Header="Check windshield and its scrapers" Binding="{Binding P10}"/>
                 <DataGridTextColumn Header="Check brake" Binding="{Binding P11}"/>
-                <DataGridTextColumn Header="Check legs movement , Check whole body and stairs , Check whole body and bucket " Binding="{Binding P12}"/>
+                <DataGridTextColumn Header="Check legs movement , Check whole body and stairs , Check whole body and bucket" Binding="{Binding P12}"/>
                 <DataGridTextColumn Header="Check all leakages" Binding="{Binding P13}"/>
                 <DataGridTextColumn Header="Check batteries and charging" Binding="{Binding P14}"/>
                 <DataGridTextColumn Header="Check fuel level " Binding="{Binding P15}"/>

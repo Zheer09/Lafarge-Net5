@@ -130,7 +130,7 @@ namespace Lafarge_WPF
                 weeklyNote = ""
             });
 
-            m_v_grid.ItemsSource = VData;
+           m_v_grid.ItemsSource = VData;
 
             for (int i = 0; i < 16; i++)
             {
