@@ -47,7 +47,7 @@
                     <DataGridTextColumn Header="Windshield and its scrapers" Binding="{Binding P10}"/>
                     <DataGridTextColumn Header="Brake" Binding="{Binding P11}"/>
                     <DataGridTextColumn Header="Legs movement" Binding="{Binding P12}"/>
-                    <DataGridTextColumn Header="All leakages" Binding="{Binding P13}"/>
+                    <DataGridTextColumn Header="All leakages , whole body and stairs , whole body and bucket " Binding="{Binding P13}"/>
                     <DataGridTextColumn Header="Batteries and charging" Binding="{Binding P14}"/>
                     <DataGridTextColumn Header="Fuel level" Binding="{Binding P15}"/>
                     <DataGridTextColumn Header="All booms movement , Bucket cylinder jack , Water tank" Binding="{Binding P16}"/>

@@ -172,7 +172,7 @@ namespace Lafarge_WPF
 
         private void P9_NoButtonChecked(object sender, EventArgs e)
         {
-            pump_check[9] = false;
+            pump_check[8] = false;
         }
 
 
@@ -259,6 +259,14 @@ namespace Lafarge_WPF
             pump_check[15] = false;
         }
 
+        private void DatePicker_selectedDate_changed(object sender, SelectionChangedEventArgs e)
+        {
+
+            s_d = (DateTime)(((DatePicker)sender).SelectedDate);
+            DateTime_lable.Text = s_d.ToString("yyyy-MM-dd");
+
+        }
+
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             pump_note[0] = Note_p1.Text;
@@ -297,9 +305,11 @@ namespace Lafarge_WPF
             }
             else
             {
+                if (MessageBox.Show("Do you want to Save?", "Confirm",
+                   MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
 
-
-                try
+                    try
                 {
 
                     if (GlobalOperations.doesVehicleExist(v_code.Text))
@@ -468,7 +478,9 @@ namespace Lafarge_WPF
                                     }
                                 }
 
-                            }
+                                    
+
+                                }
 
                             string command_insert_2 = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES" + con_strrr_append;
                             //INSERT INTO weekly_checks_sub(vehicle_code, check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES
@@ -735,6 +747,11 @@ namespace Lafarge_WPF
                 else
                 {
                     MessageBox.Show("An error has occurred! The data was not fully Saved.");
+                }
+                }
+                else
+                {
+                    // Cancel code here  
                 }
 
             }

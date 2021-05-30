@@ -24,13 +24,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Weekly Report" FontSize="70" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Weekly Report" FontSize="50" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
             </TextBlock.Effect>
         </TextBlock>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Monthly Report" FontSize="70" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Monthly Report" FontSize="50" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="4" Opacity="0.30" />
             </TextBlock.Effect>

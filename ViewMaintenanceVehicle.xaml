@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Lafarge_WPF"
         mc:Ignorable="d"
         Title="ViewMaintenanceVehicle" Height="412" Width="1197">
@@ -53,32 +54,47 @@
 
             </Grid>
         </StackPanel>
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="3"  x:Name="m_v_grid"  AutoGenerateColumns="False" >
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="3"  x:Name="m_v_grid" 
+                  IsReadOnly="True"
+          CanUserAddRows="False"
+          SelectionUnit="Cell"
+          SelectionMode="Extended"
+          Margin="5" 
+          AutoGenerateColumns="False" CanUserDeleteRows="False" 
+          HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Stretch" GridLinesVisibility="Horizontal"
+          ScrollViewer.CanContentScroll="True" 
+          ScrollViewer.HorizontalScrollBarVisibility="Visible" Foreground="Black">>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vehicle Code" Binding="{Binding v_codee}"/>
-                <DataGridTextColumn Header="P1" Binding="{Binding P1}"/>
-                <DataGridTextColumn Header="P2" Binding="{Binding P2}"/>
-                <DataGridTextColumn Header="P3" Binding="{Binding P3}"/>
-                <DataGridTextColumn Header="P4" Binding="{Binding P4}"/>
-                <DataGridTextColumn Header="P5" Binding="{Binding P5}"/>
-                <DataGridTextColumn Header="P6" Binding="{Binding P6}"/>
-                <DataGridTextColumn Header="P7" Binding="{Binding P7}"/>
-                <DataGridTextColumn Header="P8" Binding="{Binding P8}"/>
-                <DataGridTextColumn Header="P9" Binding="{Binding P9}"/>
-                <DataGridTextColumn Header="P10" Binding="{Binding P10}"/>
-                <DataGridTextColumn Header="P11" Binding="{Binding P11}"/>
-                <DataGridTextColumn Header="P12" Binding="{Binding P12}"/>
-                <DataGridTextColumn Header="P13" Binding="{Binding P13}"/>
-                <DataGridTextColumn Header="P14" Binding="{Binding P14}"/>
-                <DataGridTextColumn Header="P15" Binding="{Binding P15}"/>
-                <DataGridTextColumn Header="P16" Binding="{Binding P16}"/>
+                <DataGridTextColumn Header="Check engine oil level" Binding="{Binding P1}"/>
+                <DataGridTextColumn Header="Check hydraulic oil level" Binding="{Binding P2}"/>
+                <DataGridTextColumn Header="Check water level" Binding="{Binding P3}"/>
+                <DataGridTextColumn Header="Check tires" Binding="{Binding P4}"/>
+                <DataGridTextColumn Header="Check lights" Binding="{Binding P5}"/>
+                <DataGridTextColumn Header="Check seat belt" Binding="{Binding P6}"/>
+                <DataGridTextColumn Header="Chech front and back alarms" Binding="{Binding P7}"/>
+                <DataGridTextColumn Header="Check fire extinguisher" Binding="{Binding P8}"/>
+                <DataGridTextColumn Header="Check mirrors" Binding="{Binding P9}"/>
+                <DataGridTextColumn Header="Check windshield and its scrapers" Binding="{Binding P10}"/>
+                <DataGridTextColumn Header="Check brake" Binding="{Binding P11}"/>
+                <DataGridTextColumn Header="Check legs movement , Check whole body and stairs , Check whole body and bucket " Binding="{Binding P12}"/>
+                <DataGridTextColumn Header="Check all leakages" Binding="{Binding P13}"/>
+                <DataGridTextColumn Header="Check batteries and charging" Binding="{Binding P14}"/>
+                <DataGridTextColumn Header="Check fuel level " Binding="{Binding P15}"/>
+                <DataGridTextColumn Header="Check all booms movement , Check water tank , Check bucket cylinder jack" Binding="{Binding P16}"/>
                 <DataGridTextColumn Header="Note" Binding="{Binding weeklyNote}">
 
                 </DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="View all notes" Grid.Column="1" HorizontalAlignment="Left" Margin="321,0,0,0" VerticalAlignment="Center" Height="44" Width="145" Click="view_notes_click"/>
+        <Button Content="View all notes" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="50" Width="145" Click="view_notes_click"
+                Style="{StaticResource MaterialDesignRaisedButton}" 
+                            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="25" BorderBrush="#00955E"/>
+        
     </Grid>
 
 </Window>

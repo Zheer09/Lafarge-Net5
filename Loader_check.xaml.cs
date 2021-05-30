@@ -339,7 +339,7 @@ namespace Lafarge_WPF
                                 }
                                     ////
                                     ///
-                                    int test = 0;
+                                    
                             }
 
                             string command_insert_2 = "INSERT INTO weekly_checks_sub ( vehicle_code ,check_rep_index, weekly_index, false_check_rep, check_rep_date) VALUES" + con_strrr_append;
